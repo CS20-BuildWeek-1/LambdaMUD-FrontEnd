@@ -1,72 +1,73 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 
-
-class Login extends React.Component {
+class Login extends Component {
     state = {
         username: '',
         password: '',
-        authorized: false
+        status: 0
+    };
+
+    inputChangeHandler = e => {
+        const { name, value } = e.target;
+        this.setState({ [name]: value });
+    };
+
+    submitHandler = e => {
+        e.preventDefault();
+        axios
+        .post('https://lambda-mud-test.herokuapp.com/api/login', this.state)
+        .then(res => {
+            console.log('response', res)
+            const token = res.data['key'];
+            localStorage.setItem('token', `Token ${token}`);
+            this.props.history.push('/adventure');
+        })
+        .catch(err => {
+            const error = JSON.stringify(err);
+            if (error.includes('401')) {
+                this.setState({ status: 401})
+            }
+        });
     }
 
-    render() {
-        return (
-            <div className="Signin">
-                <h1>Sign In</h1>
-                <form onSubmit={this.submitHandler}>
-                    <div>
-                        <input
-                            value={this.state.username}
-                            onCharge={this.inputChangeHandler}
-                            placeholder="Username"
-                            type="text"
-                            name="username" />
-                    </div>
-                    <div>
-                        <input
-                            value={this.state.password}
-                            onChange={this.inputChangeHandler}
-                            placeholder="Password"
-                            type="password"
-                            name="password" />
-                    </div>
-                    <div>
-                        <button type="submit">
-                            Sign In
-                        </button>
-                        <Link to="/Register"> <a> Need an account? Click here to Register</a></Link>
-                    </div>
-                    {this.state.authorized ? <Link to="/play"> Play </Link> : null}
+  render() {
+    return (
+        <div className="login-page">
+            <div className="outer-div">
+            <div className="link-buttons">
+                <Link to={`/`}>Login</Link>
+                <Link to={`/register`}>Register</Link>
+            </div>
+            <div className="inner-div">
+                <form className="form-div" onSubmit={this.submitHandler}>
+                    <input
+                    value={this.state.username}
+                    onChange={this.inputChangeHandler}
+                    type="text"
+                    placeholder="Username"
+                    name="username"
+                    />
+                    <input
+                    value={this.state.password}
+                    onChange={this.inputChangeHandler}
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    />
+                    <button type="submit">Sign In</button>
                 </form>
             </div>
-        );
-    }
-    inputChangeHandler = event => {
-        this.setState({ [event.target.name]: event.target.value })
-    };
-    submitHandler = event => {
-        event.preventDefault();
-        const credentials = {
-            username: this.state.username,
-            password: this.state.password
-        }
-        const local = 'http://127.0.0.1:3000'
-        // const herokurl = 'https://lambda-mud-test.herokuapp.com/'
-        axios.post(`${local}/api/login`, credentials).then(res => {
-            console.log(res.data);
-            const token = res.data.key;
-            localStorage.setItem('key', token);
-            this.setState({ authorized: true });
-        })
-            .catch(err => {
-                console.error(err.response);
-            });
-        console.log('state', this.state);
-    };
+            </div>
+            <p style={ this.state.status === 401 ? 
+                { color: "red", textAlign: "center", marginTop: "20px" } : { display: "none" } }>
+                Invalid username or password.
+            </p>
+        </div>
+    );
+  }
+
 }
 
-
-
-
-export default Login; 
+export default Login;

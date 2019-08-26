@@ -9,10 +9,10 @@ import "./App.css";
 class App extends React.Component {
   render() {
     return (
-      <div className="App-container">
+      <div className="App">
         <Route exact path="/" component={Login} />
-        {/* <Route path="/register" component={Register} /> */}
-        <Route path="/adventure" component={Adventure} />
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/adventure" component={Adventure} />
       </div>
     );
   }
