@@ -18,6 +18,7 @@ class Register extends Component {
   submitHandler = e => {
     const herokurl = "https://lambda-mud-test.herokuapp.com";
     e.preventDefault();
+
     axios({
       url: `${herokurl}/api/registration/`,
       method: "POST",

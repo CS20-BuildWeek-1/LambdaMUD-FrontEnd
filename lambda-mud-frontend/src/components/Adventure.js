@@ -20,8 +20,7 @@ class Adventure extends React.Component {
   }
 
   init = () => {
-    // const key = localStorage.getItem("key");
-    const key = "626a1a9d5ab38fe08f0bab5d5b75f13fb36a12d0";
+    const token = localStorage.getItem("token");
     // const local = "http://localhost:3000";
     const herokurl = "https://lambda-mud-test.herokuapp.com";
 
@@ -29,19 +28,20 @@ class Adventure extends React.Component {
       url: `${herokurl}/api/adv/init`,
       method: "GET",
       headers: {
-        Authorization: `Token ${key}`
+        Authorization: `${token}`
       }
-    }).then(res => {
-      this.setState({
-        playerName: res.data.name,
-        roomTitle: res.data.title,
-        roomDescription: res.data.description,
-        roomPlayers: res.data.players
+    })
+      .then(res => {
+        this.setState({
+          playerName: res.data.name,
+          roomTitle: res.data.title,
+          roomDescription: res.data.description,
+          roomPlayers: res.data.players
+        });
+      })
+      .catch(err => {
+        console.log("Axios error:", err.response);
       });
-      //   .catch(err => {
-      //     console.error(err);
-      //   });
-    });
   };
 
   render() {
