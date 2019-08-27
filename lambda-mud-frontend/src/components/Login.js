@@ -17,6 +17,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 class Login extends Component {
   state = {
     username: "",
+    email: "",
     password: "",
     status: 0
   };
@@ -27,9 +28,18 @@ class Login extends Component {
   };
 
   submitHandler = e => {
+    const herokurl = "https://lambda-mud-test.herokuapp.com";
     e.preventDefault();
-    axios
-      .post("https://lambda-mud-test.herokuapp.com/api/login", this.state)
+
+    axios({
+      url: `${herokurl}/api/login/`,
+      method: "POST",
+      data: {
+        username: `${this.state.username}`,
+        password: `${this.state.password}`,
+        email: `${this.state.email}`
+      }
+    })
       .then(res => {
         console.log("response", res);
         const token = res.data["key"];
@@ -37,10 +47,7 @@ class Login extends Component {
         this.props.history.push("/adventure");
       })
       .catch(err => {
-        const error = JSON.stringify(err);
-        if (error.includes("401")) {
-          this.setState({ status: 401 });
-        }
+        console.log("Axios error:", err.response);
       });
   };
 
@@ -56,6 +63,19 @@ class Login extends Component {
             <div className="form-contain">
               <Form className="p-4" onSubmit={this.submitHandler}>
                 <div className="form-subject">Login</div>
+                <Col>
+                  <FormGroup>
+                    <input
+                      className="input"
+                      type="text"
+                      name="email"
+                      id="exampleEmail"
+                      placeholder="&#128220; Email"
+                      value={this.state.email}
+                      onChange={this.inputChangeHandler}
+                    />
+                  </FormGroup>
+                </Col>
                 <Col>
                   <FormGroup>
                     <input
