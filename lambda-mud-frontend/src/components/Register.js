@@ -61,11 +61,7 @@ class Register extends Component {
             <Link to={`/register`}>Register</Link>
           </div>
           <div className="form-contain">
-            <Form
-              className="p-4"
-              //   style={{ width: "40%" }}
-              onSubmit={this.submitHandler}
-            >
+            <Form className="p-4" onSubmit={this.submitHandler}>
               <Col>
                 <FormGroup>
                   <div className="form-subject">Register</div>

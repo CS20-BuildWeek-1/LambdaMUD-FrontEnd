@@ -11,6 +11,8 @@ import {
   Button,
   FormText
 } from "reactstrap";
+import "./Register.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 class Login extends Component {
   state = {
@@ -53,20 +55,7 @@ class Login extends Component {
             </div>
             <div className="form-contain">
               <Form className="p-4" onSubmit={this.submitHandler}>
-                <Col>
-                  <FormGroup>
-                    <div className="form-subject">Login</div>
-                    <input
-                      className="input"
-                      type="email"
-                      name="email"
-                      id="exampleEmail"
-                      placeholder="&#128220; Email"
-                      value={this.state.email}
-                      onChange={this.inputChangeHandler}
-                    />
-                  </FormGroup>
-                </Col>
+                <div className="form-subject">Login</div>
                 <Col>
                   <FormGroup>
                     <input
@@ -85,8 +74,8 @@ class Login extends Component {
                     <input
                       className="input"
                       type="password"
-                      name="password1"
-                      id="examplePassword1"
+                      name="password"
+                      id="examplePassword"
                       placeholder="&#128273; Password"
                       value={this.state.password}
                       onChange={this.inputChangeHandler}
