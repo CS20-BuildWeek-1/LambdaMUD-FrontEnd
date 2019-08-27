@@ -94,7 +94,7 @@ class Login extends Component {
                   </FormGroup>
                 </Col>
                 <button className="btn-success" type="submit">
-                  Login
+                  Join World
                 </button>
               </Form>
             </div>
