@@ -1,0 +1,115 @@
+/* Register Styles */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+@font-face {
+  font-family: "Goudy";
+  src: url("../fonts/GOUDY.TTF");
+}
+@font-face {
+  font-family: "Magic";
+  src: url("../fonts/MagicMedieval.ttf");
+}
+@font-face {
+  font-family: "Adventure";
+  src: url("../fonts/AdventureReQuest.otf");
+}
+@font-face {
+  font-family: "Pixel";
+  src: url("../fonts/PixelAzure.ttf");
+}
+
+@font-face {
+  font-family: "Fire";
+  src: url("../fonts/BreatheFireIi-2z9W.ttf");
+}
+@font-face {
+  font-family: "Dragon";
+  src: url("../fonts/eight-bit-dragon.otf");
+}
+
+@font-face {
+  font-family: "Ancient";
+  src: url("../fonts/AncientModernTales.otf");
+}
+
+main {
+  height: 100vh;
+  background: url("https://img.wallpapersafari.com/desktop/1920/1080/82/97/UHpNxb.jpg")
+    fixed no-repeat;
+  background-size: cover;
+}
+
+.outer-div {
+  margin-top: 50px;
+}
+
+#container {
+  width: 350px;
+  height: 500px;
+  background: inherit;
+  position: absolute;
+  /* overflow: hidden; */
+  top: 50%;
+  left: 50%;
+  margin-left: -175px;
+  margin-top: -250px;
+  border-radius: 8px;
+}
+
+#container:before {
+  width: 400px;
+  height: 550px;
+  content: "";
+  position: absolute;
+  top: -25px;
+  left: -25px;
+  bottom: 0;
+  right: 0;
+  background: inherit;
+  box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.2);
+  filter: blur(2px);
+}
+.form-subject {
+  font-family: "Magic";
+  color: #996515;
+  font-size: 45px;
+  padding-top: 20px;
+  /* font-weight: 600; */
+}
+form {
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.input {
+  font-family: "Magic";
+  background: 0;
+  width: 200px;
+  outline: 0;
+  border: 0;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  margin: 20px 0;
+  padding-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.btn-success {
+  font-family: "Goudy";
+  font-size: 20px;
+  border: 0;
+  border-radius: 10px;
+  padding: 2px;
+  width: 80%;
+  height: 60px;
+  color: white;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+}
