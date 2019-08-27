@@ -1,6 +1,18 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import {
+  Container,
+  Col,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Button,
+  FormText
+} from "reactstrap";
+import "./Register.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 class Register extends Component {
   state = {
@@ -42,47 +54,78 @@ class Register extends Component {
 
   render() {
     return (
-      <div className="login-page">
-        <div className="outer-div">
+      <main>
+        <div id="container">
           <div className="link-buttons">
             <Link to={`/`}>Login</Link>
             <Link to={`/register`}>Register</Link>
           </div>
-          <div className="inner-div">
-            <form className="form-div" onSubmit={this.submitHandler}>
-              <input
-                value={this.state.username}
-                onChange={this.inputChangeHandler}
-                type="text"
-                placeholder="Username"
-                name="username"
-              />
-              <input
-                value={this.state.email}
-                onChange={this.inputChangeHandler}
-                type="text"
-                placeholder="Email"
-                name="email"
-              />
-              <input
-                value={this.state.password}
-                onChange={this.inputChangeHandler}
-                type="password"
-                placeholder="Password"
-                name="password1"
-              />
-              <input
-                value={this.state.password}
-                onChange={this.inputChangeHandler}
-                type="password"
-                placeholder="Re-enter Password"
-                name="password2"
-              />
-              <button type="submit">Create Account</button>
-            </form>
+          <div className="form-contain">
+            <Form
+              className="p-4"
+              //   style={{ width: "40%" }}
+              onSubmit={this.submitHandler}
+            >
+              <Col>
+                <FormGroup>
+                  <div className="form-subject">Register</div>
+                  <input
+                    className="input"
+                    type="email"
+                    name="email"
+                    id="exampleEmail"
+                    placeholder="&#128220; Email"
+                    value={this.state.email}
+                    onChange={this.inputChangeHandler}
+                  />
+                </FormGroup>
+              </Col>
+              <Col>
+                <FormGroup>
+                  <input
+                    className="input"
+                    type="text"
+                    name="username"
+                    id="exampleUsername"
+                    placeholder="&#128128; Username"
+                    value={this.state.username}
+                    onChange={this.inputChangeHandler}
+                  />
+                </FormGroup>
+              </Col>
+              <Col>
+                <FormGroup>
+                  <input
+                    className="input"
+                    type="password"
+                    name="password1"
+                    id="examplePassword1"
+                    placeholder="&#128273; Password"
+                    value={this.state.password}
+                    onChange={this.inputChangeHandler}
+                  />
+                </FormGroup>
+              </Col>
+              <Col>
+                <FormGroup>
+                  <input
+                    className="input"
+                    type="password"
+                    name="password2"
+                    id="examplePassword2"
+                    placeholder="&#128273; Confirm Password"
+                    value={this.state.password}
+                    onChange={this.inputChangeHandler}
+                  />
+                </FormGroup>
+              </Col>
+              <button className="btn-success" type="submit">
+                Create Account
+              </button>
+            </Form>
           </div>
         </div>
-      </div>
+      </main>
     );
   }
 }
