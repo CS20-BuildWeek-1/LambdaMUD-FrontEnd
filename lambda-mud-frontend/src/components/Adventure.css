@@ -4,8 +4,9 @@
 }
 
 .main-container {
-  height: 100vh;
-  overflow: hidden;
+  /* border: 5px solid saddlebrown; */
+  /* height: 100vh; */
+  /* overflow: hidden; */
 }
 
 .top-container {
@@ -15,6 +16,7 @@
 
 .room-img {
   /* float: left; */
+  border: 3px solid saddlebrown;
   background-repeat: no-repeat;
   height: 60vh;
   width: 60%;
@@ -25,45 +27,45 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
   width: 100%;
-  /* margin: 0 auto;
-  align-self: center;
-
-  color: white; */
 }
 
 .bottom-container {
+  border: 5px solid green;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-between;
   background-color: tan;
   height: 100%;
   width: 100%;
 }
+.player-container {
+  width: 30%;
+  background: url("../images/rpgborder2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+.room-container {
+  width: 30%;
+  background: url("../images/rpgborder3.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
 h2 {
   font-family: "Adventure";
 }
-ul {
-  padding-top: 20px;
-  width: 80%;
-  margin: 0 auto;
-  align-content: center;
-  overflow: hidden;
-}
 
 .controller {
-  border-radius: 50%;
   border-left: 1px solid grey;
-  /* width: 20%; */
-  /* height: 50%; */
   background-color: burlywood;
   grid-template-areas:
     "header header header header header header"
     "main main main right right right"
     "footer footer footer footer footer footer";
   grid-gap: 10px;
-  margin-top: 10px;
   padding: 40px;
+  width: 40%;
 }
 
 .btn-dir {

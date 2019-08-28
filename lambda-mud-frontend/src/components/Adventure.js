@@ -180,22 +180,27 @@ class Adventure extends React.Component {
           </div>
 
           <div className="bottom-container">
-            <ul>
-              <li>
-                <h2>{this.state.roomTitle}</h2>
-              </li>
-              <li>{this.state.roomDescription}</li>
-              <li>
-                <b>You:</b> {this.state.playerName}
-              </li>
-              <li>
-                <b>Players:</b>
-                <br></br>
-                {this.state.roomPlayers[0]}
-                <br></br>
-                {this.state.roomPlayers[1]}
-              </li>
-
+            <div className="player-container">
+              <h2>Current Player</h2>
+              {this.state.playerName}
+              <br></br>
+              <h2>Other Players</h2>
+              {this.state.roomPlayers[0]}
+              <br></br>
+              {this.state.roomPlayers[1]}
+              <br></br>
+              {this.state.roomPlayers[2]}
+              <br></br>
+              {this.state.roomPlayers[3]}
+              <img
+                src="https://media.giphy.com/media/2ywLocM9VYvpPa5d1Y/giphy.gif"
+                width="50"
+                height="50"
+              ></img>
+            </div>
+            <div className="room-container">
+              <h2>{this.state.roomTitle}</h2>
+              {this.state.roomDescription}
               {this.state.errorMsg ? (
                 <div className="alert">
                   <HeadShake>
@@ -214,7 +219,8 @@ class Adventure extends React.Component {
               ) : (
                 ""
               )}
-            </ul>
+            </div>
+
             <div className="controller">
               <Col>
                 <Button
