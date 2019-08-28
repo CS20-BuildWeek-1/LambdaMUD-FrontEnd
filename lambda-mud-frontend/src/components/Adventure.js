@@ -57,8 +57,48 @@ class Adventure extends React.Component {
           roomPlayers: res.data.players,
           token: key
         });
+        {
+          if (res.data.title === "Grand Overlook") {
+            const imageURL =
+              "https://www.wallpapermaiden.com/wallpaper/30192/download/1920x1080/fantasy-landscape-night-dual-monitor-bonfire-cliff-edge.jpeg";
+            this.setState({
+              roomImage: imageURL
+            });
+          }
+          if (res.data.title === "Foyer") {
+            const imageURL =
+              "https://www.worldanvil.com/uploads/images/f53c1891ad87ca80078202494c62f357.jpg";
+            this.setState({
+              roomImage: imageURL
+            });
+          }
+
+          if (res.data.title === "Outside Cave Entrance") {
+            const imageURL =
+              "https://www.wallpapermaiden.com/wallpaper/35331/download/1920x1080/cave-warrior-skull-gate-gods-artwork-stairs-cobweb-fantasy.jpeg";
+            this.setState({
+              roomImage: imageURL
+            });
+          }
+          if (res.data.title === "Narrow Passage") {
+            const imageURL =
+              "https://i.pinimg.com/originals/e2/0d/5a/e20d5aefb0e343d8a0c369de4b7f719f.jpg";
+            this.setState({
+              roomImage: imageURL
+            });
+          }
+          if (res.data.title === "Treasure Chamber") {
+            const imageURL =
+              "https://cdna.artstation.com/p/assets/images/images/003/624/616/large/mike-jensen-pfuz-mystery-room.jpg?1475728634";
+            this.setState({
+              roomImage: imageURL
+            });
+          }
+        }
+
         console.log("INIT STATE", this.state);
       })
+
       .catch(err => {
         console.log("Axios error:", err.response);
       });
@@ -153,7 +193,11 @@ class Adventure extends React.Component {
                 <b>You:</b> {this.state.playerName}
               </li>
               <li>
-                <b>Players:</b> {this.state.roomPlayers}
+                <b>Players:</b>
+                <br></br>
+                {this.state.roomPlayers[0]}
+                <br></br>
+                {this.state.roomPlayers[1]}
               </li>
 
               {this.state.errorMsg ? (
