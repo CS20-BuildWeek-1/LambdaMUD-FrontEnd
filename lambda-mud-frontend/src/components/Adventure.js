@@ -13,6 +13,11 @@ import {
   Button,
   FormText
 } from "reactstrap";
+import Entrance from "../images/entrance.png";
+import Foyer from "../images/foyer.png";
+import Overlook from "../images/overlook.png";
+import Passage from "../images/passage.png";
+import Treasure from "../images/treasure.png";
 import "./Adventure.css";
 
 // import { Link } from 'react-router-dom';
@@ -59,32 +64,32 @@ class Adventure extends React.Component {
         });
         {
           if (res.data.title === "Grand Overlook") {
-            const imageURL = "../images/overlook.png";
+            const imageURL = Overlook;
             this.setState({
               roomImage: imageURL
             });
           }
           if (res.data.title === "Foyer") {
-            const imageURL = "../images/foyer.png";
+            const imageURL = Foyer;
             this.setState({
               roomImage: imageURL
             });
           }
 
           if (res.data.title === "Outside Cave Entrance") {
-            const imageURL = "../images/entrance.png";
+            const imageURL = Entrance;
             this.setState({
               roomImage: imageURL
             });
           }
           if (res.data.title === "Narrow Passage") {
-            const imageURL = "../images/passage.png";
+            const imageURL = Passage;
             this.setState({
               roomImage: imageURL
             });
           }
           if (res.data.title === "Treasure Chamber") {
-            const imageURL = "../images/treasure.png";
+            const imageURL = Treasure;
             this.setState({
               roomImage: imageURL
             });
@@ -122,32 +127,32 @@ class Adventure extends React.Component {
         });
         {
           if (res.data.title === "Grand Overlook") {
-            const imageURL = "../images/overlook.png";
+            const imageURL = Overlook;
             this.setState({
               roomImage: imageURL
             });
           }
           if (res.data.title === "Foyer") {
-            const imageURL = "../images/foyer.png";
+            const imageURL = Foyer;
             this.setState({
               roomImage: imageURL
             });
           }
 
           if (res.data.title === "Outside Cave Entrance") {
-            const imageURL = "../images/entrance.png";
+            const imageURL = Entrance;
             this.setState({
               roomImage: imageURL
             });
           }
           if (res.data.title === "Narrow Passage") {
-            const imageURL = "../images/passage.png";
+            const imageURL = Passage;
             this.setState({
               roomImage: imageURL
             });
           }
           if (res.data.title === "Treasure Chamber") {
-            const imageURL = "../images/treasure.png";
+            const imageURL = Treasure;
             this.setState({
               roomImage: imageURL
             });
@@ -161,6 +166,7 @@ class Adventure extends React.Component {
 
   render() {
     console.log("Room players: ", this.state.roomPlayers);
+    console.log("this State: ", this.state);
     return (
       <>
         <div className="main-container">
