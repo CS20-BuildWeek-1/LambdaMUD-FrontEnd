@@ -59,37 +59,32 @@ class Adventure extends React.Component {
         });
         {
           if (res.data.title === "Grand Overlook") {
-            const imageURL =
-              "https://www.wallpapermaiden.com/wallpaper/30192/download/1920x1080/fantasy-landscape-night-dual-monitor-bonfire-cliff-edge.jpeg";
+            const imageURL = "../images/overlook.png";
             this.setState({
               roomImage: imageURL
             });
           }
           if (res.data.title === "Foyer") {
-            const imageURL =
-              "https://www.worldanvil.com/uploads/images/f53c1891ad87ca80078202494c62f357.jpg";
+            const imageURL = "../images/foyer.png";
             this.setState({
               roomImage: imageURL
             });
           }
 
           if (res.data.title === "Outside Cave Entrance") {
-            const imageURL =
-              "https://www.wallpapermaiden.com/wallpaper/35331/download/1920x1080/cave-warrior-skull-gate-gods-artwork-stairs-cobweb-fantasy.jpeg";
+            const imageURL = "../images/entrance.png";
             this.setState({
               roomImage: imageURL
             });
           }
           if (res.data.title === "Narrow Passage") {
-            const imageURL =
-              "https://i.pinimg.com/originals/e2/0d/5a/e20d5aefb0e343d8a0c369de4b7f719f.jpg";
+            const imageURL = "../images/passage.png";
             this.setState({
               roomImage: imageURL
             });
           }
           if (res.data.title === "Treasure Chamber") {
-            const imageURL =
-              "https://cdna.artstation.com/p/assets/images/images/003/624/616/large/mike-jensen-pfuz-mystery-room.jpg?1475728634";
+            const imageURL = "../images/treasure.png";
             this.setState({
               roomImage: imageURL
             });
@@ -127,37 +122,32 @@ class Adventure extends React.Component {
         });
         {
           if (res.data.title === "Grand Overlook") {
-            const imageURL =
-              "https://www.wallpapermaiden.com/wallpaper/30192/download/1920x1080/fantasy-landscape-night-dual-monitor-bonfire-cliff-edge.jpeg";
+            const imageURL = "../images/overlook.png";
             this.setState({
               roomImage: imageURL
             });
           }
           if (res.data.title === "Foyer") {
-            const imageURL =
-              "https://www.worldanvil.com/uploads/images/f53c1891ad87ca80078202494c62f357.jpg";
+            const imageURL = "../images/foyer.png";
             this.setState({
               roomImage: imageURL
             });
           }
 
           if (res.data.title === "Outside Cave Entrance") {
-            const imageURL =
-              "https://www.wallpapermaiden.com/wallpaper/35331/download/1920x1080/cave-warrior-skull-gate-gods-artwork-stairs-cobweb-fantasy.jpeg";
+            const imageURL = "../images/entrance.png";
             this.setState({
               roomImage: imageURL
             });
           }
           if (res.data.title === "Narrow Passage") {
-            const imageURL =
-              "https://i.pinimg.com/originals/e2/0d/5a/e20d5aefb0e343d8a0c369de4b7f719f.jpg";
+            const imageURL = "../images/passage.png";
             this.setState({
               roomImage: imageURL
             });
           }
           if (res.data.title === "Treasure Chamber") {
-            const imageURL =
-              "https://cdna.artstation.com/p/assets/images/images/003/624/616/large/mike-jensen-pfuz-mystery-room.jpg?1475728634";
+            const imageURL = "../images/treasure.png";
             this.setState({
               roomImage: imageURL
             });
