@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import HeadShake from "react-reveal/HeadShake";
+
 // import { Link } from 'react-router-dom';
 
 class Adventure extends React.Component {
@@ -12,7 +14,8 @@ class Adventure extends React.Component {
       roomTitle: "",
       roomDescription: "",
       roomPlayers: "",
-      direction: ""
+      direction: "",
+      errorMsg: ""
     };
   }
 
@@ -64,11 +67,12 @@ class Adventure extends React.Component {
         this.setState({
           roomTitle: res.data.title,
           roomDescription: res.data.description,
-          roomPlayers: res.data.players
+          roomPlayers: res.data.players,
+          errorMsg: res.data.error_msg
         });
       })
       .catch(error => {
-        console.log(error);
+        console.log(error.response);
       });
   };
 
@@ -81,6 +85,26 @@ class Adventure extends React.Component {
           <li>{this.state.playerName}</li>
           <li>{this.state.roomPlayers}</li>
         </ul>
+
+        {this.state.errorMsg ? (
+          <div className="alert">
+            <HeadShake>
+              <div
+                className="alert alert-danger"
+                role="alert"
+                style={{
+                  width: "300px",
+                  margin: "0 auto"
+                }}
+              >
+                You fall into the abyss
+              </div>
+            </HeadShake>
+          </div>
+        ) : (
+          ""
+        )}
+
         <button className="btn-dir" onClick={() => this.handleMove("n")}>
           North
         </button>
