@@ -17,14 +17,18 @@
   /* float: left; */
   background-repeat: no-repeat;
   height: 60vh;
-  width: 60vw;
+  width: 60%;
 }
 
 .map {
-  margin: 0 auto;
+  background: url("https://img.itch.zone/aW1nLzE3MDUzNjguZ2lm/original/WkZYrR.gif");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 100%;
+  /* margin: 0 auto;
   align-self: center;
-  background: black;
-  color: white;
+
+  color: white; */
 }
 
 .bottom-container {
