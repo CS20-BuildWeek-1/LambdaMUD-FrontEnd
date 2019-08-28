@@ -3,6 +3,7 @@ import axios from "axios";
 import HeadShake from "react-reveal/HeadShake";
 
 // import { Link } from 'react-router-dom';
+// Feature branch #2
 
 class Adventure extends React.Component {
   constructor(props) {
@@ -82,8 +83,12 @@ class Adventure extends React.Component {
         <ul>
           <li>{this.state.roomTitle}</li>
           <li>{this.state.roomDescription}</li>
-          <li>{this.state.playerName}</li>
-          <li>{this.state.roomPlayers}</li>
+          <li class="current-player">Current Player: {this.state.playerName}</li>
+          <br></br>
+          <li>Top 3 players in this room:</li>
+          <li>{this.state.roomPlayers[0]}</li>
+          <li>{this.state.roomPlayers[1]}</li>
+          <li>{this.state.roomPlayers[2]}</li>
         </ul>
 
         {this.state.errorMsg ? (
