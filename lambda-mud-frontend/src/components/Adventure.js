@@ -130,6 +130,7 @@ class Adventure extends React.Component {
   };
 
   render() {
+    console.log("Room players: ", this.state.roomPlayers);
     return (
       <>
         <div className="main-container">
