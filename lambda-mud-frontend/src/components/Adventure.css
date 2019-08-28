@@ -30,7 +30,7 @@
 }
 
 .bottom-container {
-  border: 5px solid green;
+  /* border: 5px solid green; */
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -39,6 +39,7 @@
   width: 100%;
 }
 .player-container {
+  padding: auto;
   width: 30%;
   background: url("../images/rpgborder2.png");
   background-repeat: no-repeat;
