@@ -102,9 +102,14 @@ class Login extends Component {
                     />
                   </FormGroup>
                 </Col>
+
                 <button className="btn-success" type="submit">
                   Join World
                 </button>
+                <div className="alt-link">
+                  Not registered?
+                  <Link to={`/register`}> Create an account</Link>
+                </div>
               </Form>
             </div>
           </div>

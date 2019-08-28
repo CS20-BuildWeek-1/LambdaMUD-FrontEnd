@@ -118,6 +118,9 @@ class Register extends Component {
               <button className="btn-success" type="submit">
                 Create Account
               </button>
+              <div className="alt-link">
+                Already registered? <Link to={`/`}>Sign In</Link>
+              </div>
             </Form>
           </div>
         </div>
