@@ -2,13 +2,13 @@ import React from "react";
 import axios from "axios";
 import HeadShake from "react-reveal/HeadShake";
 import Fade from "react-reveal/Fade";
-import { Col, Button } from "reactstrap";
 import Entrance from "../images/entrance.png";
 import Foyer from "../images/foyer.png";
 import Overlook from "../images/overlook.png";
 import Passage from "../images/passage.png";
 import Treasure from "../images/treasure.png";
-import NavBar from "./Navbar";
+import Lambda from "../images/lambdalogo.png";
+// import NavBar from "./Navbar";
 import "./Adventure.css";
 
 // import { Link } from 'react-router-dom';
@@ -40,7 +40,7 @@ class Adventure extends React.Component {
     const key = localStorage.getItem("token");
 
     axios({
-      url: `${testurl}/api/adv/init`,
+      url: `${herokurl}/api/adv/init`,
       method: "GET",
       headers: {
         Authorization: `${key}`
@@ -100,7 +100,7 @@ class Adventure extends React.Component {
     const herokurl = "https://lambdamud007.herokuapp.com";
     const testurl = "https://lambda-mud-test.herokuapp.com";
     axios({
-      url: `${testurl}/api/adv/move/`,
+      url: `${herokurl}/api/adv/move/`,
       method: "POST",
       headers: {
         Authorization: `${this.state.token}`
@@ -230,6 +230,7 @@ class Adventure extends React.Component {
                 src={this.state.roomImage}
               ></img>
             </Fade>
+
             <div className="map">{this.renderPlayer()}</div>
           </div>
 
@@ -279,6 +280,7 @@ class Adventure extends React.Component {
 
             <div className="room-container">
               <h2>{this.state.roomTitle}</h2>
+
               {this.state.roomDescription}
               {this.state.errorMsg ? (
                 <div className="alert">
@@ -300,41 +302,78 @@ class Adventure extends React.Component {
               )}
             </div>
 
+            {/* <div className="controller"> */}
+            <div className="cable"></div>
+
             <div className="controller">
-              <Col>
-                <Button
-                  id="one"
-                  className="btn-dir"
-                  onClick={() => this.handleMove("n")}
-                >
-                  &#x25b2;
-                </Button>
-              </Col>
-              <Col>
-                <Button
-                  id="four"
-                  className="btn-dir"
-                  onClick={() => this.handleMove("w")}
-                >
-                  &#x25c0;
-                </Button>
-                <Button
-                  id="three"
-                  className="btn-dir"
-                  onClick={() => this.handleMove("e")}
-                >
-                  &#x25b6;
-                </Button>
-              </Col>
-              <Col>
-                <Button
-                  id="two"
-                  className="btn-dir"
-                  onClick={() => this.handleMove("s")}
-                >
-                  &#x25bc;
-                </Button>
-              </Col>
+              <div className="control-logo">
+                <img src={Lambda} alt="lambda"></img>
+              </div>
+              <div className="base">
+                <div className="front">
+                  <div className="decoration">
+                    <div className="stickers">
+                      <div className="st-a">A</div>
+                      <div className="st-b">B</div>
+                      <div className="st-select">SELECT</div>
+                      <div className="st-start">START</div>
+                    </div>
+                    <div className="decoration-central">
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                    </div>
+                  </div>
+                  <div className="cross">
+                    <div className="circle"></div>
+
+                    <div className="horizontal">
+                      <div
+                        className="arrowlf"
+                        style={{ cursor: "pointer" }}
+                        onClick={() => this.handleMove("e")}
+                      ></div>
+                      <div
+                        className="arrowrh"
+                        style={{ cursor: "pointer" }}
+                        onClick={() => this.handleMove("w")}
+                      ></div>
+                    </div>
+
+                    <div className="vertical">
+                      <div
+                        className="arrowlf"
+                        style={{ cursor: "pointer" }}
+                        onClick={() => this.handleMove("s")}
+                      ></div>
+                      <div
+                        className="arrowrh"
+                        style={{ cursor: "pointer" }}
+                        onClick={() => this.handleMove("n")}
+                      ></div>
+                    </div>
+
+                    <div className="back-cross">
+                      <div className="horiz"></div>
+                      <div className="vert"></div>
+                    </div>
+                  </div>
+                  <div className="buttons-a-b">
+                    <div className="btn-border">
+                      <div className="btn-round a"></div>
+                    </div>
+                    <div className="btn-border">
+                      <div className="btn-round b"></div>
+                    </div>
+                  </div>
+                  <div className="buttons-select">
+                    <div className="btn-central select"></div>
+                    <div className="btn-central start"></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

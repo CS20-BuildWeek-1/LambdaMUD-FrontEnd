@@ -24,7 +24,7 @@ class Login extends Component {
     e.preventDefault();
 
     axios({
-      url: `${testurl}/api/login/`,
+      url: `${herokurl}/api/login/`,
       method: "POST",
       data: {
         username: `${this.state.username}`,
