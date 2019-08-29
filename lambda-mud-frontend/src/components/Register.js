@@ -1,16 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import {
-  Container,
-  Col,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Button,
-  FormText
-} from "reactstrap";
+import { Col, Form, FormGroup } from "reactstrap";
 import "./Register.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -28,11 +19,12 @@ class Register extends Component {
   };
 
   submitHandler = e => {
-    const herokurl = "https://lambda-mud-test.herokuapp.com";
+    const testurl = "https://lambda-mud-test.herokuapp.com";
+    const herokurl = "https://lambdamud007.herokuapp.com";
     e.preventDefault();
 
     axios({
-      url: `${herokurl}/api/registration/`,
+      url: `${testurl}/api/registration/`,
       method: "POST",
       data: {
         username: `${this.state.username}`,
@@ -56,10 +48,6 @@ class Register extends Component {
     return (
       <main>
         <div id="container">
-          <div className="link-buttons">
-            <Link to={`/`}>Login</Link>
-            <Link to={`/register`}>Register</Link>
-          </div>
           <div className="form-contain">
             <Form className="p-4" onSubmit={this.submitHandler}>
               <Col>
@@ -118,6 +106,9 @@ class Register extends Component {
               <button className="btn-success" type="submit">
                 Create Account
               </button>
+              <div className="alt-link">
+                Already registered? <Link to={`/`}>Sign In</Link>
+              </div>
             </Form>
           </div>
         </div>

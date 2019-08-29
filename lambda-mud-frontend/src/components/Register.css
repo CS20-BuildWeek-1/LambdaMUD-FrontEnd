@@ -94,7 +94,7 @@ form {
   outline: 0;
   border: 0;
   border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-  margin: 20px 0;
+  margin: 12px 0;
   padding-bottom: 10px;
   font-size: 18px;
   font-weight: bold;
@@ -112,4 +112,17 @@ form {
   color: white;
   cursor: pointer;
   transition: all 300ms ease-in-out;
+}
+
+.alt-link {
+  /* color: black; */
+  text-decoration: none;
+  margin-top: 30px;
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+.alt-link a {
+  color: #0d4f8b;
+  text-decoration: none !important;
 }

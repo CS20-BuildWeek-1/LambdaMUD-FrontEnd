@@ -1,23 +1,14 @@
 import React from "react";
 import axios from "axios";
-// import HeadShake from "react-reveal/HeadShake";
 import HeadShake from "react-reveal/HeadShake";
-import {
-  Container,
-  Col,
-  Row,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Button,
-  FormText
-} from "reactstrap";
+import Fade from "react-reveal/Fade";
+import { Col, Button } from "reactstrap";
 import Entrance from "../images/entrance.png";
 import Foyer from "../images/foyer.png";
 import Overlook from "../images/overlook.png";
 import Passage from "../images/passage.png";
 import Treasure from "../images/treasure.png";
+import NavBar from "./Navbar";
 import "./Adventure.css";
 
 // import { Link } from 'react-router-dom';
@@ -44,11 +35,12 @@ class Adventure extends React.Component {
 
   init = () => {
     // const local = "http://localhost:3000";
-    const herokurl = "https://lambda-mud-test.herokuapp.com";
+    const testurl = "https://lambda-mud-test.herokuapp.com";
+    const herokurl = "https://lambdamud007.herokuapp.com";
     const key = localStorage.getItem("token");
 
     axios({
-      url: `${herokurl}/api/adv/init`,
+      url: `${testurl}/api/adv/init`,
       method: "GET",
       headers: {
         Authorization: `${key}`
@@ -105,9 +97,10 @@ class Adventure extends React.Component {
   };
 
   handleMove = direction => {
-    const herokurl = "https://lambda-mud-test.herokuapp.com";
+    const herokurl = "https://lambdamud007.herokuapp.com";
+    const testurl = "https://lambda-mud-test.herokuapp.com";
     axios({
-      url: `${herokurl}/api/adv/move/`,
+      url: `${testurl}/api/adv/move/`,
       method: "POST",
       headers: {
         Authorization: `${this.state.token}`
@@ -164,38 +157,129 @@ class Adventure extends React.Component {
       });
   };
 
+  renderPlayer() {
+    if (this.state.roomTitle === "Foyer") {
+      return (
+        <img
+          alt="mapplayer"
+          className="map-player5"
+          src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
+          width="70"
+          height="80"
+        />
+      );
+    } else if (this.state.roomTitle === "Grand Overlook") {
+      return (
+        <img
+          alt="mapplayer"
+          className="map-player4"
+          src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
+          width="70"
+          height="80"
+        />
+      );
+    } else if (this.state.roomTitle === "Narrow Passage") {
+      return (
+        <img
+          alt="mapplayer"
+          className="map-player3"
+          src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
+          width="70"
+          height="80"
+        />
+      );
+    } else if (this.state.roomTitle === "Treasure Chamber") {
+      return (
+        <img
+          alt="mapplayer"
+          className="map-player2"
+          src="https://media.giphy.com/media/2wWuIJQISOKzM3uZ5r/giphy.gif"
+          width="70"
+          height="80"
+        />
+      );
+    } else if (this.state.roomTitle === "Outside Cave Entrance") {
+      return (
+        <img
+          alt="mapplayer"
+          className="map-player1"
+          src="https://media.giphy.com/media/B2kmdIkG7tr54VD3Im/giphy.gif"
+          width="70"
+          height="80"
+        />
+      );
+    } else {
+      return null;
+    }
+  }
+
   render() {
     console.log("Room players: ", this.state.roomPlayers);
     console.log("this State: ", this.state);
+    console.log("ROOM TITLE: ", this.state.roomTitle);
+
     return (
       <>
+        {/* <NavBar /> */}
         <div className="main-container">
           <div className="top-container">
-            <img
-              className="room-img"
-              src={this.state.roomImage}
-              alt="room image"
-            ></img>
-            <div className="map">MAP WILL GO HERE</div>
+            <Fade>
+              <img
+                className="room-img"
+                alt="room"
+                src={this.state.roomImage}
+              ></img>
+            </Fade>
+            <div className="map">{this.renderPlayer()}</div>
           </div>
 
           <div className="bottom-container">
-            <ul>
-              <li>
-                <h2>{this.state.roomTitle}</h2>
-              </li>
-              <li>{this.state.roomDescription}</li>
-              <li>
-                <b>You:</b> {this.state.playerName}
-              </li>
-              <li>
-                <b>Players:</b>
-                <br></br>
-                {this.state.roomPlayers[0]}
-                <br></br>
-                {this.state.roomPlayers[1]}
-              </li>
+            <div className="player-container">
+              <h2>Current Player</h2>
+              <div className="current-player">
+                <Fade left>
+                  <img
+                    alt="mapplayer"
+                    src="https://media.giphy.com/media/2ywLocM9VYvpPa5d1Y/giphy.gif"
+                    width="40"
+                    height="40"
+                  ></img>
+                </Fade>
 
+                <h5
+                  style={{
+                    fontFamily: "Dragon",
+                    color: "Maroon"
+                  }}
+                >
+                  {this.state.playerName}
+                </h5>
+              </div>
+              <h5 style={{ paddingTop: "10px" }}>Nearby Players</h5>
+
+              <div
+                className="nearby-players"
+                style={{
+                  paddingLeft: "20px",
+                  paddingRight: "20px",
+                  color: "steelblue"
+                }}
+              >
+                {`
+               ${this.state.roomPlayers[0] ? this.state.roomPlayers[0] : ""} 
+               ${this.state.roomPlayers[1] ? this.state.roomPlayers[1] : ""} 
+               ${this.state.roomPlayers[2] ? this.state.roomPlayers[2] : ""}  
+               ${this.state.roomPlayers[3] ? this.state.roomPlayers[3] : ""} 
+               ${this.state.roomPlayers[4] ? this.state.roomPlayers[4] : ""}
+               ${this.state.roomPlayers[5] ? this.state.roomPlayers[5] : ""}
+               ${this.state.roomPlayers[6] ? this.state.roomPlayers[6] : ""}
+               `}
+              </div>
+            </div>
+
+            <div className="room-container">
+              <h2>{this.state.roomTitle}</h2>
+              {this.state.roomDescription}
               {this.state.errorMsg ? (
                 <div className="alert">
                   <HeadShake>
@@ -207,14 +291,15 @@ class Adventure extends React.Component {
                         margin: "0 auto"
                       }}
                     >
-                      You fall into the abyss
+                      You cannot go this direction!
                     </div>
                   </HeadShake>
                 </div>
               ) : (
                 ""
               )}
-            </ul>
+            </div>
+
             <div className="controller">
               <Col>
                 <Button

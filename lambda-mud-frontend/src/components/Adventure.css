@@ -3,9 +3,23 @@
   src: url("../fonts/AdventureReQuest.otf");
 }
 
-.main-container {
-  height: 100vh;
-  overflow: hidden;
+/* @media screen and (min-width: 1440px) and  (max-width: 1440px)  {
+  .main-container {
+    min-width: 1400px;
+  }
+
+} */
+
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Adventure";
+}
+
+.body {
+  min-width: 1400px;
+  max-width: 1400px;
 }
 
 .top-container {
@@ -15,61 +29,100 @@
 
 .room-img {
   /* float: left; */
+  border: 3px solid saddlebrown;
   background-repeat: no-repeat;
   height: 60vh;
   width: 60%;
 }
 
 .map {
-  background: url("https://img.itch.zone/aW1nLzE3MDUzNjguZ2lm/original/WkZYrR.gif");
+  background: url("../images/map3.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   width: 100%;
-  /* margin: 0 auto;
-  align-self: center;
-
-  color: white; */
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-gap: 10px;
+}
+.map-player1 {
+  position: fixed;
+  right: 350px;
+  top: 300px;
+}
+.map-player2 {
+  position: fixed;
+  right: 180px;
+  top: 10px;
+}
+.map-player3 {
+  position: fixed;
+  right: 170px;
+  top: 150px;
+}
+.map-player4 {
+  position: fixed;
+  right: 380px;
+  top: 30px;
+}
+.map-player5 {
+  position: fixed;
+  right: 350px;
+  top: 200px;
 }
 
 .bottom-container {
+  /* border: 5px solid green; */
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-between;
+  justify-content: center;
   background-color: tan;
   height: 100%;
   width: 100%;
 }
-h2 {
-  font-family: "Adventure";
+.player-container {
+  padding: 40px 30px 30px 30px;
+  width: 30%;
+  background: url("../images/rpgborder2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
 }
-ul {
-  padding-top: 20px;
-  width: 80%;
+
+.current-player {
+  padding: 2px;
   margin: 0 auto;
-  align-content: center;
-  overflow: hidden;
+  text-align: center;
+  background: rgb(0, 0, 0, 0.2);
+  width: 40%;
+  border-radius: 5px;
+}
+
+.room-container {
+  padding: 40px 50px 30px 25px;
+  width: 30%;
+  background: url("../images/rpgborder3.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
 }
 
 .controller {
-  border-radius: 50%;
   border-left: 1px solid grey;
-  /* width: 20%; */
-  /* height: 50%; */
   background-color: burlywood;
   grid-template-areas:
     "header header header header header header"
     "main main main right right right"
     "footer footer footer footer footer footer";
   grid-gap: 10px;
-  margin-top: 10px;
   padding: 40px;
+  width: 40%;
 }
 
 .btn-dir {
   font-size: 30px;
   color: black;
-  margin: 10px;
+  margin: 5px;
   background-color: cornsilk;
 }
 
