@@ -3,6 +3,13 @@
   src: url("../fonts/AdventureReQuest.otf");
 }
 
+/* @media screen and (min-width: 1440px) and  (max-width: 1440px)  {
+  .main-container {
+    min-width: 1400px;
+  }
+
+} */
+
 h2,
 h3,
 h4,
@@ -10,10 +17,9 @@ h5 {
   font-family: "Adventure";
 }
 
-.main-container {
-  /* border: 5px solid saddlebrown; */
-
-  /* overflow: hidden; */
+.body {
+  min-width: 1400px;
+  max-width: 1400px;
 }
 
 .top-container {

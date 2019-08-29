@@ -1,12 +1,14 @@
 import React from "react";
 import axios from "axios";
 import HeadShake from "react-reveal/HeadShake";
+import Fade from "react-reveal/Fade";
 import { Col, Button } from "reactstrap";
 import Entrance from "../images/entrance.png";
 import Foyer from "../images/foyer.png";
 import Overlook from "../images/overlook.png";
 import Passage from "../images/passage.png";
 import Treasure from "../images/treasure.png";
+import NavBar from "./Navbar";
 import "./Adventure.css";
 
 // import { Link } from 'react-router-dom';
@@ -33,11 +35,12 @@ class Adventure extends React.Component {
 
   init = () => {
     // const local = "http://localhost:3000";
-    const herokurl = "https://lambda-mud-test.herokuapp.com";
+    const testurl = "https://lambda-mud-test.herokuapp.com";
+    const herokurl = "https://lambdamud007.herokuapp.com";
     const key = localStorage.getItem("token");
 
     axios({
-      url: `${herokurl}/api/adv/init`,
+      url: `${testurl}/api/adv/init`,
       method: "GET",
       headers: {
         Authorization: `${key}`
@@ -94,9 +97,10 @@ class Adventure extends React.Component {
   };
 
   handleMove = direction => {
-    const herokurl = "https://lambda-mud-test.herokuapp.com";
+    const herokurl = "https://lambdamud007.herokuapp.com";
+    const testurl = "https://lambda-mud-test.herokuapp.com";
     axios({
-      url: `${herokurl}/api/adv/move/`,
+      url: `${testurl}/api/adv/move/`,
       method: "POST",
       headers: {
         Authorization: `${this.state.token}`
@@ -216,13 +220,16 @@ class Adventure extends React.Component {
 
     return (
       <>
+        {/* <NavBar /> */}
         <div className="main-container">
           <div className="top-container">
-            <img
-              className="room-img"
-              alt="room"
-              src={this.state.roomImage}
-            ></img>
+            <Fade>
+              <img
+                className="room-img"
+                alt="room"
+                src={this.state.roomImage}
+              ></img>
+            </Fade>
             <div className="map">{this.renderPlayer()}</div>
           </div>
 
@@ -230,12 +237,14 @@ class Adventure extends React.Component {
             <div className="player-container">
               <h2>Current Player</h2>
               <div className="current-player">
-                <img
-                  alt="mapplayer"
-                  src="https://media.giphy.com/media/2ywLocM9VYvpPa5d1Y/giphy.gif"
-                  width="40"
-                  height="40"
-                ></img>
+                <Fade left>
+                  <img
+                    alt="mapplayer"
+                    src="https://media.giphy.com/media/2ywLocM9VYvpPa5d1Y/giphy.gif"
+                    width="40"
+                    height="40"
+                  ></img>
+                </Fade>
 
                 <h5
                   style={{
@@ -247,6 +256,7 @@ class Adventure extends React.Component {
                 </h5>
               </div>
               <h5 style={{ paddingTop: "10px" }}>Nearby Players</h5>
+
               <div
                 className="nearby-players"
                 style={{
@@ -266,6 +276,7 @@ class Adventure extends React.Component {
                `}
               </div>
             </div>
+
             <div className="room-container">
               <h2>{this.state.roomTitle}</h2>
               {this.state.roomDescription}

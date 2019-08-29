@@ -19,11 +19,12 @@ class Login extends Component {
   };
 
   submitHandler = e => {
-    const herokurl = "https://lambda-mud-test.herokuapp.com";
+    const testurl = "https://lambda-mud-test.herokuapp.com";
+    const herokurl = "https://lambdamud007.herokuapp.com";
     e.preventDefault();
 
     axios({
-      url: `${herokurl}/api/login/`,
+      url: `${testurl}/api/login/`,
       method: "POST",
       data: {
         username: `${this.state.username}`,
