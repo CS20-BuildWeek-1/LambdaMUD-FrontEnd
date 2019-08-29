@@ -3,9 +3,16 @@
   src: url("../fonts/AdventureReQuest.otf");
 }
 
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Adventure";
+}
+
 .main-container {
   /* border: 5px solid saddlebrown; */
-  /* height: 100vh; */
+
   /* overflow: hidden; */
 }
 
@@ -23,10 +30,38 @@
 }
 
 .map {
-  background: url("https://img.itch.zone/aW1nLzE3MDUzNjguZ2lm/original/WkZYrR.gif");
+  background: url("../images/map3.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   width: 100%;
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-gap: 10px;
+}
+.map-player1 {
+  position: fixed;
+  right: 350px;
+  top: 300px;
+}
+.map-player2 {
+  position: fixed;
+  right: 180px;
+  top: 10px;
+}
+.map-player3 {
+  position: fixed;
+  right: 170px;
+  top: 150px;
+}
+.map-player4 {
+  position: fixed;
+  right: 380px;
+  top: 30px;
+}
+.map-player5 {
+  position: fixed;
+  right: 350px;
+  top: 200px;
 }
 
 .bottom-container {
@@ -34,27 +69,36 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  justify-content: center;
   background-color: tan;
   height: 100%;
   width: 100%;
 }
 .player-container {
-  padding: auto;
+  padding: 40px 30px 30px 30px;
   width: 30%;
   background: url("../images/rpgborder2.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
 }
+
+.current-player {
+  padding: 2px;
+  margin: 0 auto;
+  text-align: center;
+  background: rgb(0, 0, 0, 0.2);
+  width: 40%;
+  border-radius: 5px;
+}
+
 .room-container {
+  padding: 40px 50px 30px 25px;
   width: 30%;
   background: url("../images/rpgborder3.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
-}
-h2 {
-  font-family: "Adventure";
 }
 
 .controller {

@@ -1,16 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import {
-  Container,
-  Col,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Button,
-  FormText
-} from "reactstrap";
+import { Col, Form, FormGroup } from "reactstrap";
 import "./Register.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -56,10 +47,6 @@ class Login extends Component {
       <>
         <main>
           <div id="container">
-            <div className="link-buttons">
-              <Link to={`/`}>Login</Link>
-              <Link to={`/register`}>Register</Link>
-            </div>
             <div className="form-contain">
               <Form className="p-4" onSubmit={this.submitHandler}>
                 <div className="form-subject">Login</div>
