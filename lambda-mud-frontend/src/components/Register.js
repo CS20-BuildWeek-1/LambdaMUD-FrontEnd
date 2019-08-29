@@ -24,7 +24,7 @@ class Register extends Component {
     e.preventDefault();
 
     axios({
-      url: `${testurl}/api/registration/`,
+      url: `${herokurl}/api/registration/`,
       method: "POST",
       data: {
         username: `${this.state.username}`,
