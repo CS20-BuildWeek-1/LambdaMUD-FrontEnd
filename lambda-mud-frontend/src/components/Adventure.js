@@ -2,12 +2,23 @@ import React from "react";
 import axios from "axios";
 import HeadShake from "react-reveal/HeadShake";
 import Fade from "react-reveal/Fade";
-import Entrance from "../images/entrance.png";
-import Foyer from "../images/foyer.png";
-import Overlook from "../images/overlook.png";
-import Passage from "../images/passage.png";
-import Treasure from "../images/treasure.png";
+import Entrance from "../images/entrance4.gif";
+import Foyer from "../images/foyer.gif";
+import Overlook from "../images/overlook.gif";
+import Treasure from "../images/treasure.gif";
+import Lava from "../images/lava.gif";
+import Bridge from "../images/bridge.gif";
+import Passage from "../images/cave.gif";
 import Lambda from "../images/lambdalogo.png";
+import TV from "../images/tubetv2.png";
+import Sound from "react-sound";
+import EntranceSong from "../sounds/Entrance.mp3";
+import FoyerSong from "../sounds/Foyer.mp3";
+import PassageSong from "../sounds/Passage.mp3";
+import OverlookSong from "../sounds/overlook.mp3";
+import TreasureSong from "../sounds/Treasure.mp3";
+import LavaSong from "../sounds/Lava.mp3";
+import BridgeSong from "../sounds/Bridge.mp3";
 // import NavBar from "./Navbar";
 import "./Adventure.css";
 
@@ -150,6 +161,18 @@ class Adventure extends React.Component {
               roomImage: imageURL
             });
           }
+          if (res.data.title === "Shaky Bridge") {
+            const imageURL = Bridge;
+            this.setState({
+              roomImage: imageURL
+            });
+          }
+          if (res.data.title === "Lava Pit") {
+            const imageURL = Lava;
+            this.setState({
+              roomImage: imageURL
+            });
+          }
         }
       })
       .catch(error => {
@@ -160,53 +183,157 @@ class Adventure extends React.Component {
   renderPlayer() {
     if (this.state.roomTitle === "Foyer") {
       return (
-        <img
-          alt="mapplayer"
-          className="map-player5"
-          src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
-          width="70"
-          height="80"
-        />
+        <>
+          <Fade>
+            <img
+              alt="mapplayer"
+              className="map-player5"
+              src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
+              width="70"
+              height="80"
+            />
+          </Fade>
+          <Sound
+            url={FoyerSong}
+            playStatus={Sound.status.PLAYING}
+            // playFromPosition={300 /* in milliseconds */}
+            onLoading={this.handleSongLoading}
+            onPlaying={this.handleSongPlaying}
+            onFinishedPlaying={this.handleSongFinishedPlaying}
+          />
+        </>
       );
     } else if (this.state.roomTitle === "Grand Overlook") {
       return (
-        <img
-          alt="mapplayer"
-          className="map-player4"
-          src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
-          width="70"
-          height="80"
-        />
+        <>
+          <Fade>
+            <img
+              alt="mapplayer"
+              className="map-player4"
+              src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
+              width="70"
+              height="80"
+            />
+          </Fade>
+          <Sound
+            url={OverlookSong}
+            playStatus={Sound.status.PLAYING}
+            // playFromPosition={300 /* in milliseconds */}
+            onLoading={this.handleSongLoading}
+            onPlaying={this.handleSongPlaying}
+            onFinishedPlaying={this.handleSongFinishedPlaying}
+          />
+        </>
       );
     } else if (this.state.roomTitle === "Narrow Passage") {
       return (
-        <img
-          alt="mapplayer"
-          className="map-player3"
-          src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
-          width="70"
-          height="80"
-        />
+        <>
+          <Fade>
+            <img
+              alt="mapplayer"
+              className="map-player3"
+              src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
+              width="70"
+              height="80"
+            />
+          </Fade>
+          <Sound
+            url={PassageSong}
+            playStatus={Sound.status.PLAYING}
+            // playFromPosition={300 /* in milliseconds */}
+            onLoading={this.handleSongLoading}
+            onPlaying={this.handleSongPlaying}
+            onFinishedPlaying={this.handleSongFinishedPlaying}
+          />
+        </>
       );
     } else if (this.state.roomTitle === "Treasure Chamber") {
       return (
-        <img
-          alt="mapplayer"
-          className="map-player2"
-          src="https://media.giphy.com/media/2wWuIJQISOKzM3uZ5r/giphy.gif"
-          width="70"
-          height="80"
-        />
+        <>
+          <Fade>
+            <img
+              alt="mapplayer"
+              className="map-player2"
+              src="https://media.giphy.com/media/2wWuIJQISOKzM3uZ5r/giphy.gif"
+              width="70"
+              height="80"
+            />
+          </Fade>
+          <Sound
+            url={TreasureSong}
+            playStatus={Sound.status.PLAYING}
+            // playFromPosition={300 /* in milliseconds */}
+            onLoading={this.handleSongLoading}
+            onPlaying={this.handleSongPlaying}
+            onFinishedPlaying={this.handleSongFinishedPlaying}
+          />
+        </>
       );
     } else if (this.state.roomTitle === "Outside Cave Entrance") {
       return (
-        <img
-          alt="mapplayer"
-          className="map-player1"
-          src="https://media.giphy.com/media/B2kmdIkG7tr54VD3Im/giphy.gif"
-          width="70"
-          height="80"
-        />
+        <>
+          <Fade>
+            <img
+              alt="mapplayer"
+              className="map-player1"
+              src="https://media.giphy.com/media/B2kmdIkG7tr54VD3Im/giphy.gif"
+              width="70"
+              height="80"
+            />
+          </Fade>
+          <Sound
+            url={EntranceSong}
+            playStatus={Sound.status.PLAYING}
+            // playFromPosition={300 /* in milliseconds */}
+            onLoading={this.handleSongLoading}
+            onPlaying={this.handleSongPlaying}
+            onFinishedPlaying={this.handleSongFinishedPlaying}
+          />
+        </>
+      );
+    } else if (this.state.roomTitle === "Shaky Bridge") {
+      return (
+        <>
+          <Fade>
+            <img
+              alt="mapplayer"
+              className="map-player6"
+              src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
+              width="70"
+              height="80"
+            />
+          </Fade>
+          <Sound
+            url={BridgeSong}
+            playStatus={Sound.status.PLAYING}
+            // playFromPosition={300 /* in milliseconds */}
+            onLoading={this.handleSongLoading}
+            onPlaying={this.handleSongPlaying}
+            onFinishedPlaying={this.handleSongFinishedPlaying}
+          />
+        </>
+      );
+    } else if (this.state.roomTitle === "Lava Pit") {
+      return (
+        <>
+          <Fade>
+            <img
+              alt="mapplayer"
+              className="map-player7"
+              src="https://media.giphy.com/media/8YQZdzXP1k3A4fuvvX/giphy.gif"
+              width="70"
+              height="80"
+            />
+          </Fade>
+          <Sound
+            url={LavaSong}
+            playStatus={Sound.status.PLAYING}
+            // playFromPosition={300 /* in milliseconds */}
+            onLoading={this.handleSongLoading}
+            onPlaying={this.handleSongPlaying}
+            onFinishedPlaying={this.handleSongFinishedPlaying}
+          />
+        </>
       );
     } else {
       return null;
@@ -221,17 +348,20 @@ class Adventure extends React.Component {
     return (
       <>
         {/* <NavBar /> */}
+
         <div className="main-container">
           <div className="top-container">
-            <Fade>
+            <div className="map-container">
+              <div className="map">{this.renderPlayer()}</div>
+            </div>
+            <div className="tv-container">
+              <img className="tv-img" alt="tv" src={TV} />
               <img
                 className="room-img"
                 alt="room"
                 src={this.state.roomImage}
               ></img>
-            </Fade>
-
-            <div className="map">{this.renderPlayer()}</div>
+            </div>
           </div>
 
           <div className="bottom-container">

@@ -23,55 +23,90 @@ h5 {
 }
 
 .top-container {
-  background-color: black;
+  /* background-color: black; */
   display: flex;
 }
 
-.img-container {
-  height: 60vh;
-  width: 60%;
-}
-.room-img {
-  /* float: left; */
-  border: 3px solid saddlebrown;
+.tv-container {
   background-repeat: no-repeat;
   height: 60vh;
-  width: 60%;
+  width: 68%;
+  position: relative;
+  background: url("../images/carpet.png");
 }
 
-.map {
-  background: url("../images/map3.png");
+.tv-img {
+  width: 90%;
+  height: 100%;
+  border-right: 5px solid black;
+  border-bottom: 3px solid black;
+  border-left: 5px solid black;
+  border-top: 0px solid black;
+  border-radius: 40px;
+  position: absolute;
+  z-index: 2;
+  top: 10px;
+  left: 30px;
+}
+
+.room-img {
+  /* z-index: 10;
+  vertical-align: center; */
+  width: 75%;
+  height: 80%;
+  position: absolute;
+  z-index: 1;
+  top: 40px;
+  right: 70px;
+}
+
+.map-container {
+  /* border: 3px dotted black; */
+  border-top: 3px dotted black;
+  border-right: 3px dotted black;
+  border-left: 3px dotted black;
+  background: url("../images/newmap.jpg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   width: 100%;
-  display: grid;
+  /* display: grid;
   grid-template-columns: 100px 100px 100px;
-  grid-gap: 10px;
+  grid-gap: 10px; */
 }
 .map-player1 {
   position: fixed;
-  right: 350px;
-  top: 300px;
+  left: 170px;
+  top: 325px;
 }
 .map-player2 {
   position: fixed;
-  right: 180px;
+  left: 335px;
   top: 10px;
 }
 .map-player3 {
   position: fixed;
-  right: 170px;
-  top: 150px;
+  left: 340px;
+  top: 170px;
 }
 .map-player4 {
   position: fixed;
-  right: 380px;
-  top: 30px;
+  left: 150px;
+  top: 20px;
 }
 .map-player5 {
   position: fixed;
-  right: 350px;
-  top: 200px;
+  left: 150px;
+  top: 210px;
+}
+.map-player6 {
+  position: fixed;
+  left: 625px;
+  top: 150px;
+}
+.map-player7 {
+  position: fixed;
+  left: 720px;
+  top: 10px;
 }
 
 .bottom-container {
@@ -120,7 +155,8 @@ h5 {
 
 .controller {
   /* border-left: 1px solid grey; */
-  background-color: black;
+  background: url("../images/carpet.png");
+
   /* grid-template-areas:
     "header header header header header header"
     "main main main right right right"
@@ -436,6 +472,6 @@ body {
   z-index: 1;
   width: 14px;
   height: 47px;
-  right: 20%;
+  right: 30%;
   background: linear-gradient(to right, #313131 0%, #161616 50%, #313131 100%);
 }
