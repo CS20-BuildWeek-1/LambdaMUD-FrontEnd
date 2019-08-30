@@ -23,40 +23,48 @@ h5 {
 }
 
 .top-container {
-  background-color: black;
+  /* background-color: black; */
   display: flex;
 }
 
 .tv-container {
   background-repeat: no-repeat;
   height: 60vh;
-  width: 60%;
+  width: 68%;
   position: relative;
+  background: url("../images/carpet.png");
 }
 
 .tv-img {
-  width: 100%;
+  width: 90%;
   height: 100%;
-  border: 10px solid grey;
+  border-right: 5px solid black;
+  border-bottom: 3px solid black;
+  border-left: 5px solid black;
+  border-top: 0px solid black;
+  border-radius: 40px;
   position: absolute;
   z-index: 2;
-  top: 0px;
-  left: 0px;
+  top: 10px;
+  left: 30px;
 }
 
 .room-img {
   /* z-index: 10;
   vertical-align: center; */
-  width: 80%;
+  width: 75%;
   height: 80%;
   position: absolute;
   z-index: 1;
-  top: 20px;
-  right: 55px;
+  top: 40px;
+  right: 70px;
 }
 
 .map-container {
-  border: 3px solid saddlebrown;
+  /* border: 3px dotted black; */
+  border-top: 3px dotted black;
+  border-right: 3px dotted black;
+  border-left: 3px dotted black;
   background: url("../images/newmap.jpg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -67,17 +75,17 @@ h5 {
 }
 .map-player1 {
   position: fixed;
-  left: 180px;
+  left: 170px;
   top: 325px;
 }
 .map-player2 {
   position: fixed;
-  left: 350px;
+  left: 335px;
   top: 10px;
 }
 .map-player3 {
   position: fixed;
-  left: 360px;
+  left: 340px;
   top: 170px;
 }
 .map-player4 {
@@ -92,12 +100,12 @@ h5 {
 }
 .map-player6 {
   position: fixed;
-  left: 655px;
+  left: 625px;
   top: 150px;
 }
 .map-player7 {
   position: fixed;
-  left: 750px;
+  left: 720px;
   top: 10px;
 }
 
@@ -147,7 +155,8 @@ h5 {
 
 .controller {
   /* border-left: 1px solid grey; */
-  background-color: black;
+  background: url("../images/carpet.png");
+
   /* grid-template-areas:
     "header header header header header header"
     "main main main right right right"
@@ -463,6 +472,6 @@ body {
   z-index: 1;
   width: 14px;
   height: 47px;
-  right: 20%;
+  right: 30%;
   background: linear-gradient(to right, #313131 0%, #161616 50%, #313131 100%);
 }
