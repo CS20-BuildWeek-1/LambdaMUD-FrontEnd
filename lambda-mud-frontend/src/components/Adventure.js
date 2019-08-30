@@ -440,10 +440,10 @@ class Adventure extends React.Component {
               <div className="cable"></div>
 
               <div className="controller">
-                <div className="control-logo">
-                  <img src={Lambda} alt="lambda"></img>
-                </div>
                 <div className="base">
+                  <div className="control-logo">
+                    <img className="logo-img" src={Lambda} alt="lambda"></img>
+                  </div>
                   <div className="front">
                     <div className="decoration">
                       <div className="stickers">

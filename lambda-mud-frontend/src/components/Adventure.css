@@ -179,10 +179,13 @@ html {
 }
 
 .control-logo {
-  position: fixed;
+  padding-top: 10px;
+  margin-bottom: -40px;
+}
 
-  bottom: 235px;
-  right: 194px;
+.logo-img {
+  width: 160px;
+  height: 30px;
 }
 
 .controller {
@@ -505,7 +508,7 @@ body {
   top: 40;
   z-index: 1;
   width: 14px;
-  height: 47px;
+  height: 40px;
   right: 30%;
   background: linear-gradient(to right, #313131 0%, #161616 50%, #313131 100%);
 }
