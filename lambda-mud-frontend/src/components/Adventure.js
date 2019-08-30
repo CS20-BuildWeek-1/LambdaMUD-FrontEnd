@@ -356,6 +356,7 @@ class Adventure extends React.Component {
             </div>
             <div className="tv-container">
               <img className="tv-img" alt="tv" src={TV} />
+
               <img
                 className="room-img"
                 alt="room"
@@ -365,38 +366,39 @@ class Adventure extends React.Component {
           </div>
 
           <div className="bottom-container">
-            <div className="player-container">
-              <h2>Current Player</h2>
-              <div className="current-player">
-                <Fade left>
-                  <img
-                    alt="mapplayer"
-                    src="https://media.giphy.com/media/2ywLocM9VYvpPa5d1Y/giphy.gif"
-                    width="40"
-                    height="40"
-                  ></img>
-                </Fade>
+            <div className="left-container">
+              <div className="player-container">
+                <h2>Current Player</h2>
+                <div className="current-player">
+                  <Fade left>
+                    <img
+                      alt="mapplayer"
+                      src="https://media.giphy.com/media/2ywLocM9VYvpPa5d1Y/giphy.gif"
+                      width="40"
+                      height="40"
+                    ></img>
+                  </Fade>
 
-                <h5
+                  <h5
+                    style={{
+                      fontFamily: "Dragon",
+                      color: "Maroon"
+                    }}
+                  >
+                    {this.state.playerName}
+                  </h5>
+                </div>
+                <h5 style={{ paddingTop: "10px" }}>Nearby Players</h5>
+
+                <div
+                  className="nearby-players"
                   style={{
-                    fontFamily: "Dragon",
-                    color: "Maroon"
+                    paddingLeft: "20px",
+                    paddingRight: "20px",
+                    color: "steelblue"
                   }}
                 >
-                  {this.state.playerName}
-                </h5>
-              </div>
-              <h5 style={{ paddingTop: "10px" }}>Nearby Players</h5>
-
-              <div
-                className="nearby-players"
-                style={{
-                  paddingLeft: "20px",
-                  paddingRight: "20px",
-                  color: "steelblue"
-                }}
-              >
-                {`
+                  {`
                ${this.state.roomPlayers[0] ? this.state.roomPlayers[0] : ""} 
                ${this.state.roomPlayers[1] ? this.state.roomPlayers[1] : ""} 
                ${this.state.roomPlayers[2] ? this.state.roomPlayers[2] : ""}  
@@ -405,102 +407,105 @@ class Adventure extends React.Component {
                ${this.state.roomPlayers[5] ? this.state.roomPlayers[5] : ""}
                ${this.state.roomPlayers[6] ? this.state.roomPlayers[6] : ""}
                `}
+                </div>
               </div>
-            </div>
 
-            <div className="room-container">
-              <h2>{this.state.roomTitle}</h2>
+              <div className="room-container">
+                <h2>{this.state.roomTitle}</h2>
 
-              {this.state.roomDescription}
-              {this.state.errorMsg ? (
-                <div className="alert">
+                {this.state.roomDescription}
+                {this.state.errorMsg ? (
+                  // <div className="alert">
                   <HeadShake>
                     <div
                       className="alert alert-danger"
                       role="alert"
                       style={{
-                        width: "300px",
-                        margin: "0 auto"
+                        // width: "50%",
+                        margin: "10px 10px 0 10px"
+                        // margin: "0 auto"
                       }}
                     >
                       You cannot go this direction!
                     </div>
                   </HeadShake>
-                </div>
-              ) : (
-                ""
-              )}
+                ) : (
+                  // </div>
+                  ""
+                )}
+              </div>
             </div>
 
-            {/* <div className="controller"> */}
-            <div className="cable"></div>
+            <div className="right-container">
+              <div className="cable"></div>
 
-            <div className="controller">
-              <div className="control-logo">
-                <img src={Lambda} alt="lambda"></img>
-              </div>
-              <div className="base">
-                <div className="front">
-                  <div className="decoration">
-                    <div className="stickers">
-                      <div className="st-a">A</div>
-                      <div className="st-b">B</div>
-                      <div className="st-select">SELECT</div>
-                      <div className="st-start">START</div>
+              <div className="controller">
+                <div className="control-logo">
+                  <img src={Lambda} alt="lambda"></img>
+                </div>
+                <div className="base">
+                  <div className="front">
+                    <div className="decoration">
+                      <div className="stickers">
+                        <div className="st-a">A</div>
+                        <div className="st-b">B</div>
+                        <div className="st-select">SELECT</div>
+                        <div className="st-start">START</div>
+                      </div>
+                      <div className="decoration-central">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                      </div>
                     </div>
-                    <div className="decoration-central">
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                    </div>
-                  </div>
-                  <div className="cross">
-                    <div className="circle"></div>
+                    <div className="cross">
+                      <div className="circle"></div>
 
-                    <div className="horizontal">
-                      <div
-                        className="arrowlf"
-                        style={{ cursor: "pointer" }}
-                        onClick={() => this.handleMove("e")}
-                      ></div>
-                      <div
-                        className="arrowrh"
-                        style={{ cursor: "pointer" }}
-                        onClick={() => this.handleMove("w")}
-                      ></div>
-                    </div>
+                      <div className="horizontal">
+                        <div
+                          className="arrowlf"
+                          style={{ cursor: "pointer" }}
+                          onClick={() => this.handleMove("e")}
+                        ></div>
+                        <div
+                          className="arrowrh"
+                          style={{ cursor: "pointer" }}
+                          onClick={() => this.handleMove("w")}
+                        ></div>
+                      </div>
 
-                    <div className="vertical">
-                      <div
-                        className="arrowlf"
-                        style={{ cursor: "pointer" }}
-                        onClick={() => this.handleMove("s")}
-                      ></div>
-                      <div
-                        className="arrowrh"
-                        style={{ cursor: "pointer" }}
-                        onClick={() => this.handleMove("n")}
-                      ></div>
-                    </div>
+                      <div className="vertical">
+                        <div
+                          className="arrowlf"
+                          style={{ cursor: "pointer" }}
+                          onClick={() => this.handleMove("s")}
+                        ></div>
+                        <div
+                          className="arrowrh"
+                          style={{ cursor: "pointer" }}
+                          onClick={() => this.handleMove("n")}
+                        ></div>
+                      </div>
 
-                    <div className="back-cross">
-                      <div className="horiz"></div>
-                      <div className="vert"></div>
+                      <div className="back-cross">
+                        <div className="horiz"></div>
+                        <div className="vert"></div>
+                      </div>
                     </div>
-                  </div>
-                  <div className="buttons-a-b">
-                    <div className="btn-border">
-                      <div className="btn-round a"></div>
+                    <div className="buttons-a-b">
+                      <div className="btn-border">
+                        <div className="btn-round a"></div>
+                      </div>
+                      <div className="btn-border">
+                        <div className="btn-round b"></div>
+                      </div>
                     </div>
-                    <div className="btn-border">
-                      <div className="btn-round b"></div>
+                    <div className="buttons-select">
+                      <div className="btn-central select"></div>
+                      <div className="btn-central start"></div>
                     </div>
-                  </div>
-                  <div className="buttons-select">
-                    <div className="btn-central select"></div>
-                    <div className="btn-central start"></div>
                   </div>
                 </div>
               </div>
