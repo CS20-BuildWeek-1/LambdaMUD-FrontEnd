@@ -2,12 +2,15 @@ import React from "react";
 import axios from "axios";
 import HeadShake from "react-reveal/HeadShake";
 import Fade from "react-reveal/Fade";
-import Entrance from "../images/entrance.png";
-import Foyer from "../images/foyer.png";
-import Overlook from "../images/overlook.png";
-import Passage from "../images/passage.png";
-import Treasure from "../images/treasure.png";
+import Entrance from "../images/entrance4.gif";
+import Foyer from "../images/foyer.gif";
+import Overlook from "../images/overlook.gif";
+import Treasure from "../images/treasure.gif";
+import Lava from "../images/lava.gif";
+import Bridge from "../images/bridge.gif";
+import Passage from "../images/cave.gif";
 import Lambda from "../images/lambdalogo.png";
+import TV from "../images/tuube.png";
 // import NavBar from "./Navbar";
 import "./Adventure.css";
 
@@ -150,6 +153,18 @@ class Adventure extends React.Component {
               roomImage: imageURL
             });
           }
+          if (res.data.title === "Shaky Bridge") {
+            const imageURL = Bridge;
+            this.setState({
+              roomImage: imageURL
+            });
+          }
+          if (res.data.title === "Lava Pit") {
+            const imageURL = Lava;
+            this.setState({
+              roomImage: imageURL
+            });
+          }
         }
       })
       .catch(error => {
@@ -208,6 +223,26 @@ class Adventure extends React.Component {
           height="80"
         />
       );
+    } else if (this.state.roomTitle === "Shaky Bridge") {
+      return (
+        <img
+          alt="mapplayer"
+          className="map-player6"
+          src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
+          width="70"
+          height="80"
+        />
+      );
+    } else if (this.state.roomTitle === "Lava Pit") {
+      return (
+        <img
+          alt="mapplayer"
+          className="map-player7"
+          src="https://media.giphy.com/media/8YQZdzXP1k3A4fuvvX/giphy.gif"
+          width="70"
+          height="80"
+        />
+      );
     } else {
       return null;
     }
@@ -223,15 +258,17 @@ class Adventure extends React.Component {
         {/* <NavBar /> */}
         <div className="main-container">
           <div className="top-container">
-            <Fade>
+            <div className="map-container">
+              <div className="map">{this.renderPlayer()}</div>
+            </div>
+            <div className="tv-container">
+              <img className="tv-img" alt="tv" src={TV} />
               <img
                 className="room-img"
                 alt="room"
                 src={this.state.roomImage}
               ></img>
-            </Fade>
-
-            <div className="map">{this.renderPlayer()}</div>
+            </div>
           </div>
 
           <div className="bottom-container">
