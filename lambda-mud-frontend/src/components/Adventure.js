@@ -368,37 +368,38 @@ class Adventure extends React.Component {
           <div className="bottom-container">
             <div className="left-container">
               <div className="player-container">
-                <h2>Current Player</h2>
-                <div className="current-player">
-                  <Fade left>
-                    <img
-                      alt="mapplayer"
-                      src="https://media.giphy.com/media/2ywLocM9VYvpPa5d1Y/giphy.gif"
-                      width="40"
-                      height="40"
-                    ></img>
-                  </Fade>
+                <div className="player-text">
+                  <h2>Current Player</h2>
+                  <div className="current-player">
+                    <Fade left>
+                      <img
+                        alt="mapplayer"
+                        src="https://media.giphy.com/media/2ywLocM9VYvpPa5d1Y/giphy.gif"
+                        width="40"
+                        height="40"
+                      ></img>
+                    </Fade>
 
-                  <h5
+                    <h5
+                      style={{
+                        fontFamily: "Dragon",
+                        color: "Maroon"
+                      }}
+                    >
+                      {this.state.playerName}
+                    </h5>
+                  </div>
+                  <h5 style={{ paddingTop: "10px" }}>Nearby Players</h5>
+
+                  <div
+                    className="nearby-players"
                     style={{
-                      fontFamily: "Dragon",
-                      color: "Maroon"
+                      paddingLeft: "20px",
+                      paddingRight: "20px",
+                      color: "steelblue"
                     }}
                   >
-                    {this.state.playerName}
-                  </h5>
-                </div>
-                <h5 style={{ paddingTop: "10px" }}>Nearby Players</h5>
-
-                <div
-                  className="nearby-players"
-                  style={{
-                    paddingLeft: "20px",
-                    paddingRight: "20px",
-                    color: "steelblue"
-                  }}
-                >
-                  {`
+                    {`
                ${this.state.roomPlayers[0] ? this.state.roomPlayers[0] : ""} 
                ${this.state.roomPlayers[1] ? this.state.roomPlayers[1] : ""} 
                ${this.state.roomPlayers[2] ? this.state.roomPlayers[2] : ""}  
@@ -407,6 +408,7 @@ class Adventure extends React.Component {
                ${this.state.roomPlayers[5] ? this.state.roomPlayers[5] : ""}
                ${this.state.roomPlayers[6] ? this.state.roomPlayers[6] : ""}
                `}
+                  </div>
                 </div>
               </div>
 
