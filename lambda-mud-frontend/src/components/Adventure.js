@@ -66,6 +66,7 @@ class Adventure extends React.Component {
             onLoading={this.handleSongLoading}
             onPlaying={this.handleSongPlaying}
             onFinishedPlaying={this.handleSongFinishedPlaying}
+            value="50"
           />
           <div className="custom">
             <div className="swal-container">
@@ -247,6 +248,7 @@ class Adventure extends React.Component {
             onLoading={this.handleSongLoading}
             onPlaying={this.handleSongPlaying}
             onFinishedPlaying={this.handleSongFinishedPlaying}
+            volume={3}
           />
         </>
       );
@@ -269,6 +271,7 @@ class Adventure extends React.Component {
             onLoading={this.handleSongLoading}
             onPlaying={this.handleSongPlaying}
             onFinishedPlaying={this.handleSongFinishedPlaying}
+            volume={5}
           />
         </>
       );
@@ -291,6 +294,7 @@ class Adventure extends React.Component {
             onLoading={this.handleSongLoading}
             onPlaying={this.handleSongPlaying}
             onFinishedPlaying={this.handleSongFinishedPlaying}
+            volume={6}
           />
         </>
       );
@@ -313,6 +317,7 @@ class Adventure extends React.Component {
             onLoading={this.handleSongLoading}
             onPlaying={this.handleSongPlaying}
             onFinishedPlaying={this.handleSongFinishedPlaying}
+            volume={6}
           />
         </>
       );
@@ -335,6 +340,7 @@ class Adventure extends React.Component {
             onLoading={this.handleSongLoading}
             onPlaying={this.handleSongPlaying}
             onFinishedPlaying={this.handleSongFinishedPlaying}
+            volume={4}
           />
         </>
       );
@@ -357,6 +363,7 @@ class Adventure extends React.Component {
             onLoading={this.handleSongLoading}
             onPlaying={this.handleSongPlaying}
             onFinishedPlaying={this.handleSongFinishedPlaying}
+            volume={4}
           />
         </>
       );
@@ -379,6 +386,7 @@ class Adventure extends React.Component {
             onLoading={this.handleSongLoading}
             onPlaying={this.handleSongPlaying}
             onFinishedPlaying={this.handleSongFinishedPlaying}
+            volume={4}
           />
         </>
       );
