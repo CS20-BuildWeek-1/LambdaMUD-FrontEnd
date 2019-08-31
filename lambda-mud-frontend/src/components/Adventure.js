@@ -19,6 +19,9 @@ import OverlookSong from "../sounds/overlook.mp3";
 import TreasureSong from "../sounds/Treasure.mp3";
 import LavaSong from "../sounds/Lava.mp3";
 import BridgeSong from "../sounds/Bridge.mp3";
+import mud from "../images/mud.png";
+import swal from "@sweetalert/with-react";
+
 // import NavBar from "./Navbar";
 import "./Adventure.css";
 
@@ -43,6 +46,29 @@ class Adventure extends React.Component {
   componentDidMount() {
     this.init();
   }
+
+  logout = () => {
+    // this.setState({
+    //   ...this.state,
+    //   token: null
+    // });
+    swal(
+      <div className="swal-container">
+        <div className="swal-top"></div>
+        <div className="swal-bottom">
+          <img className="swal-mud" src={mud} alt="mudd" />
+        </div>
+        <div className="swal-header">
+          <h2>GAME EJECTED</h2>
+        </div>
+        <div className="swal-text">{/* <h5>Thank you for playing!</h5> */}</div>
+      </div>
+    );
+    // setTimeout(() => {
+    //   localStorage.removeItem("token");
+    //   window.location.assign("/");
+    // }, 2000);
+  };
 
   init = () => {
     // const local = "http://localhost:3000";
@@ -451,7 +477,7 @@ class Adventure extends React.Component {
                       <div className="stickers">
                         <div className="st-a">A</div>
                         <div className="st-b">B</div>
-                        <div className="st-select">SELECT</div>
+                        <div className="st-select">QUIT</div>
                         <div className="st-start">START</div>
                       </div>
                       <div className="decoration-central">
@@ -505,7 +531,10 @@ class Adventure extends React.Component {
                       </div>
                     </div>
                     <div className="buttons-select">
-                      <div className="btn-central select"></div>
+                      <div
+                        className="btn-central select"
+                        onClick={this.logout}
+                      ></div>
                       <div className="btn-central start"></div>
                     </div>
                   </div>
