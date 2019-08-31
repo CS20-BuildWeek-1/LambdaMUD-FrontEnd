@@ -19,8 +19,11 @@ import OverlookSong from "../sounds/overlook.mp3";
 import TreasureSong from "../sounds/Treasure.mp3";
 import LavaSong from "../sounds/Lava.mp3";
 import BridgeSong from "../sounds/Bridge.mp3";
+import GameOver from "../sounds/gameover.mp3";
 import mud from "../images/mud.png";
-import swal from "@sweetalert/with-react";
+// import swal from "@sweetalert/with-react";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 // import NavBar from "./Navbar";
 import "./Adventure.css";
@@ -48,26 +51,44 @@ class Adventure extends React.Component {
   }
 
   logout = () => {
-    // this.setState({
-    //   ...this.state,
-    //   token: null
-    // });
-    swal(
-      <div className="swal-container">
-        <div className="swal-top"></div>
-        <div className="swal-bottom">
-          <img className="swal-mud" src={mud} alt="mudd" />
-        </div>
-        <div className="swal-header">
-          <h2>GAME EJECTED</h2>
-        </div>
-        <div className="swal-text">{/* <h5>Thank you for playing!</h5> */}</div>
-      </div>
-    );
-    // setTimeout(() => {
-    //   localStorage.removeItem("token");
-    //   window.location.assign("/");
-    // }, 2000);
+    const Swert = withReactContent(Swal);
+
+    Swert.fire({
+      animation: false,
+      customClass: "animated fadeInUpBig",
+      showConfirmButton: false,
+      html: (
+        <>
+          <Sound
+            url={GameOver}
+            playStatus={Sound.status.PLAYING}
+            // playFromPosition={300 /* in milliseconds */}
+            onLoading={this.handleSongLoading}
+            onPlaying={this.handleSongPlaying}
+            onFinishedPlaying={this.handleSongFinishedPlaying}
+          />
+          <div className="custom">
+            <div className="swal-container">
+              <div className="swal-top"></div>
+              <div className="swal-bottom">
+                <img className="swal-mud" src={mud} alt="mudd" />
+              </div>
+              <div className="swal-header">
+                <h2>
+                  <span style={{ color: "black" }}>&#9167; </span>
+                  {"   "}GAME EJECTED{"   "}
+                  <span style={{ color: "black" }}> &#9167;</span>
+                </h2>
+              </div>
+            </div>
+          </div>
+        </>
+      )
+    });
+    setTimeout(() => {
+      localStorage.removeItem("token");
+      window.location.assign("/");
+    }, 3000);
   };
 
   init = () => {

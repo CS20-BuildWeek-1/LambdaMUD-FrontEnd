@@ -479,7 +479,7 @@ body {
 }
 .st-select {
   position: absolute;
-  left: 174px;
+  left: 186px;
   top: 70px;
 }
 .st-start {
@@ -500,13 +500,7 @@ body {
 .swal-overlay {
   background: rgba(0, 0, 0, 0.69);
 }
-.swal-modal {
-  background-color: rgba(224, 222, 212, 0.9);
-  border: 3px solid white;
-  padding: 0px;
-  height: 320px;
-  width: 390px;
-}
+
 .swal-button {
   display: none;
 }
@@ -536,17 +530,14 @@ body {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.8);
 }
 
-.swal-bottom {
-  padding: 10px;
-  /* background-color: white; */
-}
-
 .swal-header h2 {
+  margin: 0 auto;
   font-family: "Dragon";
   color: grey;
   /* margin-left: 50px;
   margin-right: 50px; */
-  padding-top: 10px;
+  width: 99%;
+  padding-top: 20px;
   padding-bottom: 29px;
   background-color: rgba(224, 222, 212, 0.9);
   border-radius: 5px;
@@ -557,6 +548,14 @@ body {
 }
 .swal-title:first-child {
   margin-top: 0px;
+}
+
+.swal2-popup {
+  background-color: rgba(224, 222, 212, 0.9);
+  border: 3px solid white;
+  padding: 0px;
+  height: 320px;
+  width: 390px;
 }
 
 .swal-mud {
@@ -570,10 +569,12 @@ body {
   margin-top: 20px;
 }
 .swal-bottom {
-  margin: 0 10px 0 10px;
+  padding: 10px;
+  margin: 0 20px 0 20px;
   background-color: rgba(224, 222, 212, 0.9);
   /* margin-bottom: -30px; */
   color: rgb(85, 126, 192);
+
   font-size: 18px;
   font-family: "Pixel";
   border-top: 1px dashed grey;
