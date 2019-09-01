@@ -24,6 +24,7 @@ import ClickSound from "../sounds/click.mp3";
 import PauseStart from "../sounds/pausestart.wav";
 import PauseEnd from "../sounds/paseend.wav";
 import MoveSound from "../sounds/move.wav";
+import ErrorSound from "../sounds/error.wav";
 import Delay from "react-delay";
 
 import mud from "../images/mud.png";
@@ -212,14 +213,21 @@ class Adventure extends React.Component {
         });
 
         {
-          if (res.data.title === "Grand Overlook") {
+          if (res.data.title === "Grand Overlook" && !res.data.error_msg) {
             const imageURL = Overlook;
             this.setState({
               roomImage: imageURL
             });
             this.moveFx();
           }
-          if (res.data.title === "Foyer") {
+          if (res.data.title === "Grand Overlook" && !res.data.error_msg) {
+            const imageURL = Overlook;
+            this.setState({
+              roomImage: imageURL
+            });
+            this.moveFx();
+          }
+          if (res.data.title === "Foyer" && !res.data.error_msg) {
             const imageURL = Foyer;
             this.setState({
               roomImage: imageURL
@@ -227,35 +235,38 @@ class Adventure extends React.Component {
             this.moveFx();
           }
 
-          if (res.data.title === "Outside Cave Entrance") {
+          if (
+            res.data.title === "Outside Cave Entrance" &&
+            !res.data.error_msg
+          ) {
             const imageURL = Entrance;
             this.setState({
               roomImage: imageURL
             });
             this.moveFx();
           }
-          if (res.data.title === "Narrow Passage") {
+          if (res.data.title === "Narrow Passage" && !res.data.error_msg) {
             const imageURL = Passage;
             this.setState({
               roomImage: imageURL
             });
             this.moveFx();
           }
-          if (res.data.title === "Treasure Chamber") {
+          if (res.data.title === "Treasure Chamber" && !res.data.error_msg) {
             const imageURL = Treasure;
             this.setState({
               roomImage: imageURL
             });
             this.moveFx();
           }
-          if (res.data.title === "Shaky Bridge") {
+          if (res.data.title === "Shaky Bridge" && !res.data.error_msg) {
             const imageURL = Bridge;
             this.setState({
               roomImage: imageURL
             });
             this.moveFx();
           }
-          if (res.data.title === "Lava Pit") {
+          if (res.data.title === "Lava Pit" && !res.data.error_msg) {
             const imageURL = Lava;
             this.setState({
               roomImage: imageURL
@@ -514,6 +525,12 @@ class Adventure extends React.Component {
     move.play();
   };
 
+  errorFx = () => {
+    const error = document.getElementById("error");
+    // move.playbackRate = 4;
+    error.volume = 0.02;
+    error.play();
+  };
   pauseStartFx = () => {
     const pause = document.getElementById("pause");
     // pause.playbackRate = 4;
@@ -537,6 +554,7 @@ class Adventure extends React.Component {
       <>
         {/* <NavBar /> */}
         {this.renderSong()}
+        {this.state.errorMsg ? this.errorFx() : ""}
 
         <div className="main-container">
           <div className="top-container">
@@ -643,6 +661,9 @@ class Adventure extends React.Component {
                 </audio>
                 <audio id="move">
                   <source src={MoveSound} />
+                </audio>
+                <audio id="error">
+                  <source src={ErrorSound} />
                 </audio>
                 <div className="base">
                   <div className="control-logo">
