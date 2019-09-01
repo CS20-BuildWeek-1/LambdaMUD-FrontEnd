@@ -408,6 +408,10 @@ body {
   box-shadow: inset 0px 0px 1px 0px #fbfbfb, 0px 1px 1px 0px rgba(0, 0, 0, 0.21);
 }
 
+.btn-round:hover {
+  cursor: pointer;
+}
+
 .buttons-select {
   display: flex;
   position: absolute;
@@ -444,6 +448,13 @@ body {
   cursor: pointer;
 }
 
+.btn-central-quit:hover {
+  cursor: pointer;
+}
+
+.btn-central-pause:hover {
+  cursor: pointer;
+}
 .decoration-central div {
   position: relative;
   display: block;
@@ -579,4 +590,18 @@ body {
   font-family: "Pixel";
   border-top: 1px dashed grey;
   border-bottom: 1px dashed grey;
+}
+
+.pause-title {
+  font-family: "Pixel";
+  font-size: 40px;
+}
+.pause-resume {
+  font-family: "Dragon";
+  font-size: 20px;
+  height: 30px;
+}
+
+.swal2-confirm {
+  width: 50%;
 }

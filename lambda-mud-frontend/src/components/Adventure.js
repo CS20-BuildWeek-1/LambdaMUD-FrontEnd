@@ -20,6 +20,12 @@ import TreasureSong from "../sounds/Treasure.mp3";
 import LavaSong from "../sounds/Lava.mp3";
 import BridgeSong from "../sounds/Bridge.mp3";
 import GameOver from "../sounds/gameover.mp3";
+import ClickSound from "../sounds/click.mp3";
+import PauseStart from "../sounds/pausestart.wav";
+import PauseEnd from "../sounds/paseend.wav";
+import MoveSound from "../sounds/move.wav";
+import Delay from "react-delay";
+
 import mud from "../images/mud.png";
 // import swal from "@sweetalert/with-react";
 import Swal from "sweetalert2";
@@ -42,7 +48,8 @@ class Adventure extends React.Component {
       roomPlayers: "",
       roomImage: "",
       direction: "",
-      errorMsg: ""
+      errorMsg: "",
+      movePlayer: false
     };
   }
 
@@ -50,7 +57,32 @@ class Adventure extends React.Component {
     this.init();
   }
 
+  pauseGame = () => {
+    this.clickFx();
+    this.pauseStartFx();
+    const Swert = withReactContent(Swal);
+
+    Swert.fire({
+      title: <div className="pause-title">Game Paused</div>,
+      type: "info",
+      // html: <div className="pause">Pause</div>,
+      // background: "marron",
+      confirmButtonText: <div className="pause-resume">Continue</div>,
+      backdrop: "rgba(255, 255, 255, 0.7)"
+    });
+
+    document
+      .querySelector(".swal2-container")
+      .addEventListener("click", function() {
+        const pause = document.getElementById("pauseend");
+        console.log("pauseend", pause);
+        pause.volume = 0.05;
+        pause.play();
+      });
+  };
+
   logout = () => {
+    this.clickFx();
     const Swert = withReactContent(Swal);
 
     Swert.fire({
@@ -66,7 +98,7 @@ class Adventure extends React.Component {
             onLoading={this.handleSongLoading}
             onPlaying={this.handleSongPlaying}
             onFinishedPlaying={this.handleSongFinishedPlaying}
-            value="50"
+            volume={10}
           />
           <div className="custom">
             <div className="swal-container">
@@ -175,20 +207,24 @@ class Adventure extends React.Component {
           roomTitle: res.data.title,
           roomDescription: res.data.description,
           roomPlayers: res.data.players,
-          errorMsg: res.data.error_msg
+          errorMsg: res.data.error_msg,
+          movePlayer: true
         });
+
         {
           if (res.data.title === "Grand Overlook") {
             const imageURL = Overlook;
             this.setState({
               roomImage: imageURL
             });
+            this.moveFx();
           }
           if (res.data.title === "Foyer") {
             const imageURL = Foyer;
             this.setState({
               roomImage: imageURL
             });
+            this.moveFx();
           }
 
           if (res.data.title === "Outside Cave Entrance") {
@@ -196,30 +232,35 @@ class Adventure extends React.Component {
             this.setState({
               roomImage: imageURL
             });
+            this.moveFx();
           }
           if (res.data.title === "Narrow Passage") {
             const imageURL = Passage;
             this.setState({
               roomImage: imageURL
             });
+            this.moveFx();
           }
           if (res.data.title === "Treasure Chamber") {
             const imageURL = Treasure;
             this.setState({
               roomImage: imageURL
             });
+            this.moveFx();
           }
           if (res.data.title === "Shaky Bridge") {
             const imageURL = Bridge;
             this.setState({
               roomImage: imageURL
             });
+            this.moveFx();
           }
           if (res.data.title === "Lava Pit") {
             const imageURL = Lava;
             this.setState({
               roomImage: imageURL
             });
+            this.moveFx();
           }
         }
       })
@@ -228,172 +269,264 @@ class Adventure extends React.Component {
       });
   };
 
-  renderPlayer() {
+  renderSong() {
+    // if (this.state.movePlayer) {
     if (this.state.roomTitle === "Foyer") {
       return (
+        // this.moveFx(),
         <>
-          <Fade>
-            <img
-              alt="mapplayer"
-              className="map-player5"
-              src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
-              width="70"
-              height="80"
+          <Delay wait={1000}>
+            <Sound
+              url={FoyerSong}
+              playStatus={Sound.status.PLAYING}
+              // playFromPosition={300 /* in milliseconds */}
+              onLoading={this.handleSongLoading}
+              onPlaying={this.handleSongPlaying}
+              onFinishedPlaying={this.handleSongFinishedPlaying}
+              loop={true}
+              volume={5}
             />
-          </Fade>
-          <Sound
-            url={FoyerSong}
-            playStatus={Sound.status.PLAYING}
-            // playFromPosition={300 /* in milliseconds */}
-            onLoading={this.handleSongLoading}
-            onPlaying={this.handleSongPlaying}
-            onFinishedPlaying={this.handleSongFinishedPlaying}
-            volume={3}
-          />
+          </Delay>
         </>
       );
     } else if (this.state.roomTitle === "Grand Overlook") {
       return (
+        // this.moveFx(),
         <>
-          <Fade>
-            <img
-              alt="mapplayer"
-              className="map-player4"
-              src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
-              width="70"
-              height="80"
+          <Delay wait={1000}>
+            <Sound
+              url={OverlookSong}
+              playStatus={Sound.status.PLAYING}
+              // playFromPosition={300 /* in milliseconds */}
+              onLoading={this.handleSongLoading}
+              onPlaying={this.handleSongPlaying}
+              onFinishedPlaying={this.handleSongFinishedPlaying}
+              loop={true}
+              volume={7}
             />
-          </Fade>
-          <Sound
-            url={OverlookSong}
-            playStatus={Sound.status.PLAYING}
-            // playFromPosition={300 /* in milliseconds */}
-            onLoading={this.handleSongLoading}
-            onPlaying={this.handleSongPlaying}
-            onFinishedPlaying={this.handleSongFinishedPlaying}
-            volume={5}
-          />
+          </Delay>
         </>
       );
     } else if (this.state.roomTitle === "Narrow Passage") {
       return (
+        // this.moveFx(),
         <>
-          <Fade>
-            <img
-              alt="mapplayer"
-              className="map-player3"
-              src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
-              width="70"
-              height="80"
+          <Delay wait={1000}>
+            <Sound
+              url={PassageSong}
+              playStatus={Sound.status.PLAYING}
+              playFromPosition={200 /* in milliseconds */}
+              onLoading={this.handleSongLoading}
+              onPlaying={this.handleSongPlaying}
+              onFinishedPlaying={this.handleSongFinishedPlaying}
+              loop={true}
+              volume={10}
             />
-          </Fade>
-          <Sound
-            url={PassageSong}
-            playStatus={Sound.status.PLAYING}
-            // playFromPosition={300 /* in milliseconds */}
-            onLoading={this.handleSongLoading}
-            onPlaying={this.handleSongPlaying}
-            onFinishedPlaying={this.handleSongFinishedPlaying}
-            volume={6}
-          />
+          </Delay>
         </>
       );
     } else if (this.state.roomTitle === "Treasure Chamber") {
       return (
+        // this.moveFx(),
         <>
-          <Fade>
-            <img
-              alt="mapplayer"
-              className="map-player2"
-              src="https://media.giphy.com/media/2wWuIJQISOKzM3uZ5r/giphy.gif"
-              width="70"
-              height="80"
+          <Delay wait={1000}>
+            <Sound
+              url={TreasureSong}
+              playStatus={Sound.status.PLAYING}
+              // playFromPosition={300 /* in milliseconds */}
+              onLoading={this.handleSongLoading}
+              onPlaying={this.handleSongPlaying}
+              onFinishedPlaying={this.handleSongFinishedPlaying}
+              volume={10}
             />
-          </Fade>
-          <Sound
-            url={TreasureSong}
-            playStatus={Sound.status.PLAYING}
-            // playFromPosition={300 /* in milliseconds */}
-            onLoading={this.handleSongLoading}
-            onPlaying={this.handleSongPlaying}
-            onFinishedPlaying={this.handleSongFinishedPlaying}
-            volume={6}
-          />
+          </Delay>
         </>
       );
     } else if (this.state.roomTitle === "Outside Cave Entrance") {
       return (
+        // this.moveFx(),
         <>
-          <Fade>
-            <img
-              alt="mapplayer"
-              className="map-player1"
-              src="https://media.giphy.com/media/B2kmdIkG7tr54VD3Im/giphy.gif"
-              width="70"
-              height="80"
+          <Delay wait={1000}>
+            <Sound
+              url={EntranceSong}
+              playStatus={Sound.status.PLAYING}
+              // playFromPosition={300 /* in milliseconds */}
+              onLoading={this.handleSongLoading}
+              onPlaying={this.handleSongPlaying}
+              onFinishedPlaying={this.handleSongFinishedPlaying}
+              loop={true}
+              volume={5}
             />
-          </Fade>
-          <Sound
-            url={EntranceSong}
-            playStatus={Sound.status.PLAYING}
-            // playFromPosition={300 /* in milliseconds */}
-            onLoading={this.handleSongLoading}
-            onPlaying={this.handleSongPlaying}
-            onFinishedPlaying={this.handleSongFinishedPlaying}
-            volume={4}
-          />
+          </Delay>
         </>
       );
     } else if (this.state.roomTitle === "Shaky Bridge") {
       return (
+        // this.moveFx(),
         <>
-          <Fade>
-            <img
-              alt="mapplayer"
-              className="map-player6"
-              src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
-              width="70"
-              height="80"
+          <Delay wait={1000}>
+            <Sound
+              url={BridgeSong}
+              playStatus={Sound.status.PLAYING}
+              // playFromPosition={300 /* in milliseconds */}
+              onLoading={this.handleSongLoading}
+              onPlaying={this.handleSongPlaying}
+              onFinishedPlaying={this.handleSongFinishedPlaying}
+              loop={true}
+              volume={8}
             />
-          </Fade>
-          <Sound
-            url={BridgeSong}
-            playStatus={Sound.status.PLAYING}
-            // playFromPosition={300 /* in milliseconds */}
-            onLoading={this.handleSongLoading}
-            onPlaying={this.handleSongPlaying}
-            onFinishedPlaying={this.handleSongFinishedPlaying}
-            volume={4}
-          />
+          </Delay>
         </>
       );
     } else if (this.state.roomTitle === "Lava Pit") {
       return (
+        // this.moveFx(),
         <>
-          <Fade>
-            <img
-              alt="mapplayer"
-              className="map-player7"
-              src="https://media.giphy.com/media/8YQZdzXP1k3A4fuvvX/giphy.gif"
-              width="70"
-              height="80"
+          <Delay wait={1000}>
+            <Sound
+              url={LavaSong}
+              playStatus={Sound.status.PLAYING}
+              // playFromPosition={300 /* in milliseconds */}
+              onLoading={this.handleSongLoading}
+              onPlaying={this.handleSongPlaying}
+              onFinishedPlaying={this.handleSongFinishedPlaying}
+              loop={true}
+              volume={6}
             />
-          </Fade>
-          <Sound
-            url={LavaSong}
-            playStatus={Sound.status.PLAYING}
-            // playFromPosition={300 /* in milliseconds */}
-            onLoading={this.handleSongLoading}
-            onPlaying={this.handleSongPlaying}
-            onFinishedPlaying={this.handleSongFinishedPlaying}
-            volume={4}
-          />
+          </Delay>
         </>
       );
     } else {
       return null;
     }
+    // }
   }
+
+  renderPlayer() {
+    const pixelPlayer5 = (
+      <div className=" animated fadeIn">
+        <img
+          alt="mapplayer"
+          className="map-player5"
+          src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
+          width="70"
+          height="80"
+        />
+      </div>
+    );
+    const pixelPlayer4 = (
+      <div className=" animated fadeIn">
+        <img
+          alt="mapplayer"
+          className="map-player4"
+          src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
+          width="70"
+          height="80"
+        />
+      </div>
+    );
+    const pixelPlayer3 = (
+      <div className=" animated fadeIn">
+        <img
+          alt="mapplayer"
+          className="map-player3"
+          src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
+          width="70"
+          height="80"
+        />
+      </div>
+    );
+    const pixelPlayer2 = (
+      <div className=" animated fadeIn">
+        <img
+          alt="mapplayer"
+          className="map-player2"
+          src="https://media.giphy.com/media/2wWuIJQISOKzM3uZ5r/giphy.gif"
+          width="70"
+          height="80"
+        />
+      </div>
+    );
+    const pixelPlayer1 = (
+      <div className=" animated fadeIn">
+        <img
+          alt="mapplayer"
+          className="map-player1"
+          src="https://media.giphy.com/media/B2kmdIkG7tr54VD3Im/giphy.gif"
+          width="70"
+          height="80"
+        />
+      </div>
+    );
+    const pixelPlayer6 = (
+      <div className=" animated fadeIn">
+        <img
+          alt="mapplayer"
+          className="map-player6"
+          src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
+          width="70"
+          height="80"
+        />
+      </div>
+    );
+    const pixelPlayer7 = (
+      <div className=" animated fadeIn">
+        <img
+          alt="mapplayer"
+          className="map-player7"
+          src="https://media.giphy.com/media/8YQZdzXP1k3A4fuvvX/giphy.gif"
+          width="70"
+          height="80"
+        />
+      </div>
+    );
+
+    if (this.state.roomTitle === "Foyer") {
+      return pixelPlayer5;
+    } else if (this.state.roomTitle === "Grand Overlook") {
+      return pixelPlayer4;
+    } else if (this.state.roomTitle === "Narrow Passage") {
+      return pixelPlayer3;
+    } else if (this.state.roomTitle === "Treasure Chamber") {
+      return pixelPlayer2;
+    } else if (this.state.roomTitle === "Outside Cave Entrance") {
+      return pixelPlayer1;
+    } else if (this.state.roomTitle === "Shaky Bridge") {
+      return pixelPlayer6;
+    } else if (this.state.roomTitle === "Lava Pit") {
+      return pixelPlayer7;
+    } else {
+      return null;
+    }
+  }
+
+  clickFx = () => {
+    const click = document.getElementById("click");
+    click.playbackRate = 4;
+    click.volume = 0.3;
+    click.play();
+  };
+
+  moveFx = () => {
+    const move = document.getElementById("move");
+    // move.playbackRate = 4;
+    move.volume = 0.03;
+    move.play();
+  };
+
+  pauseStartFx = () => {
+    const pause = document.getElementById("pause");
+    // pause.playbackRate = 4;
+    pause.volume = 0.05;
+    pause.play();
+  };
+
+  pauseEndFx = () => {
+    const pause = document.getElementById("pauseend");
+    console.log("pauseend", pause);
+    pause.volume = 0.05;
+    pause.play();
+  };
 
   render() {
     console.log("Room players: ", this.state.roomPlayers);
@@ -403,11 +536,14 @@ class Adventure extends React.Component {
     return (
       <>
         {/* <NavBar /> */}
+        {this.renderSong()}
 
         <div className="main-container">
           <div className="top-container">
             <div className="map-container">
-              <div className="map">{this.renderPlayer()}</div>
+              <div className="map">
+                <div>{this.renderPlayer()}</div>
+              </div>
             </div>
             <div className="tv-container">
               <img className="tv-img" alt="tv" src={TV} />
@@ -495,8 +631,19 @@ class Adventure extends React.Component {
 
             <div className="right-container">
               <div className="cable"></div>
-
               <div className="controller">
+                <audio id="click">
+                  <source src={ClickSound} />
+                </audio>
+                <audio id="pause">
+                  <source src={PauseStart} />
+                </audio>
+                <audio id="pauseend">
+                  <source src={PauseEnd} />
+                </audio>
+                <audio id="move">
+                  <source src={MoveSound} />
+                </audio>
                 <div className="base">
                   <div className="control-logo">
                     <img className="logo-img" src={Lambda} alt="lambda"></img>
@@ -507,7 +654,7 @@ class Adventure extends React.Component {
                         <div className="st-a">A</div>
                         <div className="st-b">B</div>
                         <div className="st-select">QUIT</div>
-                        <div className="st-start">START</div>
+                        <div className="st-start">PAUSE</div>
                       </div>
                       <div className="decoration-central">
                         <div></div>
@@ -520,7 +667,7 @@ class Adventure extends React.Component {
                     <div className="cross">
                       <div className="circle"></div>
 
-                      <div className="horizontal">
+                      <div className="horizontal" onClick={this.clickFx}>
                         <div
                           className="arrowlf"
                           style={{ cursor: "pointer" }}
@@ -533,7 +680,7 @@ class Adventure extends React.Component {
                         ></div>
                       </div>
 
-                      <div className="vertical">
+                      <div className="vertical" onClick={this.clickFx}>
                         <div
                           className="arrowlf"
                           style={{ cursor: "pointer" }}
@@ -553,18 +700,27 @@ class Adventure extends React.Component {
                     </div>
                     <div className="buttons-a-b">
                       <div className="btn-border">
-                        <div className="btn-round a"></div>
+                        <div
+                          className="btn-round a"
+                          onClick={this.clickFx}
+                        ></div>
                       </div>
                       <div className="btn-border">
-                        <div className="btn-round b"></div>
+                        <div
+                          className="btn-round b"
+                          onClick={this.clickFx}
+                        ></div>
                       </div>
                     </div>
                     <div className="buttons-select">
                       <div
-                        className="btn-central select"
+                        className="btn-central quit"
                         onClick={this.logout}
                       ></div>
-                      <div className="btn-central start"></div>
+                      <div
+                        className="btn-central pause"
+                        onClick={this.pauseGame}
+                      ></div>
                     </div>
                   </div>
                 </div>
