@@ -21,10 +21,12 @@ import LavaSong from "../sounds/Lava.mp3";
 import BridgeSong from "../sounds/Bridge.mp3";
 import GameOver from "../sounds/gameover.mp3";
 import ClickSound from "../sounds/click.mp3";
+import StartSound from "../sounds/nintendo.wav";
 import PauseStart from "../sounds/pausestart.wav";
 import PauseEnd from "../sounds/paseend.wav";
 import MoveSound from "../sounds/move.wav";
 import ErrorSound from "../sounds/error.wav";
+import EjectSound from "../sounds/eject.mp3";
 import Delay from "react-delay";
 
 import mud from "../images/mud.png";
@@ -55,6 +57,7 @@ class Adventure extends React.Component {
   }
 
   componentDidMount() {
+    this.startFx();
     this.init();
   }
 
@@ -86,6 +89,7 @@ class Adventure extends React.Component {
 
   logout = () => {
     this.clickFx();
+    this.ejectFx();
     const Swert = withReactContent(Swal);
 
     Swert.fire({
@@ -94,15 +98,17 @@ class Adventure extends React.Component {
       showConfirmButton: false,
       html: (
         <>
-          <Sound
-            url={GameOver}
-            playStatus={Sound.status.PLAYING}
-            // playFromPosition={300 /* in milliseconds */}
-            onLoading={this.handleSongLoading}
-            onPlaying={this.handleSongPlaying}
-            onFinishedPlaying={this.handleSongFinishedPlaying}
-            volume={10}
-          />
+          <Delay wait={1000}>
+            <Sound
+              url={GameOver}
+              playStatus={Sound.status.PLAYING}
+              // playFromPosition={300 /* in milliseconds */}
+              onLoading={this.handleSongLoading}
+              onPlaying={this.handleSongPlaying}
+              onFinishedPlaying={this.handleSongFinishedPlaying}
+              volume={10}
+            />
+          </Delay>
           <div className="custom">
             <div className="swal-container">
               <div className="swal-top"></div>
@@ -214,9 +220,6 @@ class Adventure extends React.Component {
           errorMsg: res.data.error_msg,
           movePlayer: true
         });
-        // {
-        //   res.data.error_msg ? this.animateCSS(".map-player", "bounce") : "";
-        // }
 
         if (res.data.title === "Grand Overlook" && !res.data.error_msg) {
           const imageURL = Overlook;
@@ -274,8 +277,8 @@ class Adventure extends React.Component {
           });
           this.moveFx();
           // this.animateCSS(".map-player", "flash");
-        } else {
-          return console.log("error", res.data.error_msg);
+        } else if (res.data.err_msg) {
+          return this.animateCSS(".map-player", "bounce");
         }
       })
       .catch(error => {
@@ -551,12 +554,26 @@ class Adventure extends React.Component {
     move.play();
   };
 
+  ejectFx = () => {
+    const eject = document.getElementById("eject");
+    eject.volume = 0.4;
+    eject.play();
+  };
+
+  startFx = () => {
+    const start = document.getElementById("start");
+    // move.playbackRate = 4;
+    start.volume = 0.07;
+    start.play();
+  };
+
   errorFx = () => {
     const error = document.getElementById("error");
     // move.playbackRate = 4;
     error.volume = 0.02;
     error.play();
   };
+
   pauseStartFx = () => {
     const pause = document.getElementById("pause");
     // pause.playbackRate = 4;
@@ -679,6 +696,9 @@ class Adventure extends React.Component {
                 <audio id="click">
                   <source src={ClickSound} />
                 </audio>
+                <audio id="start">
+                  <source src={StartSound} />
+                </audio>
                 <audio id="pause">
                   <source src={PauseStart} />
                 </audio>
@@ -691,6 +711,10 @@ class Adventure extends React.Component {
                 <audio id="error">
                   <source src={ErrorSound} />
                 </audio>
+                <audio id="eject">
+                  <source src={EjectSound} />
+                </audio>
+
                 <div className="base">
                   <div className="control-logo">
                     <img className="logo-img" src={Lambda} alt="lambda"></img>
