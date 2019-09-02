@@ -58,6 +58,8 @@ class Adventure extends React.Component {
     this.init();
   }
 
+  componentDidUpdate() {}
+
   pauseGame = () => {
     this.clickFx();
     this.pauseStartFx();
@@ -189,6 +191,8 @@ class Adventure extends React.Component {
   };
 
   handleMove = direction => {
+    this.clickFx();
+    this.animateCSS(".map-player", "flash");
     const herokurl = "https://lambdamud007.herokuapp.com";
     const testurl = "https://lambda-mud-test.herokuapp.com";
     axios({
@@ -218,14 +222,9 @@ class Adventure extends React.Component {
             this.setState({
               roomImage: imageURL
             });
+
             this.moveFx();
-          }
-          if (res.data.title === "Grand Overlook" && !res.data.error_msg) {
-            const imageURL = Overlook;
-            this.setState({
-              roomImage: imageURL
-            });
-            this.moveFx();
+            // this.animateCSS(".map-player", "flash");
           }
           if (res.data.title === "Foyer" && !res.data.error_msg) {
             const imageURL = Foyer;
@@ -233,6 +232,7 @@ class Adventure extends React.Component {
               roomImage: imageURL
             });
             this.moveFx();
+            // this.animateCSS(".map-player", "flash");
           }
 
           if (
@@ -244,6 +244,7 @@ class Adventure extends React.Component {
               roomImage: imageURL
             });
             this.moveFx();
+            // this.animateCSS(".map-player", "flash");
           }
           if (res.data.title === "Narrow Passage" && !res.data.error_msg) {
             const imageURL = Passage;
@@ -251,6 +252,7 @@ class Adventure extends React.Component {
               roomImage: imageURL
             });
             this.moveFx();
+            // this.animateCSS(".map-player", "flash");
           }
           if (res.data.title === "Treasure Chamber" && !res.data.error_msg) {
             const imageURL = Treasure;
@@ -258,6 +260,7 @@ class Adventure extends React.Component {
               roomImage: imageURL
             });
             this.moveFx();
+            // this.animateCSS(".map-player", "flash");
           }
           if (res.data.title === "Shaky Bridge" && !res.data.error_msg) {
             const imageURL = Bridge;
@@ -265,6 +268,7 @@ class Adventure extends React.Component {
               roomImage: imageURL
             });
             this.moveFx();
+            // this.animateCSS(".map-player", "flash");
           }
           if (res.data.title === "Lava Pit" && !res.data.error_msg) {
             const imageURL = Lava;
@@ -272,6 +276,7 @@ class Adventure extends React.Component {
               roomImage: imageURL
             });
             this.moveFx();
+            // this.animateCSS(".map-player", "flash");
           }
         }
       })
@@ -413,99 +418,122 @@ class Adventure extends React.Component {
     // }
   }
 
-  renderPlayer() {
-    const pixelPlayer5 = (
-      <div className=" animated fadeIn">
-        <img
-          alt="mapplayer"
-          className="map-player5"
-          src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
-          width="70"
-          height="80"
-        />
-      </div>
+  pixelPlayer1() {
+    // this.animateCSS(".map-player", "fadeIn");
+    return (
+      <img
+        alt="mapplayer"
+        className="map-player1"
+        src="https://media.giphy.com/media/B2kmdIkG7tr54VD3Im/giphy.gif"
+        width="70"
+        height="80"
+      />
     );
-    const pixelPlayer4 = (
-      <div className=" animated fadeIn">
-        <img
-          alt="mapplayer"
-          className="map-player4"
-          src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
-          width="70"
-          height="80"
-        />
-      </div>
+  }
+  pixelPlayer2() {
+    // this.animateCSS(".map-player", "fadeIn");
+    return (
+      <img
+        alt="mapplayer"
+        className="map-player2"
+        src="https://media.giphy.com/media/2wWuIJQISOKzM3uZ5r/giphy.gif"
+        width="70"
+        height="80"
+      />
     );
-    const pixelPlayer3 = (
-      <div className=" animated fadeIn">
-        <img
-          alt="mapplayer"
-          className="map-player3"
-          src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
-          width="70"
-          height="80"
-        />
-      </div>
-    );
-    const pixelPlayer2 = (
-      <div className=" animated fadeIn">
-        <img
-          alt="mapplayer"
-          className="map-player2"
-          src="https://media.giphy.com/media/2wWuIJQISOKzM3uZ5r/giphy.gif"
-          width="70"
-          height="80"
-        />
-      </div>
-    );
-    const pixelPlayer1 = (
-      <div className=" animated fadeIn">
-        <img
-          alt="mapplayer"
-          className="map-player1"
-          src="https://media.giphy.com/media/B2kmdIkG7tr54VD3Im/giphy.gif"
-          width="70"
-          height="80"
-        />
-      </div>
-    );
-    const pixelPlayer6 = (
-      <div className=" animated fadeIn">
-        <img
-          alt="mapplayer"
-          className="map-player6"
-          src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
-          width="70"
-          height="80"
-        />
-      </div>
-    );
-    const pixelPlayer7 = (
-      <div className=" animated fadeIn">
-        <img
-          alt="mapplayer"
-          className="map-player7"
-          src="https://media.giphy.com/media/8YQZdzXP1k3A4fuvvX/giphy.gif"
-          width="70"
-          height="80"
-        />
-      </div>
-    );
+  }
 
+  pixelPlayer3() {
+    // this.animateCSS(".map-player", "fadeIn");
+    return (
+      <img
+        alt="mapplayer"
+        className="map-player3"
+        src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
+        width="70"
+        height="80"
+      />
+    );
+  }
+  pixelPlayer4() {
+    // this.animateCSS(".map-player", "fadeIn");
+    return (
+      <img
+        alt="mapplayer"
+        className="map-player4"
+        src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
+        width="70"
+        height="80"
+      />
+    );
+  }
+  pixelPlayer5() {
+    // this.animateCSS(".map-player", "fadeIn");
+    return (
+      <img
+        alt="mapplayer"
+        className="map-player5"
+        src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
+        width="70"
+        height="80"
+      />
+    );
+  }
+
+  pixelPlayer6() {
+    // this.animateCSS(".map-player", "fadeIn");
+    return (
+      <img
+        alt="mapplayer"
+        className="map-player6"
+        src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
+        width="70"
+        height="80"
+      />
+    );
+  }
+  pixelPlayer7() {
+    // this.animateCSS(".map-player", "fadeIn");
+    return (
+      <img
+        alt="mapplayer"
+        className="map-player7"
+        src="https://media.giphy.com/media/8YQZdzXP1k3A4fuvvX/giphy.gif"
+        width="70"
+        height="80"
+      />
+    );
+  }
+
+  animateCSS(element, animationName, callback) {
+    const node = document.querySelector(".map-player");
+    node.classList.add("animated", animationName);
+
+    function handleAnimationEnd() {
+      node.classList.remove("animated", animationName);
+      node.removeEventListener("animationend", handleAnimationEnd);
+
+      if (typeof callback === "function") callback();
+    }
+
+    node.addEventListener("animationend", handleAnimationEnd);
+  }
+
+  renderPlayer() {
     if (this.state.roomTitle === "Foyer") {
-      return pixelPlayer5;
+      return this.pixelPlayer5();
     } else if (this.state.roomTitle === "Grand Overlook") {
-      return pixelPlayer4;
+      return this.pixelPlayer4();
     } else if (this.state.roomTitle === "Narrow Passage") {
-      return pixelPlayer3;
+      return this.pixelPlayer3();
     } else if (this.state.roomTitle === "Treasure Chamber") {
-      return pixelPlayer2;
+      return this.pixelPlayer2();
     } else if (this.state.roomTitle === "Outside Cave Entrance") {
-      return pixelPlayer1;
+      return this.pixelPlayer1();
     } else if (this.state.roomTitle === "Shaky Bridge") {
-      return pixelPlayer6;
+      return this.pixelPlayer6();
     } else if (this.state.roomTitle === "Lava Pit") {
-      return pixelPlayer7;
+      return this.pixelPlayer7();
     } else {
       return null;
     }
@@ -560,7 +588,7 @@ class Adventure extends React.Component {
           <div className="top-container">
             <div className="map-container">
               <div className="map">
-                <div>{this.renderPlayer()}</div>
+                <div className="map-player">{this.renderPlayer()}</div>
               </div>
             </div>
             <div className="tv-container">
@@ -688,30 +716,68 @@ class Adventure extends React.Component {
                     <div className="cross">
                       <div className="circle"></div>
 
-                      <div className="horizontal" onClick={this.clickFx}>
+                      <div className="horizontal">
                         <div
-                          className="arrowlf"
+                          className="right"
                           style={{ cursor: "pointer" }}
                           onClick={() => this.handleMove("e")}
+                          style={{
+                            right: "0px",
+                            position: "absolute",
+                            width: "30px",
+                            height: "100%",
+                            top: "0px",
+                            zIndex: "2"
+                          }}
                         ></div>
-                        <div
-                          className="arrowrh"
-                          style={{ cursor: "pointer" }}
-                          onClick={() => this.handleMove("w")}
-                        ></div>
+                        <div className="arrowlf"></div>
                       </div>
 
-                      <div className="vertical" onClick={this.clickFx}>
+                      <div
+                        className="left"
+                        style={{ cursor: "pointer" }}
+                        onClick={() => this.handleMove("w")}
+                        style={{
+                          position: "absolute",
+                          width: "30px",
+                          height: "33px",
+                          top: "28px",
+                          left: "5px",
+                          zIndex: "2"
+                        }}
+                      >
+                        <div className="arrowrh"></div>
+                      </div>
+
+                      <div className="vertical">
                         <div
-                          className="arrowlf"
+                          className="down"
                           style={{ cursor: "pointer" }}
                           onClick={() => this.handleMove("s")}
-                        ></div>
+                          style={{
+                            right: "0px",
+                            position: "absolute",
+                            width: "30px",
+                            height: "100%",
+                            top: "0px"
+                          }}
+                        >
+                          <div className="vert-arrowlf"></div>
+                        </div>
                         <div
-                          className="arrowrh"
+                          className="up"
                           style={{ cursor: "pointer" }}
                           onClick={() => this.handleMove("n")}
-                        ></div>
+                          style={{
+                            position: "absolute",
+                            width: "30px",
+                            height: "100%",
+                            top: "0px",
+                            left: "50"
+                          }}
+                        >
+                          <div className="vert-arrowrh"></div>
+                        </div>
                       </div>
 
                       <div className="back-cross">
