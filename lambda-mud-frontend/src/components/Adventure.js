@@ -129,7 +129,7 @@ class Adventure extends React.Component {
 
   init = () => {
     // const local = "http://localhost:3000";
-    const testurl = "https://lambda-mud-test.herokuapp.com";
+    // const testurl = "https://lambda-mud-test.herokuapp.com";
     const herokurl = "https://lambdamud007.herokuapp.com";
     const key = localStorage.getItem("token");
 
@@ -148,38 +148,37 @@ class Adventure extends React.Component {
           roomPlayers: res.data.players,
           token: key
         });
-        {
-          if (res.data.title === "Grand Overlook") {
-            const imageURL = Overlook;
-            this.setState({
-              roomImage: imageURL
-            });
-          }
-          if (res.data.title === "Foyer") {
-            const imageURL = Foyer;
-            this.setState({
-              roomImage: imageURL
-            });
-          }
 
-          if (res.data.title === "Outside Cave Entrance") {
-            const imageURL = Entrance;
-            this.setState({
-              roomImage: imageURL
-            });
-          }
-          if (res.data.title === "Narrow Passage") {
-            const imageURL = Passage;
-            this.setState({
-              roomImage: imageURL
-            });
-          }
-          if (res.data.title === "Treasure Chamber") {
-            const imageURL = Treasure;
-            this.setState({
-              roomImage: imageURL
-            });
-          }
+        if (res.data.title === "Grand Overlook") {
+          const imageURL = Overlook;
+          this.setState({
+            roomImage: imageURL
+          });
+        }
+        if (res.data.title === "Foyer") {
+          const imageURL = Foyer;
+          this.setState({
+            roomImage: imageURL
+          });
+        }
+
+        if (res.data.title === "Outside Cave Entrance") {
+          const imageURL = Entrance;
+          this.setState({
+            roomImage: imageURL
+          });
+        }
+        if (res.data.title === "Narrow Passage") {
+          const imageURL = Passage;
+          this.setState({
+            roomImage: imageURL
+          });
+        }
+        if (res.data.title === "Treasure Chamber") {
+          const imageURL = Treasure;
+          this.setState({
+            roomImage: imageURL
+          });
         }
 
         console.log("INIT STATE", this.state);
@@ -194,7 +193,7 @@ class Adventure extends React.Component {
     this.clickFx();
     this.animateCSS(".map-player", "flash");
     const herokurl = "https://lambdamud007.herokuapp.com";
-    const testurl = "https://lambda-mud-test.herokuapp.com";
+    // const testurl = "https://lambda-mud-test.herokuapp.com";
     axios({
       url: `${herokurl}/api/adv/move/`,
       method: "POST",
@@ -215,69 +214,68 @@ class Adventure extends React.Component {
           errorMsg: res.data.error_msg,
           movePlayer: true
         });
+        // {
+        //   res.data.error_msg ? this.animateCSS(".map-player", "bounce") : "";
+        // }
 
-        {
-          if (res.data.title === "Grand Overlook" && !res.data.error_msg) {
-            const imageURL = Overlook;
-            this.setState({
-              roomImage: imageURL
-            });
+        if (res.data.title === "Grand Overlook" && !res.data.error_msg) {
+          const imageURL = Overlook;
+          this.setState({
+            roomImage: imageURL
+          });
 
-            this.moveFx();
-            // this.animateCSS(".map-player", "flash");
-          }
-          if (res.data.title === "Foyer" && !res.data.error_msg) {
-            const imageURL = Foyer;
-            this.setState({
-              roomImage: imageURL
-            });
-            this.moveFx();
-            // this.animateCSS(".map-player", "flash");
-          }
-
-          if (
-            res.data.title === "Outside Cave Entrance" &&
-            !res.data.error_msg
-          ) {
-            const imageURL = Entrance;
-            this.setState({
-              roomImage: imageURL
-            });
-            this.moveFx();
-            // this.animateCSS(".map-player", "flash");
-          }
-          if (res.data.title === "Narrow Passage" && !res.data.error_msg) {
-            const imageURL = Passage;
-            this.setState({
-              roomImage: imageURL
-            });
-            this.moveFx();
-            // this.animateCSS(".map-player", "flash");
-          }
-          if (res.data.title === "Treasure Chamber" && !res.data.error_msg) {
-            const imageURL = Treasure;
-            this.setState({
-              roomImage: imageURL
-            });
-            this.moveFx();
-            // this.animateCSS(".map-player", "flash");
-          }
-          if (res.data.title === "Shaky Bridge" && !res.data.error_msg) {
-            const imageURL = Bridge;
-            this.setState({
-              roomImage: imageURL
-            });
-            this.moveFx();
-            // this.animateCSS(".map-player", "flash");
-          }
-          if (res.data.title === "Lava Pit" && !res.data.error_msg) {
-            const imageURL = Lava;
-            this.setState({
-              roomImage: imageURL
-            });
-            this.moveFx();
-            // this.animateCSS(".map-player", "flash");
-          }
+          this.moveFx();
+          // this.animateCSS(".map-player", "flash");
+        } else if (res.data.title === "Foyer" && !res.data.error_msg) {
+          const imageURL = Foyer;
+          this.setState({
+            roomImage: imageURL
+          });
+          this.moveFx();
+          // this.animateCSS(".map-player", "flash");
+        } else if (
+          res.data.title === "Outside Cave Entrance" &&
+          !res.data.error_msg
+        ) {
+          const imageURL = Entrance;
+          this.setState({
+            roomImage: imageURL
+          });
+          this.moveFx();
+          // this.animateCSS(".map-player", "flash");
+        } else if (res.data.title === "Narrow Passage" && !res.data.error_msg) {
+          const imageURL = Passage;
+          this.setState({
+            roomImage: imageURL
+          });
+          this.moveFx();
+          // this.animateCSS(".map-player", "flash");
+        } else if (
+          res.data.title === "Treasure Chamber" &&
+          !res.data.error_msg
+        ) {
+          const imageURL = Treasure;
+          this.setState({
+            roomImage: imageURL
+          });
+          this.moveFx();
+          // this.animateCSS(".map-player", "flash");
+        } else if (res.data.title === "Shaky Bridge" && !res.data.error_msg) {
+          const imageURL = Bridge;
+          this.setState({
+            roomImage: imageURL
+          });
+          this.moveFx();
+          // this.animateCSS(".map-player", "flash");
+        } else if (res.data.title === "Lava Pit" && !res.data.error_msg) {
+          const imageURL = Lava;
+          this.setState({
+            roomImage: imageURL
+          });
+          this.moveFx();
+          // this.animateCSS(".map-player", "flash");
+        } else {
+          return console.log("error", res.data.error_msg);
         }
       })
       .catch(error => {
@@ -719,7 +717,6 @@ class Adventure extends React.Component {
                       <div className="horizontal">
                         <div
                           className="right"
-                          style={{ cursor: "pointer" }}
                           onClick={() => this.handleMove("e")}
                           style={{
                             right: "0px",
@@ -735,7 +732,6 @@ class Adventure extends React.Component {
 
                       <div
                         className="left"
-                        style={{ cursor: "pointer" }}
                         onClick={() => this.handleMove("w")}
                         style={{
                           position: "absolute",
@@ -752,7 +748,6 @@ class Adventure extends React.Component {
                       <div className="vertical">
                         <div
                           className="down"
-                          style={{ cursor: "pointer" }}
                           onClick={() => this.handleMove("s")}
                           style={{
                             right: "0px",
@@ -766,7 +761,6 @@ class Adventure extends React.Component {
                         </div>
                         <div
                           className="up"
-                          style={{ cursor: "pointer" }}
                           onClick={() => this.handleMove("n")}
                           style={{
                             position: "absolute",

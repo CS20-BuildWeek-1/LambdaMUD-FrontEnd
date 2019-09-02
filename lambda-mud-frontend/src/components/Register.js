@@ -19,7 +19,7 @@ class Register extends Component {
   };
 
   submitHandler = e => {
-    const testurl = "https://lambda-mud-test.herokuapp.com";
+    // const testurl = "https://lambda-mud-test.herokuapp.com";
     const herokurl = "https://lambdamud007.herokuapp.com";
     e.preventDefault();
 
