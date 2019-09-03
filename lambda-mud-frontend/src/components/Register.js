@@ -5,6 +5,7 @@ import { Col, Form, FormGroup } from "reactstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { setLocale } from "yup";
+import Swal from "sweetalert2";
 import "./Register.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -50,6 +51,14 @@ class Register extends Component {
       })
       .catch(err => {
         console.log("Axios error:", err.response);
+        Swal.fire({
+          type: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          // confirmButtonText: "okay",
+          footer:
+            '<h3>Help:</h3><p>Sign in with <span>"testusername"</span> and <span>"testpassword"</span> if experiencing trouble</p>'
+        });
       });
   };
 
