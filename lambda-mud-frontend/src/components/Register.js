@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Col, Form, FormGroup } from "reactstrap";
+import { Formik } from "formik";
+import * as Yup from "yup";
+import { setLocale } from "yup";
 import "./Register.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -18,10 +21,16 @@ class Register extends Component {
     this.setState({ [name]: value });
   };
 
-  submitHandler = e => {
-    const testurl = "https://lambda-mud-test.herokuapp.com";
+  submitValues = ({ username, email, password, changepassword }) => {
+    console.log({ username, email, password, changepassword });
+    this.setState({
+      username: username,
+      email: email,
+      password1: password,
+      password2: changepassword
+    });
     const herokurl = "https://lambdamud007.herokuapp.com";
-    e.preventDefault();
+    console.log("this state", this.state);
 
     axios({
       url: `${herokurl}/api/registration/`,
@@ -45,71 +54,115 @@ class Register extends Component {
   };
 
   render() {
+    setLocale({
+      string: {
+        min: "Password must be 8 characters"
+      }
+    });
+
+    const Schema = Yup.object().shape({
+      password1: Yup.string().min(8),
+      password2: Yup.string().when("password1", {
+        is: val => (val && val.length > 0 ? true : false),
+        then: Yup.string().oneOf([Yup.ref("password1")], "Passwords must match")
+      })
+    });
     return (
       <main>
         <div id="container">
           <div className="form-contain">
-            <Form className="p-4" onSubmit={this.submitHandler}>
-              <Col>
-                <FormGroup>
-                  <div className="form-subject">Register</div>
-                  <input
-                    className="input"
-                    type="email"
-                    name="email"
-                    id="exampleEmail"
-                    placeholder="&#128220; Email"
-                    value={this.state.email}
-                    onChange={this.inputChangeHandler}
-                  />
-                </FormGroup>
-              </Col>
-              <Col>
-                <FormGroup>
-                  <input
-                    className="input"
-                    type="text"
-                    name="username"
-                    id="exampleUsername"
-                    placeholder="&#128128; Username"
-                    value={this.state.username}
-                    onChange={this.inputChangeHandler}
-                  />
-                </FormGroup>
-              </Col>
-              <Col>
-                <FormGroup>
-                  <input
-                    className="input"
-                    type="password"
-                    name="password1"
-                    id="examplePassword1"
-                    placeholder="&#128273; Password"
-                    value={this.state.password}
-                    onChange={this.inputChangeHandler}
-                  />
-                </FormGroup>
-              </Col>
-              <Col>
-                <FormGroup>
-                  <input
-                    className="input"
-                    type="password"
-                    name="password2"
-                    id="examplePassword2"
-                    placeholder="&#128273; Confirm Password"
-                    value={this.state.password}
-                    onChange={this.inputChangeHandler}
-                  />
-                </FormGroup>
-              </Col>
-              <button className="btn-success" type="submit">
-                Create Account
-              </button>
-              <div className="alt-link">
-                Already registered? <Link to={`/`}>Sign In</Link>
-              </div>
-            </Form>
+            <Formik
+              initialValues={{
+                username: "",
+                email: "",
+                password1: "",
+                password2: ""
+              }}
+              validationSchema={Schema}
+              onSubmit={this.submitValues}
+            >
+              {({ values, errors, handleSubmit, handleChange, handleBlur }) => {
+                return (
+                  <Form className="p-4" onSubmit={handleSubmit}>
+                    <Col>
+                      <FormGroup>
+                        <div className="form-subject">Register</div>
+                        <input
+                          className="input"
+                          type="email"
+                          name="email"
+                          id="exampleEmail"
+                          placeholder="&#128220; Email"
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          value={values.email}
+                          required
+                        />
+                      </FormGroup>
+                    </Col>
+                    <Col>
+                      <FormGroup>
+                        <input
+                          className="input"
+                          type="text"
+                          name="username"
+                          id="exampleUsername"
+                          placeholder="&#128128; Username"
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          value={values.username}
+                          required
+                        />
+                      </FormGroup>
+                    </Col>
+                    <Col>
+                      <FormGroup>
+                        <input
+                          aria-describedby="passwordHelpBlock"
+                          className="input"
+                          type="password"
+                          name="password1"
+                          id="examplePassword1"
+                          placeholder="&#128273; Password"
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          value={values.password1}
+                          required
+                        />
+
+                        <small id="passwordHelpBlock" className="form-text">
+                          {errors.password1}
+                        </small>
+                      </FormGroup>
+                    </Col>
+                    <Col>
+                      <FormGroup>
+                        <input
+                          className="input"
+                          type="password"
+                          name="password2"
+                          id="examplePassword2"
+                          placeholder="&#128273; Confirm Password"
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          value={values.password2}
+                          required
+                        />
+                        <small id="passwordHelpBlock" className="form-text">
+                          {errors.password2}
+                        </small>
+                      </FormGroup>
+                    </Col>
+                    <button className="btn-success" type="submit">
+                      Create Account
+                    </button>
+                    <div className="alt-link">
+                      Already registered? <Link to={`/`}>Sign In</Link>
+                    </div>
+                  </Form>
+                );
+              }}
+            </Formik>
           </div>
         </div>
       </main>

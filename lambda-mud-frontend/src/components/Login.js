@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Col, Form, FormGroup } from "reactstrap";
+import Swal from "sweetalert2";
 import "./Register.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -19,7 +20,7 @@ class Login extends Component {
   };
 
   submitHandler = e => {
-    const testurl = "https://lambda-mud-test.herokuapp.com";
+    // const testurl = "https://lambda-mud-test.herokuapp.com";
     const herokurl = "https://lambdamud007.herokuapp.com";
     e.preventDefault();
 
@@ -40,7 +41,22 @@ class Login extends Component {
       })
       .catch(err => {
         console.log("Axios error:", err.response);
+        Swal.fire({
+          type: "error",
+          title: "Oops...",
+          text: "Username and/or password incorrect!",
+          confirmButtonText: "Try Again"
+          // footer: "<a href>Why do I have this issue?</a>"
+        });
       });
+  };
+
+  errorResponse = () => {
+    return (
+      <small id="passwordHelpBlock" className="form-text">
+        Username and/or password incorrect
+      </small>
+    );
   };
 
   render() {
@@ -51,19 +67,7 @@ class Login extends Component {
             <div className="form-contain">
               <Form className="p-4" onSubmit={this.submitHandler}>
                 <div className="form-subject">Login</div>
-                <Col>
-                  <FormGroup>
-                    <input
-                      className="input"
-                      type="text"
-                      name="email"
-                      id="exampleEmail"
-                      placeholder="&#128220; Email"
-                      value={this.state.email}
-                      onChange={this.inputChangeHandler}
-                    />
-                  </FormGroup>
-                </Col>
+
                 <Col>
                   <FormGroup>
                     <input
