@@ -139,16 +139,18 @@ form {
 }
 
 .swal2-footer {
-  text-align: center;
+  /* text-align: center; */
   padding: 10px;
   /* font-style: italic; */
-  color: sienna;
 }
 .swal2-footer h3 {
+  color: green;
+  margin-top: 12px;
   text-align: center;
   font-style: italic;
-
-  color: darkred;
+}
+.swal2-footer p {
+  padding: 10px 10px 10px 15px;
 }
 
 .swal2-footer span {

@@ -47,7 +47,7 @@ class Login extends Component {
           text: "Username and/or password incorrect!",
           confirmButtonText: "Try Again",
           footer:
-            '<h3>Help:</h3><p>Input <span>"testusername"</span> for username and <span>"testpassword"</span> for password if login not working</p>'
+            '<h3>Help:</h3><p>Sign in with <span>"testusername"</span> and <span>"testpassword"</span> if experiencing trouble</p>'
         });
       });
   };
