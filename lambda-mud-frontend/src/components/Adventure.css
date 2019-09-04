@@ -43,7 +43,7 @@ html {
 .tv-img {
   z-index: 1;
   margin-top: 10px;
-  width: 96%;
+  width: 90%;
   height: 100%;
   border-right: 5px solid black;
   border-bottom: 3px solid black;
@@ -56,10 +56,13 @@ html {
 .room-img {
   position: absolute;
   border-radius: 50px;
-  width: 90%;
-  height: 90%;
-  top: 20px;
-  left: 5%;
+  background: transparent
+    url("https://66.media.tumblr.com/c9e06fd55c36bfd07ab248f3dfa0f8c0/tumblr_oc24jwFvCh1rrftcdo1_400.gif")
+    center no-repeat;
+  width: 80%;
+  height: 80%;
+  top: 50px;
+  left: 12%;
 }
 
 .map-container {
@@ -130,21 +133,32 @@ html {
 .right-container {
   width: 40%;
   background: url("../images/carpet.png");
+  overflow: hidden;
 }
 
 .player-container {
   /* padding: 40px 30px 30px 30px; */
   /* margin: 0 auto; */
-  width: 50%;
+  padding: 30px;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  flex-wrap: wrap;
+  /* vertical-align: middle; */
+  width: 60%;
+
   background: url("../images/rpgborder2.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
 }
+
+.nearby-players {
+  color: darkgreen;
+  font-family: "Droid Serif";
+}
 .player-text {
-  margin-top: 40px;
-  padding-left: 20px;
-  padding-right: 20px;
+  margin: 0 auto;
 }
 
 .current-player {
@@ -152,17 +166,25 @@ html {
   margin: 0 auto;
   text-align: center;
   background: rgb(0, 0, 0, 0.2);
-  width: 40%;
+  width: 300px;
   border-radius: 5px;
 }
 
 .room-container {
+  display: flex;
+  align-items: center;
   padding: 40px 50px 30px 25px;
   width: 50%;
   background: url("../images/rpgborder3.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
+}
+
+.room-description {
+  font-family: "Droid Serif";
+  /* font-size: 0px; */
+  /* font-family: "Goudy"; */
 }
 
 .control-logo {
@@ -177,8 +199,8 @@ html {
 
 .controller {
   padding: 40px;
-  width: auto;
   margin: 0 auto;
+  position: relative;
 }
 
 .btn-dir {

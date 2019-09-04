@@ -10,6 +10,7 @@ import Lava from "../images/lava.gif";
 import Bridge from "../images/bridge.gif";
 import Passage from "../images/cave.gif";
 import Lambda from "../images/lambdalogo.png";
+import Nintendo from "../images/nintendo.gif";
 import TV from "../images/tubetv2.png";
 import Sound from "react-sound";
 import EntranceSong from "../sounds/Entrance.mp3";
@@ -52,13 +53,14 @@ class Adventure extends React.Component {
       roomImage: "",
       direction: "",
       errorMsg: "",
+      loading: false,
       movePlayer: false
     };
   }
 
   componentDidMount() {
-    this.startFx();
     this.init();
+    this.startFx();
   }
 
   componentDidUpdate() {}
@@ -543,7 +545,7 @@ class Adventure extends React.Component {
   clickFx = () => {
     const click = document.getElementById("click");
     click.playbackRate = 4;
-    click.volume = 0.3;
+    click.volume = 0.4;
     click.play();
   };
 
@@ -608,12 +610,15 @@ class Adventure extends React.Component {
             </div>
             <div className="tv-container">
               <img className="tv-img" alt="tv" src={TV} />
-
-              <img
-                className="room-img"
-                alt="room"
-                src={this.state.roomImage}
-              ></img>
+              <img className="room-img" alt="room" src={Nintendo}></img>
+              {/* http://giphygifs.s3.amazonaws.com/media/riw3K0D2h4klG/giphy.gif */}
+              <Delay wait={1000}>
+                <img
+                  className="room-img"
+                  alt="room"
+                  src={this.state.roomImage}
+                ></img>
+              </Delay>
             </div>
           </div>
 
@@ -642,15 +647,7 @@ class Adventure extends React.Component {
                     </h5>
                   </div>
                   <h5 style={{ paddingTop: "10px" }}>Nearby Players</h5>
-
-                  <div
-                    className="nearby-players"
-                    style={{
-                      paddingLeft: "20px",
-                      paddingRight: "20px",
-                      color: "steelblue"
-                    }}
-                  >
+                  <div className="nearby-players">
                     {`
                ${this.state.roomPlayers[0] ? this.state.roomPlayers[0] : ""} 
                ${this.state.roomPlayers[1] ? this.state.roomPlayers[1] : ""} 
@@ -658,35 +655,40 @@ class Adventure extends React.Component {
                ${this.state.roomPlayers[3] ? this.state.roomPlayers[3] : ""} 
                ${this.state.roomPlayers[4] ? this.state.roomPlayers[4] : ""}
                ${this.state.roomPlayers[5] ? this.state.roomPlayers[5] : ""}
-               ${this.state.roomPlayers[6] ? this.state.roomPlayers[6] : ""}
+            
                `}
                   </div>
                 </div>
               </div>
 
               <div className="room-container">
-                <h2>{this.state.roomTitle}</h2>
-
-                {this.state.roomDescription}
-                {this.state.errorMsg ? (
-                  // <div className="alert">
-                  <HeadShake>
-                    <div
-                      className="alert alert-danger"
-                      role="alert"
-                      style={{
-                        // width: "50%",
-                        margin: "10px 10px 0 10px"
-                        // margin: "0 auto"
-                      }}
-                    >
-                      You cannot go this direction!
+                <div className="player-text">
+                  <h2>{this.state.roomTitle}</h2>
+                  <Fade>
+                    <div className="room-description">
+                      {this.state.roomDescription}
                     </div>
-                  </HeadShake>
-                ) : (
-                  // </div>
-                  ""
-                )}
+                  </Fade>
+                  {this.state.errorMsg ? (
+                    // <div className="alert">
+                    <HeadShake>
+                      <div
+                        className="alert alert-danger"
+                        role="alert"
+                        style={{
+                          // width: "50%",
+                          margin: "10px 10px 0 10px"
+                          // margin: "0 auto"
+                        }}
+                      >
+                        You cannot go this direction!
+                      </div>
+                    </HeadShake>
+                  ) : (
+                    // </div>
+                    ""
+                  )}
+                </div>
               </div>
             </div>
 

@@ -163,6 +163,19 @@ class Register extends Component {
                       </FormGroup>
                     </Col>
                     <button className="btn-success" type="submit">
+                      {this.state.loading ? (
+                        <span
+                          class="spinner-grow spinner-grow-md"
+                          style={{
+                            position: "absolute",
+                            right: "47px"
+                          }}
+                          role="status"
+                          aria-hidden="true"
+                        ></span>
+                      ) : (
+                        ""
+                      )}
                       Create Account
                     </button>
                     <div className="alt-link">

@@ -11,7 +11,8 @@ class Login extends Component {
     username: "",
     email: "",
     password: "",
-    status: 0
+    status: 0,
+    loading: false
   };
 
   inputChangeHandler = e => {
@@ -23,6 +24,7 @@ class Login extends Component {
     // const testurl = "https://lambda-mud-test.herokuapp.com";
     const herokurl = "https://lambdamud007.herokuapp.com";
     e.preventDefault();
+    this.setState({ loading: true });
 
     axios({
       url: `${herokurl}/api/login/`,
@@ -38,9 +40,11 @@ class Login extends Component {
         const token = res.data["key"];
         localStorage.setItem("token", `Token ${token}`);
         this.props.history.push("/adventure");
+        this.setState({ loading: false });
       })
       .catch(err => {
         console.log("Axios error:", err.response);
+        this.setState({ loading: false });
         Swal.fire({
           type: "error",
           title: "Oops...",
@@ -97,6 +101,19 @@ class Login extends Component {
                 </Col>
 
                 <button className="btn-success" type="submit">
+                  {this.state.loading ? (
+                    <span
+                      className="spinner-grow spinner-grow-md"
+                      style={{
+                        position: "absolute",
+                        right: "55px"
+                      }}
+                      role="status"
+                      aria-hidden="true"
+                    ></span>
+                  ) : (
+                    ""
+                  )}
                   Join World
                 </button>
                 <div className="alt-link">
