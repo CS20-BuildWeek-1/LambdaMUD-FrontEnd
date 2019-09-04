@@ -230,14 +230,12 @@ class Adventure extends React.Component {
           });
 
           this.moveFx();
-          // this.animateCSS(".map-player", "flash");
         } else if (res.data.title === "Foyer" && !res.data.error_msg) {
           const imageURL = Foyer;
           this.setState({
             roomImage: imageURL
           });
           this.moveFx();
-          // this.animateCSS(".map-player", "flash");
         } else if (
           res.data.title === "Outside Cave Entrance" &&
           !res.data.error_msg
@@ -247,14 +245,12 @@ class Adventure extends React.Component {
             roomImage: imageURL
           });
           this.moveFx();
-          // this.animateCSS(".map-player", "flash");
         } else if (res.data.title === "Narrow Passage" && !res.data.error_msg) {
           const imageURL = Passage;
           this.setState({
             roomImage: imageURL
           });
           this.moveFx();
-          // this.animateCSS(".map-player", "flash");
         } else if (
           res.data.title === "Treasure Chamber" &&
           !res.data.error_msg
@@ -264,21 +260,18 @@ class Adventure extends React.Component {
             roomImage: imageURL
           });
           this.moveFx();
-          // this.animateCSS(".map-player", "flash");
         } else if (res.data.title === "Shaky Bridge" && !res.data.error_msg) {
           const imageURL = Bridge;
           this.setState({
             roomImage: imageURL
           });
           this.moveFx();
-          // this.animateCSS(".map-player", "flash");
         } else if (res.data.title === "Lava Pit" && !res.data.error_msg) {
           const imageURL = Lava;
           this.setState({
             roomImage: imageURL
           });
           this.moveFx();
-          // this.animateCSS(".map-player", "flash");
         } else if (res.data.err_msg) {
           return this.animateCSS(".map-player", "bounce");
         }
@@ -421,93 +414,6 @@ class Adventure extends React.Component {
     // }
   }
 
-  pixelPlayer1() {
-    // this.animateCSS(".map-player", "fadeIn");
-    return (
-      <img
-        alt="mapplayer"
-        className="map-player1"
-        src="https://media.giphy.com/media/B2kmdIkG7tr54VD3Im/giphy.gif"
-        width="70"
-        height="80"
-      />
-    );
-  }
-  pixelPlayer2() {
-    // this.animateCSS(".map-player", "fadeIn");
-    return (
-      <img
-        alt="mapplayer"
-        className="map-player2"
-        src="https://media.giphy.com/media/2wWuIJQISOKzM3uZ5r/giphy.gif"
-        width="70"
-        height="80"
-      />
-    );
-  }
-
-  pixelPlayer3() {
-    // this.animateCSS(".map-player", "fadeIn");
-    return (
-      <img
-        alt="mapplayer"
-        className="map-player3"
-        src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
-        width="70"
-        height="80"
-      />
-    );
-  }
-  pixelPlayer4() {
-    // this.animateCSS(".map-player", "fadeIn");
-    return (
-      <img
-        alt="mapplayer"
-        className="map-player4"
-        src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
-        width="70"
-        height="80"
-      />
-    );
-  }
-  pixelPlayer5() {
-    // this.animateCSS(".map-player", "fadeIn");
-    return (
-      <img
-        alt="mapplayer"
-        className="map-player5"
-        src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
-        width="70"
-        height="80"
-      />
-    );
-  }
-
-  pixelPlayer6() {
-    // this.animateCSS(".map-player", "fadeIn");
-    return (
-      <img
-        alt="mapplayer"
-        className="map-player6"
-        src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
-        width="70"
-        height="80"
-      />
-    );
-  }
-  pixelPlayer7() {
-    // this.animateCSS(".map-player", "fadeIn");
-    return (
-      <img
-        alt="mapplayer"
-        className="map-player7"
-        src="https://media.giphy.com/media/8YQZdzXP1k3A4fuvvX/giphy.gif"
-        width="70"
-        height="80"
-      />
-    );
-  }
-
   animateCSS(element, animationName, callback) {
     const node = document.querySelector(".map-player");
     node.classList.add("animated", animationName);
@@ -520,26 +426,6 @@ class Adventure extends React.Component {
     }
 
     node.addEventListener("animationend", handleAnimationEnd);
-  }
-
-  renderPlayer() {
-    if (this.state.roomTitle === "Foyer") {
-      return this.pixelPlayer5();
-    } else if (this.state.roomTitle === "Grand Overlook") {
-      return this.pixelPlayer4();
-    } else if (this.state.roomTitle === "Narrow Passage") {
-      return this.pixelPlayer3();
-    } else if (this.state.roomTitle === "Treasure Chamber") {
-      return this.pixelPlayer2();
-    } else if (this.state.roomTitle === "Outside Cave Entrance") {
-      return this.pixelPlayer1();
-    } else if (this.state.roomTitle === "Shaky Bridge") {
-      return this.pixelPlayer6();
-    } else if (this.state.roomTitle === "Lava Pit") {
-      return this.pixelPlayer7();
-    } else {
-      return null;
-    }
   }
 
   clickFx = () => {
@@ -594,61 +480,164 @@ class Adventure extends React.Component {
     console.log("Room players: ", this.state.roomPlayers);
     console.log("this State: ", this.state);
     console.log("ROOM TITLE: ", this.state.roomTitle);
+    const room = this.state.roomTitle;
 
     return (
-      <>
-        {/* <NavBar /> */}
-        {this.renderSong()}
-        {this.state.errorMsg ? this.errorFx() : ""}
+      <Fade>
+        <>
+          {/* <NavBar /> */}
+          {this.renderSong()}
+          {this.state.errorMsg ? this.errorFx() : ""}
 
-        <div className="main-container">
-          <div className="top-container">
-            <div className="map-container">
-              <div className="map">
-                <div className="map-player">{this.renderPlayer()}</div>
+          <div className="main-container">
+            <div className="top-container">
+              <div className="map-container">
+                <div className="map">
+                  <div className="overlook">
+                    {room === "Grand Overlook" ? (
+                      <img
+                        id="map-player1"
+                        className="map-player"
+                        alt="map-player"
+                        src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
+                        width="70"
+                        height="80"
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <div className="treasure">
+                    {room === "Treasure Chamber" ? (
+                      <img
+                        id="map-player2"
+                        className="map-player"
+                        alt="map-player"
+                        src="https://media.giphy.com/media/2wWuIJQISOKzM3uZ5r/giphy.gif"
+                        width="70"
+                        height="80"
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <div className="lava">
+                    {room === "Lava Pit" ? (
+                      <img
+                        id="map-player3"
+                        className="map-player"
+                        alt="map-player"
+                        src="https://media.giphy.com/media/8YQZdzXP1k3A4fuvvX/giphy.gif"
+                        width="70"
+                        height="80"
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <div className="foyer">
+                    {room === "Foyer" ? (
+                      <img
+                        id="map-player4"
+                        className="map-player"
+                        alt="map-player"
+                        src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
+                        width="70"
+                        height="80"
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </div>
+
+                  <div className="passage">
+                    {room === "Narrow Passage" ? (
+                      <img
+                        id="map-player5"
+                        className="map-player"
+                        alt="map-player"
+                        src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
+                        width="70"
+                        height="80"
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </div>
+
+                  <div className="bridge">
+                    {room === "Shaky Bridge" ? (
+                      <img
+                        id="map-player6"
+                        className="map-player"
+                        alt="map-player"
+                        src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
+                        width="70"
+                        height="80"
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <div className="entrance">
+                    {room === "Outside Cave Entrance" ? (
+                      <img
+                        id="map-player7"
+                        className="map-player"
+                        alt="map-player"
+                        src="https://media.giphy.com/media/B2kmdIkG7tr54VD3Im/giphy.gif"
+                        width="70"
+                        height="80"
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div className="tv-container">
+                <img className="tv-img" alt="tv" src={TV} />
+                <img className="room-img" alt="room" src={Nintendo}></img>
+                {/* http://giphygifs.s3.amazonaws.com/media/riw3K0D2h4klG/giphy.gif */}
+                <Delay wait={2000}>
+                  <Fade>
+                    <img
+                      className="room-img"
+                      alt="room"
+                      src={this.state.roomImage}
+                    ></img>
+                  </Fade>
+                </Delay>
               </div>
             </div>
-            <div className="tv-container">
-              <img className="tv-img" alt="tv" src={TV} />
-              <img className="room-img" alt="room" src={Nintendo}></img>
-              {/* http://giphygifs.s3.amazonaws.com/media/riw3K0D2h4klG/giphy.gif */}
-              <Delay wait={1000}>
-                <img
-                  className="room-img"
-                  alt="room"
-                  src={this.state.roomImage}
-                ></img>
-              </Delay>
-            </div>
-          </div>
 
-          <div className="bottom-container">
-            <div className="left-container">
-              <div className="player-container">
-                <div className="player-text">
-                  <h2>Current Player</h2>
-                  <div className="current-player">
-                    <Fade left>
-                      <img
-                        alt="mapplayer"
-                        src="https://media.giphy.com/media/2ywLocM9VYvpPa5d1Y/giphy.gif"
-                        width="40"
-                        height="40"
-                      ></img>
-                    </Fade>
+            <div className="bottom-container">
+              <div className="left-container">
+                <div className="player-container">
+                  <div className="player-text">
+                    <h2>Current Player</h2>
+                    <div className="current-player">
+                      <Fade left>
+                        <img
+                          alt="mapplayer"
+                          src="https://media.giphy.com/media/2ywLocM9VYvpPa5d1Y/giphy.gif"
+                          width="40"
+                          height="40"
+                        ></img>
+                      </Fade>
 
-                    <h5
-                      style={{
-                        fontFamily: "Dragon",
-                        color: "Maroon"
-                      }}
-                    >
-                      {this.state.playerName}
-                    </h5>
-                  </div>
-                  <h5 style={{ paddingTop: "10px" }}>Nearby Players</h5>
-                  <div className="nearby-players">
-                    {`
+                      <h5
+                        style={{
+                          fontFamily: "Dragon",
+                          color: "Maroon"
+                        }}
+                      >
+                        {this.state.playerName}
+                      </h5>
+                    </div>
+                    <h5 style={{ paddingTop: "10px" }}>Nearby Players</h5>
+                    <div className="nearby-players">
+                      {`
                ${this.state.roomPlayers[0] ? this.state.roomPlayers[0] : ""} 
                ${this.state.roomPlayers[1] ? this.state.roomPlayers[1] : ""} 
                ${this.state.roomPlayers[2] ? this.state.roomPlayers[2] : ""}  
@@ -657,185 +646,186 @@ class Adventure extends React.Component {
                ${this.state.roomPlayers[5] ? this.state.roomPlayers[5] : ""}
             
                `}
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="room-container">
-                <div className="player-text">
-                  <h2>{this.state.roomTitle}</h2>
-                  <Fade>
-                    <div className="room-description">
-                      {this.state.roomDescription}
-                    </div>
-                  </Fade>
-                  {this.state.errorMsg ? (
-                    // <div className="alert">
-                    <HeadShake>
-                      <div
-                        className="alert alert-danger"
-                        role="alert"
-                        style={{
-                          // width: "50%",
-                          margin: "10px 10px 0 10px"
-                          // margin: "0 auto"
-                        }}
-                      >
-                        You cannot go this direction!
+                <div className="room-container">
+                  <div className="player-text">
+                    <h2>{this.state.roomTitle}</h2>
+                    <Fade>
+                      <div className="room-description">
+                        {this.state.roomDescription}
                       </div>
-                    </HeadShake>
-                  ) : (
-                    // </div>
-                    ""
-                  )}
-                </div>
-              </div>
-            </div>
-
-            <div className="right-container">
-              <div className="cable"></div>
-              <div className="controller">
-                <audio id="click">
-                  <source src={ClickSound} />
-                </audio>
-                <audio id="start">
-                  <source src={StartSound} />
-                </audio>
-                <audio id="pause">
-                  <source src={PauseStart} />
-                </audio>
-                <audio id="pauseend">
-                  <source src={PauseEnd} />
-                </audio>
-                <audio id="move">
-                  <source src={MoveSound} />
-                </audio>
-                <audio id="error">
-                  <source src={ErrorSound} />
-                </audio>
-                <audio id="eject">
-                  <source src={EjectSound} />
-                </audio>
-
-                <div className="base">
-                  <div className="control-logo">
-                    <img className="logo-img" src={Lambda} alt="lambda"></img>
-                  </div>
-                  <div className="front">
-                    <div className="decoration">
-                      <div className="stickers">
-                        <div className="st-a">A</div>
-                        <div className="st-b">B</div>
-                        <div className="st-select">QUIT</div>
-                        <div className="st-start">PAUSE</div>
-                      </div>
-                      <div className="decoration-central">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                      </div>
-                    </div>
-                    <div className="cross">
-                      <div className="circle"></div>
-
-                      <div className="horizontal">
+                    </Fade>
+                    {this.state.errorMsg ? (
+                      // <div className="alert">
+                      <HeadShake>
                         <div
-                          className="right"
-                          onClick={() => this.handleMove("e")}
+                          className="alert alert-danger"
+                          role="alert"
                           style={{
-                            right: "0px",
+                            // width: "50%",
+                            margin: "10px 10px 0 10px"
+                            // margin: "0 auto"
+                          }}
+                        >
+                          You cannot go this direction!
+                        </div>
+                      </HeadShake>
+                    ) : (
+                      // </div>
+                      ""
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <div className="right-container">
+                <div className="cable"></div>
+                <div className="controller">
+                  <audio id="click">
+                    <source src={ClickSound} />
+                  </audio>
+                  <audio id="start">
+                    <source src={StartSound} />
+                  </audio>
+                  <audio id="pause">
+                    <source src={PauseStart} />
+                  </audio>
+                  <audio id="pauseend">
+                    <source src={PauseEnd} />
+                  </audio>
+                  <audio id="move">
+                    <source src={MoveSound} />
+                  </audio>
+                  <audio id="error">
+                    <source src={ErrorSound} />
+                  </audio>
+                  <audio id="eject">
+                    <source src={EjectSound} />
+                  </audio>
+
+                  <div className="base">
+                    <div className="control-logo">
+                      <img className="logo-img" src={Lambda} alt="lambda"></img>
+                    </div>
+                    <div className="front">
+                      <div className="decoration">
+                        <div className="stickers">
+                          <div className="st-a">A</div>
+                          <div className="st-b">B</div>
+                          <div className="st-select">QUIT</div>
+                          <div className="st-start">PAUSE</div>
+                        </div>
+                        <div className="decoration-central">
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                        </div>
+                      </div>
+                      <div className="cross">
+                        <div className="circle"></div>
+
+                        <div className="horizontal">
+                          <div
+                            className="right"
+                            onClick={() => this.handleMove("e")}
+                            style={{
+                              right: "0px",
+                              position: "absolute",
+                              width: "30px",
+                              height: "100%",
+                              top: "0px",
+                              zIndex: "2"
+                            }}
+                          ></div>
+                          <div className="arrowlf"></div>
+                        </div>
+
+                        <div
+                          className="left"
+                          onClick={() => this.handleMove("w")}
+                          style={{
                             position: "absolute",
                             width: "30px",
-                            height: "100%",
-                            top: "0px",
+                            height: "33px",
+                            top: "28px",
+                            left: "5px",
                             zIndex: "2"
                           }}
-                        ></div>
-                        <div className="arrowlf"></div>
-                      </div>
-
-                      <div
-                        className="left"
-                        onClick={() => this.handleMove("w")}
-                        style={{
-                          position: "absolute",
-                          width: "30px",
-                          height: "33px",
-                          top: "28px",
-                          left: "5px",
-                          zIndex: "2"
-                        }}
-                      >
-                        <div className="arrowrh"></div>
-                      </div>
-
-                      <div className="vertical">
-                        <div
-                          className="down"
-                          onClick={() => this.handleMove("s")}
-                          style={{
-                            right: "0px",
-                            position: "absolute",
-                            width: "30px",
-                            height: "100%",
-                            top: "0px"
-                          }}
                         >
-                          <div className="vert-arrowlf"></div>
+                          <div className="arrowrh"></div>
                         </div>
-                        <div
-                          className="up"
-                          onClick={() => this.handleMove("n")}
-                          style={{
-                            position: "absolute",
-                            width: "30px",
-                            height: "100%",
-                            top: "0px",
-                            left: "50"
-                          }}
-                        >
-                          <div className="vert-arrowrh"></div>
+
+                        <div className="vertical">
+                          <div
+                            className="down"
+                            onClick={() => this.handleMove("s")}
+                            style={{
+                              right: "0px",
+                              position: "absolute",
+                              width: "30px",
+                              height: "100%",
+                              top: "0px"
+                            }}
+                          >
+                            <div className="vert-arrowlf"></div>
+                          </div>
+                          <div
+                            className="up"
+                            onClick={() => this.handleMove("n")}
+                            style={{
+                              position: "absolute",
+                              width: "30px",
+                              height: "100%",
+                              top: "0px",
+                              left: "50"
+                            }}
+                          >
+                            <div className="vert-arrowrh"></div>
+                          </div>
+                        </div>
+
+                        <div className="back-cross">
+                          <div className="horiz"></div>
+                          <div className="vert"></div>
                         </div>
                       </div>
-
-                      <div className="back-cross">
-                        <div className="horiz"></div>
-                        <div className="vert"></div>
+                      <div className="buttons-a-b">
+                        <div className="btn-border">
+                          <div
+                            className="btn-round a"
+                            onClick={this.clickFx}
+                          ></div>
+                        </div>
+                        <div className="btn-border">
+                          <div
+                            className="btn-round b"
+                            onClick={this.clickFx}
+                          ></div>
+                        </div>
                       </div>
-                    </div>
-                    <div className="buttons-a-b">
-                      <div className="btn-border">
+                      <div className="buttons-select">
                         <div
-                          className="btn-round a"
-                          onClick={this.clickFx}
+                          className="btn-central quit"
+                          onClick={this.logout}
+                        ></div>
+                        <div
+                          className="btn-central pause"
+                          onClick={this.pauseGame}
                         ></div>
                       </div>
-                      <div className="btn-border">
-                        <div
-                          className="btn-round b"
-                          onClick={this.clickFx}
-                        ></div>
-                      </div>
-                    </div>
-                    <div className="buttons-select">
-                      <div
-                        className="btn-central quit"
-                        onClick={this.logout}
-                      ></div>
-                      <div
-                        className="btn-central pause"
-                        onClick={this.pauseGame}
-                      ></div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </>
+        </>
+      </Fade>
     );
   }
 }

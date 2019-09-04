@@ -61,12 +61,13 @@ html {
     center no-repeat;
   width: 80%;
   height: 80%;
-  top: 50px;
-  left: 12%;
+  top: 10%;
+  left: 10%;
 }
 
 .map-container {
   /* border: 3px dotted black; */
+
   border-top: 3px dotted black;
   border-right: 3px dotted black;
   border-left: 3px dotted black;
@@ -74,46 +75,52 @@ html {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   width: 60%;
+
   /* display: grid;
   grid-template-columns: 100px 100px 100px;
   grid-gap: 10px; */
 }
-.map-player1 {
-  position: fixed;
-  left: 170px;
-  top: 325px;
-}
-.map-player2 {
-  position: fixed;
-  left: 335px;
-  top: 10px;
-}
-.map-player3 {
-  position: fixed;
-  left: 340px;
-  top: 170px;
-}
-.map-player4 {
-  position: fixed;
-  left: 150px;
-  top: 20px;
-}
-.map-player5 {
-  position: fixed;
-  left: 150px;
-  top: 210px;
-}
-.map-player6 {
-  position: fixed;
-  left: 625px;
-  top: 150px;
-}
-.map-player7 {
-  position: fixed;
-  left: 720px;
-  top: 10px;
+
+.map {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
+#map-player1 {
+  position: relative;
+  left: 5%;
+}
+
+#map-player2 {
+  position: relative;
+  right: 20%;
+}
+#map-player3 {
+  position: relative;
+  bottom: 5%;
+  left: 10%;
+}
+#map-player4 {
+  position: relative;
+  top: 25%;
+  left: 10%;
+}
+#map-player5 {
+  position: relative;
+  top: 13%;
+  right: 20%;
+}
+#map-player6 {
+  position: relative;
+  right: 18%;
+  top: 5%;
+}
+#map-player7 {
+  position: relative;
+  top: 30%;
+  left: 20%;
+}
 .bottom-container {
   /* border: 5px solid green; */
   display: flex;
@@ -166,7 +173,7 @@ html {
   margin: 0 auto;
   text-align: center;
   background: rgb(0, 0, 0, 0.2);
-  width: 300px;
+  width: 200px;
   border-radius: 5px;
 }
 
