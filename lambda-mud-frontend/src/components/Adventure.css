@@ -61,8 +61,8 @@ html {
     center no-repeat;
   width: 80%;
   height: 80%;
-  top: 50px;
-  left: 12%;
+  top: 10%;
+  left: 10%;
 }
 
 .map-container {
@@ -173,7 +173,7 @@ html {
   margin: 0 auto;
   text-align: center;
   background: rgb(0, 0, 0, 0.2);
-  width: 300px;
+  width: 200px;
   border-radius: 5px;
 }
 

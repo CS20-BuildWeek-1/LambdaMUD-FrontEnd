@@ -494,7 +494,7 @@ class Adventure extends React.Component {
               <div className="map-container">
                 <div className="map">
                   <div className="overlook">
-                    {room == "Grand Overlook" ? (
+                    {room === "Grand Overlook" ? (
                       <img
                         id="map-player1"
                         className="map-player"
@@ -508,7 +508,7 @@ class Adventure extends React.Component {
                     )}
                   </div>
                   <div className="treasure">
-                    {room == "Treasure Chamber" ? (
+                    {room === "Treasure Chamber" ? (
                       <img
                         id="map-player2"
                         className="map-player"
@@ -522,7 +522,7 @@ class Adventure extends React.Component {
                     )}
                   </div>
                   <div className="lava">
-                    {room == "Lava Pit" ? (
+                    {room === "Lava Pit" ? (
                       <img
                         id="map-player3"
                         className="map-player"
@@ -536,7 +536,7 @@ class Adventure extends React.Component {
                     )}
                   </div>
                   <div className="foyer">
-                    {room == "Foyer" ? (
+                    {room === "Foyer" ? (
                       <img
                         id="map-player4"
                         className="map-player"
@@ -551,7 +551,7 @@ class Adventure extends React.Component {
                   </div>
 
                   <div className="passage">
-                    {room == "Narrow Passage" ? (
+                    {room === "Narrow Passage" ? (
                       <img
                         id="map-player5"
                         className="map-player"
@@ -566,7 +566,7 @@ class Adventure extends React.Component {
                   </div>
 
                   <div className="bridge">
-                    {room == "Shaky Bridge" ? (
+                    {room === "Shaky Bridge" ? (
                       <img
                         id="map-player6"
                         className="map-player"
@@ -580,7 +580,7 @@ class Adventure extends React.Component {
                     )}
                   </div>
                   <div className="entrance">
-                    {room == "Outside Cave Entrance" ? (
+                    {room === "Outside Cave Entrance" ? (
                       <img
                         id="map-player7"
                         className="map-player"
