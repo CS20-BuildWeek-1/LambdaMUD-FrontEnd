@@ -23,6 +23,7 @@ class Login extends Component {
   submitHandler = e => {
     // const testurl = "https://lambda-mud-test.herokuapp.com";
     const herokurl = "https://lambdamud007.herokuapp.com";
+    // const local = "http://127.0.0.1:8000";
     e.preventDefault();
     this.setState({ loading: true });
 
