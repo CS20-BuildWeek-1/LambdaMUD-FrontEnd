@@ -31,6 +31,7 @@ class Register extends Component {
       password2: changepassword
     });
     const herokurl = "https://lambdamud007.herokuapp.com";
+    // const local = "http://127.0.0.1:8000";
     console.log("this state", this.state);
 
     axios({

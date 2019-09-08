@@ -29,16 +29,53 @@ import MoveSound from "../sounds/move.wav";
 import ErrorSound from "../sounds/error.wav";
 import EjectSound from "../sounds/eject.mp3";
 import Delay from "react-delay";
-
 import mud from "../images/mud.png";
 // import swal from "@sweetalert/with-react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
+import Form from "./Form";
+import TextOutput from "./TextOutput";
+import { Card, CardMedia, CardTitle } from "material-ui/Card";
+import {
+  blue300,
+  indigo900,
+  orange200,
+  deepOrange300,
+  pink400,
+  purple500,
+  blue500
+} from "material-ui/styles/colors";
+import Divider from "material-ui/Divider";
+
+import Pusher from "pusher-js";
+// import ChatList from "./ChatList";
+// import ChatBox from "./ChatBox";
+// hi
+// import logo from "./logo.svg";
+
 // import NavBar from "./Navbar";
 import "./Adventure.css";
 
 // import { Link } from 'react-router-dom';
+
+const colors = [
+  blue300,
+  indigo900,
+  orange200,
+  deepOrange300,
+  pink400,
+  purple500,
+  blue500
+];
+
+const styles = {
+  card: {
+    // width: '60%',
+    // margin: '50px auto 50px',
+    backgroundColor: "rgba(255, 255, 255, 0.6)"
+  }
+};
 
 class Adventure extends React.Component {
   constructor(props) {
@@ -54,7 +91,14 @@ class Adventure extends React.Component {
       direction: "",
       errorMsg: "",
       loading: false,
-      movePlayer: false
+      movePlayer: false,
+      message: "",
+      text: "",
+      value: "",
+      username: "",
+      chats: [],
+      broadcast: "",
+      uuid: ""
     };
   }
 
@@ -63,7 +107,34 @@ class Adventure extends React.Component {
     this.startFx();
   }
 
-  componentDidUpdate() {}
+  say = () => {
+    this.setState({ text: "" });
+    // const local = "http://127.0.0.1:8000";
+    // const testurl = "https://lambda-mud-test.herokuapp.com";
+    const herokurl = "https://lambdamud007.herokuapp.com";
+    const key = localStorage.getItem("token");
+
+    console.log("text", this.state.text);
+
+    axios({
+      url: `${herokurl}/api/adv/say/`,
+      method: "POST",
+      headers: {
+        Authorization: `${key}`
+      },
+      data: {
+        message: `${this.state.text}`
+        // messageName: res.data.name
+      }
+    })
+      .then(res => {
+        console.log("say response:", res.data);
+      })
+
+      .catch(err => {
+        console.log("Axios error:", err.response);
+      });
+  };
 
   pauseGame = () => {
     this.clickFx();
@@ -83,7 +154,7 @@ class Adventure extends React.Component {
       .querySelector(".swal2-container")
       .addEventListener("click", function() {
         const pause = document.getElementById("pauseend");
-        console.log("pauseend", pause);
+
         pause.volume = 0.05;
         pause.play();
       });
@@ -136,24 +207,26 @@ class Adventure extends React.Component {
   };
 
   init = () => {
-    // const local = "http://localhost:3000";
+    // const local = "http://127.0.0.1:8000";
     // const testurl = "https://lambda-mud-test.herokuapp.com";
     const herokurl = "https://lambdamud007.herokuapp.com";
     const key = localStorage.getItem("token");
 
     axios({
-      url: `${herokurl}/api/adv/init`,
+      url: `${herokurl}/api/adv/init/`,
       method: "GET",
       headers: {
         Authorization: `${key}`
       }
     })
       .then(res => {
+        console.log("init data", res.data);
         this.setState({
           playerName: res.data.name,
           roomTitle: res.data.title,
           roomDescription: res.data.description,
           roomPlayers: res.data.players,
+          uuid: res.data.uuid,
           token: key
         });
 
@@ -188,20 +261,55 @@ class Adventure extends React.Component {
             roomImage: imageURL
           });
         }
-
-        console.log("INIT STATE", this.state);
       })
 
       .catch(err => {
         console.log("Axios error:", err.response);
+      })
+      .then(() => {
+        Pusher.logToConsole = true;
+
+        const pusher = new Pusher("ff2810ec3a66168f055f", {
+          cluster: "us3",
+          // forceTLS: true
+          encrypted: true
+        });
+        console.log("uuid:", this.state.uuid);
+        const channel = pusher.subscribe(`p-channel-${this.state.uuid}`);
+        channel.bind("broadcast", data => {
+          console.log("data:", data);
+          this.setState({ broadcast: data.message });
+        });
+        // channel.bind("pusher:subscription_succeeded", this.retrieveHistory);
       });
   };
+
+  // retrieveHistory = () => {
+  //   const local = "http://127.0.0.1:8000";
+  //   axios({
+  //     url: `${local}/api/adv/messages/`,
+  //     method: "GET"
+  //     // headers: {
+  //     //   Authorization: `${this.state.token}`
+  //     // },
+  //     // data: {
+  //     //   direction: direction
+  //   })
+  //     .then(res => {
+  //       console.log("retreive response:", res.data);
+  //     })
+
+  //     .catch(err => {
+  //       console.log("Axios error:", err.response);
+  //     });
+  // };
 
   handleMove = direction => {
     this.clickFx();
     this.animateCSS(".map-player", "flash");
     const herokurl = "https://lambdamud007.herokuapp.com";
     // const testurl = "https://lambda-mud-test.herokuapp.com";
+    // const local = "http://127.0.0.1:8000";
     axios({
       url: `${herokurl}/api/adv/move/`,
       method: "POST",
@@ -213,14 +321,13 @@ class Adventure extends React.Component {
       }
     })
       .then(res => {
-        console.log("MOVE RESPONSE", res.data);
-
         this.setState({
           roomTitle: res.data.title,
           roomDescription: res.data.description,
           roomPlayers: res.data.players,
           errorMsg: res.data.error_msg,
-          movePlayer: true
+          movePlayer: true,
+          broadcast: ""
         });
 
         if (res.data.title === "Grand Overlook" && !res.data.error_msg) {
@@ -471,15 +578,16 @@ class Adventure extends React.Component {
 
   pauseEndFx = () => {
     const pause = document.getElementById("pauseend");
-    console.log("pauseend", pause);
+
     pause.volume = 0.05;
     pause.play();
   };
 
+  handleInputChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
   render() {
-    console.log("Room players: ", this.state.roomPlayers);
-    console.log("this State: ", this.state);
-    console.log("ROOM TITLE: ", this.state.roomTitle);
     const room = this.state.roomTitle;
 
     return (
@@ -593,6 +701,34 @@ class Adventure extends React.Component {
                       ""
                     )}
                   </div>
+                  <div className="blank"></div>
+                  <Card style={styles.card} className="pusher-chat">
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        color: "darkgreen"
+                      }}
+                    >
+                      {this.state.username}
+
+                      <TextOutput
+                        // style={styles.text}
+                        title={this.state.roomTitle}
+                        description={this.state.roomDescription}
+                        players={this.state.roomPlayers}
+                        broadcast={this.state.broadcast}
+                      />
+                      <Form
+                        // style={styles.input}
+                        submitHandler={this.say}
+                        handleInputChange={this.handleInputChange}
+                        value={this.state.text}
+                        // command={this.state.command}
+                      />
+                    </div>
+                  </Card>
                 </div>
               </div>
               <div className="tv-container">
@@ -652,12 +788,9 @@ class Adventure extends React.Component {
 
                 <div className="room-container">
                   <div className="player-text">
-                    <h2>{this.state.roomTitle}</h2>
-                    <Fade>
-                      <div className="room-description">
-                        {this.state.roomDescription}
-                      </div>
-                    </Fade>
+                    <h4>{this.state.roomTitle}</h4>
+                    <p>{this.state.roomDescription}</p>
+
                     {this.state.errorMsg ? (
                       // <div className="alert">
                       <HeadShake>
