@@ -28,15 +28,14 @@ import PauseEnd from "../sounds/paseend.wav";
 import MoveSound from "../sounds/move.wav";
 import ErrorSound from "../sounds/error.wav";
 import EjectSound from "../sounds/eject.mp3";
+import MessageIncoming from "../sounds/msgincoming.wav";
+import MessageOutgoing from "../sounds/msgoutgoing.wav";
 import Delay from "react-delay";
 import mud from "../images/mud.png";
 // import swal from "@sweetalert/with-react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-
 import Form from "./Form";
-import TextOutput from "./TextOutput";
-import { Card, CardMedia, CardTitle } from "material-ui/Card";
 import {
   blue300,
   indigo900,
@@ -46,7 +45,6 @@ import {
   purple500,
   blue500
 } from "material-ui/styles/colors";
-import Divider from "material-ui/Divider";
 
 import Pusher from "pusher-js";
 // import ChatList from "./ChatList";
@@ -71,10 +69,10 @@ const colors = [
 
 const styles = {
   card: {
-    // width: '60%',
-    // margin: '50px auto 50px',
     backgroundColor: "rgba(255, 255, 255, 0.6)"
-  }
+  },
+  output: {},
+  form: {}
 };
 
 class Adventure extends React.Component {
@@ -108,7 +106,10 @@ class Adventure extends React.Component {
   }
 
   say = () => {
+    this.msgOutgoingFx();
     this.setState({ text: "" });
+    const input = document.getElementById("input-with-icon-grid");
+    input.value = "";
     // const local = "http://127.0.0.1:8000";
     // const testurl = "https://lambda-mud-test.herokuapp.com";
     const herokurl = "https://lambdamud007.herokuapp.com";
@@ -279,7 +280,9 @@ class Adventure extends React.Component {
         channel.bind("broadcast", data => {
           console.log("data:", data);
           this.setState({ broadcast: data.message });
+          this.msgIncomingFx();
         });
+
         // channel.bind("pusher:subscription_succeeded", this.retrieveHistory);
       });
   };
@@ -434,7 +437,7 @@ class Adventure extends React.Component {
             <Sound
               url={PassageSong}
               playStatus={Sound.status.PLAYING}
-              playFromPosition={200 /* in milliseconds */}
+              // playFromPosition={200 /* in milliseconds */}
               onLoading={this.handleSongLoading}
               onPlaying={this.handleSongPlaying}
               onFinishedPlaying={this.handleSongFinishedPlaying}
@@ -578,9 +581,19 @@ class Adventure extends React.Component {
 
   pauseEndFx = () => {
     const pause = document.getElementById("pauseend");
-
     pause.volume = 0.05;
     pause.play();
+  };
+
+  msgIncomingFx = () => {
+    const messageIncoming = document.getElementById("messageIncoming");
+    messageIncoming.volume = 0.08;
+    messageIncoming.play();
+  };
+  msgOutgoingFx = () => {
+    const messageOutgoing = document.getElementById("messageOutgoing");
+    messageOutgoing.volume = 0.05;
+    messageOutgoing.play();
   };
 
   handleInputChange = e => {
@@ -702,33 +715,19 @@ class Adventure extends React.Component {
                     )}
                   </div>
                   <div className="blank"></div>
-                  <Card style={styles.card} className="pusher-chat">
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        color: "darkgreen"
-                      }}
-                    >
-                      {this.state.username}
 
-                      <TextOutput
-                        // style={styles.text}
-                        title={this.state.roomTitle}
-                        description={this.state.roomDescription}
-                        players={this.state.roomPlayers}
-                        broadcast={this.state.broadcast}
-                      />
-                      <Form
-                        // style={styles.input}
-                        submitHandler={this.say}
-                        handleInputChange={this.handleInputChange}
-                        value={this.state.text}
-                        // command={this.state.command}
-                      />
-                    </div>
-                  </Card>
+                  <div className="pusher-chat">
+                    {this.state.username}
+
+                    <Form
+                      className="text-form"
+                      style={styles.input}
+                      submitHandler={this.say}
+                      handleInputChange={this.handleInputChange}
+                      value={this.state.text}
+                      broadcast={this.state.broadcast}
+                    />
+                  </div>
                 </div>
               </div>
               <div className="tv-container">
@@ -837,6 +836,12 @@ class Adventure extends React.Component {
                   </audio>
                   <audio id="eject">
                     <source src={EjectSound} />
+                  </audio>
+                  <audio id="messageIncoming">
+                    <source src={MessageIncoming} />
+                  </audio>
+                  <audio id="messageOutgoing">
+                    <source src={MessageOutgoing} />
                   </audio>
 
                   <div className="base">

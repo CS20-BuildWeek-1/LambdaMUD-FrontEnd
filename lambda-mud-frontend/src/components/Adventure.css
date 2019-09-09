@@ -81,6 +81,57 @@ html {
   grid-gap: 10px; */
 }
 
+.pusher-chat {
+  border: 1px solid black;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  /* margin: 0 auto; */
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+}
+
+.chat-input {
+  vertical-align: baseline;
+  text-align: center;
+  margin: 0 auto;
+  position: absolute;
+  bottom: 10px;
+  /* left: 20px; */
+  height: 40%;
+  width: 100%;
+  /* padding: 10px; */
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+}
+.account-icon {
+  margin-top: 15px;
+  align-self: center;
+}
+.chat-button {
+  margin-top: 15px;
+  align-self: center;
+}
+.text-input {
+  align-self: center;
+}
+
+.chat-broadcast {
+  height: 60%;
+  width: 100%;
+  /* background: rgba(255, 255, 255, 0.5); */
+  /* border-bottom: 1px dashed black; */
+  padding: 5px;
+  /* text-align: center; */
+  /* margin: 0 auto; */
+  position: absolute;
+  /* overflow: scroll; */
+  /* margin: 10px; */
+  max-height: inherit;
+}
+
 .map {
   height: 100%;
   display: grid;
