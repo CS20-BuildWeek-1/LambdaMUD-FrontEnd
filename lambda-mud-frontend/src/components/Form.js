@@ -5,13 +5,17 @@ import InputLabel from "@material-ui/core/InputLabel";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
-import FlatButton from "material-ui/FlatButton";
+import Button from "@material-ui/core/Button";
+import SendIcon from "@material-ui/icons/Send";
 import Grid from "@material-ui/core/Grid";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 
 const useStyles = makeStyles(theme => ({
-  margin: {
+  form: {
     margin: theme.spacing(1)
+  },
+  rightIcon: {
+    marginLeft: theme.spacing(1)
   }
 }));
 
@@ -19,33 +23,44 @@ export default function InputWithIcon(props) {
   const classes = useStyles();
 
   return (
-    <div>
-      <div className={classes.margin}>
-        <Grid container spacing={1} alignItems="flex-end">
-          <Grid item>
-            <AccountCircle />
-          </Grid>
-          <Grid item>
-            <TextField
-              id="input-with-icon-grid"
-              label="Say something..."
-              onChange={props.handleInputChange}
-              type="text"
-              name="text"
-              value={props.text}
-            />
-          </Grid>
-          <FlatButton
+    <>
+      {/* <Grid container spacing={1} alignItems="flex-end"> */}
+      <div className="chat-broadcast">
+        <h5 style={{ fontFamily: "Adventure" }}>Room Chat</h5>
+        <p style={{ fontSize: "13px" }}>{props.broadcast}</p>
+      </div>
+      <div className="chat-input">
+        <div className="account-icon">
+          <AccountCircle />
+        </div>
+        <div className="text-input">
+          <TextField
+            id="input-with-icon-grid"
+            label="Say something..."
+            onChange={props.handleInputChange}
+            type="text"
+            name="text"
+            value={props.text}
+          />
+        </div>
+        <div className="chat-button">
+          <Button
+            size="small"
+            variant="contained"
+            color="primary"
             label="Send"
-            className="submit-button"
+            className="send-button"
             onClick={e => {
               console.log("submitted");
               e.preventDefault();
               props.submitHandler();
             }}
-          />
-        </Grid>
+          >
+            Send
+            <SendIcon className={classes.rightIcon}></SendIcon>
+          </Button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
