@@ -65,15 +65,15 @@ html {
   left: 10%;
 }
 
-.map-container {
+.framed-golden {
   /* border: 3px dotted black; */
 
   border-top: 3px dotted black;
   border-right: 3px dotted black;
   border-left: 3px dotted black;
-  background: url("../images/newmap.jpg");
+  background: url("../images/newmap.jpg") !important;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100% 100% !important;
   width: 60%;
 
   /* display: grid;
@@ -178,7 +178,7 @@ html {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
-  background-color: tan;
+  /* background-color: tan; */
   height: 40vh;
   width: 100%;
 }
@@ -193,22 +193,14 @@ html {
   background: url("../images/carpet.png");
   overflow: hidden;
 }
-
-.player-container {
+.framed-golden {
+}
+.framed-golden {
   /* padding: 40px 30px 30px 30px; */
   /* margin: 0 auto; */
   padding: 30px;
-  display: flex;
-  /* flex-direction: column; */
-  align-items: center;
-  flex-wrap: wrap;
-  /* vertical-align: middle; */
-  width: 60%;
 
-  background: url("../images/rpgborder2.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
+  /* vertical-align: middle; */
 }
 
 .nearby-players {
@@ -217,6 +209,11 @@ html {
 }
 .player-text {
   margin: 0 auto;
+}
+
+.player-info {
+  display: flex;
+  flex-direction: row;
 }
 
 .current-player {
@@ -739,4 +736,13 @@ body {
 
 .swal2-confirm {
   width: 50%;
+}
+
+.rpgui-content {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+.rpgui-container {
+  position: relative;
 }

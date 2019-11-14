@@ -6,6 +6,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { setLocale } from "yup";
 import Swal from "sweetalert2";
+import newLogo from "../images/muddtext.png";
 import "./Register.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -96,9 +97,14 @@ class Register extends Component {
                   <Form className="p-4" onSubmit={handleSubmit}>
                     <Col>
                       <FormGroup>
-                        <div className="form-subject">Register</div>
+                        <img
+                          className="newLogo"
+                          src={newLogo}
+                          alt="Lambda Mudd Logo"
+                        />
+                        {/* <div className="form-subject">Register</div> */}
                         <input
-                          className="input"
+                          className="inputreg"
                           type="email"
                           name="email"
                           id="exampleEmail"
@@ -113,7 +119,7 @@ class Register extends Component {
                     <Col>
                       <FormGroup>
                         <input
-                          className="input"
+                          className="inputreg"
                           type="text"
                           name="username"
                           id="exampleUsername"
@@ -129,7 +135,7 @@ class Register extends Component {
                       <FormGroup>
                         <input
                           aria-describedby="passwordHelpBlock"
-                          className="input"
+                          className="inputreg"
                           type="password"
                           name="password1"
                           id="examplePassword1"
@@ -148,7 +154,7 @@ class Register extends Component {
                     <Col>
                       <FormGroup>
                         <input
-                          className="input"
+                          className="inputreg"
                           type="password"
                           name="password2"
                           id="examplePassword2"

@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Col, Form, FormGroup } from "reactstrap";
 import Swal from "sweetalert2";
-import "./Register.css";
+import newLogo from "../images/muddtext.png";
+import "./Login.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class Login extends Component {
@@ -72,7 +73,8 @@ class Login extends Component {
           <div id="container">
             <div className="form-contain">
               <Form className="p-4" onSubmit={this.submitHandler}>
-                <div className="form-subject">Login</div>
+                {/* <div className="form-subject">Login</div> */}
+                <img className="newLogo" src={newLogo} alt="Lambda Mudd Logo" />
 
                 <Col>
                   <FormGroup>
@@ -100,6 +102,17 @@ class Login extends Component {
                     />
                   </FormGroup>
                 </Col>
+                <button
+                  className="a-button a-button--size-full"
+                  id="rs-login-submit"
+                  type="submit"
+                  data-test="login"
+                >
+                  Log In
+                </button>
+                <button class="rpgui-button" type="button">
+                  <p>Click me golden!</p>
+                </button>
 
                 <button className="btn-success" type="submit">
                   {this.state.loading ? (

@@ -612,167 +612,172 @@ class Adventure extends React.Component {
 
           <div className="main-container">
             <div className="top-container">
-              <div className="map-container">
-                <div className="map">
-                  <div className="overlook">
-                    {room === "Grand Overlook" ? (
-                      <img
-                        id="map-player1"
-                        className="map-player"
-                        alt="map-player"
-                        src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
-                        width="70"
-                        height="80"
-                      />
-                    ) : (
-                      ""
-                    )}
-                  </div>
-                  <div className="treasure">
-                    {room === "Treasure Chamber" ? (
-                      <img
-                        id="map-player2"
-                        className="map-player"
-                        alt="map-player"
-                        src="https://media.giphy.com/media/2wWuIJQISOKzM3uZ5r/giphy.gif"
-                        width="70"
-                        height="80"
-                      />
-                    ) : (
-                      ""
-                    )}
-                  </div>
-                  <div className="lava">
-                    {room === "Lava Pit" ? (
-                      <img
-                        id="map-player3"
-                        className="map-player"
-                        alt="map-player"
-                        src="https://media.giphy.com/media/8YQZdzXP1k3A4fuvvX/giphy.gif"
-                        width="70"
-                        height="80"
-                      />
-                    ) : (
-                      ""
-                    )}
-                  </div>
-                  <div className="foyer">
-                    {room === "Foyer" ? (
-                      <img
-                        id="map-player4"
-                        className="map-player"
-                        alt="map-player"
-                        src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
-                        width="70"
-                        height="80"
-                      />
-                    ) : (
-                      ""
-                    )}
-                  </div>
+              <div className="rpgui-content">
+                <div className="rpgui-container framed-golden">
+                  <div className="map">
+                    <div className="overlook">
+                      {room === "Grand Overlook" ? (
+                        <img
+                          id="map-player1"
+                          className="map-player"
+                          alt="map-player"
+                          src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
+                          width="70"
+                          height="80"
+                        />
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                    <div className="treasure">
+                      {room === "Treasure Chamber" ? (
+                        <img
+                          id="map-player2"
+                          className="map-player"
+                          alt="map-player"
+                          src="https://media.giphy.com/media/2wWuIJQISOKzM3uZ5r/giphy.gif"
+                          width="70"
+                          height="80"
+                        />
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                    <div className="lava">
+                      {room === "Lava Pit" ? (
+                        <img
+                          id="map-player3"
+                          className="map-player"
+                          alt="map-player"
+                          src="https://media.giphy.com/media/8YQZdzXP1k3A4fuvvX/giphy.gif"
+                          width="70"
+                          height="80"
+                        />
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                    <div className="foyer">
+                      {room === "Foyer" ? (
+                        <img
+                          id="map-player4"
+                          className="map-player"
+                          alt="map-player"
+                          src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
+                          width="70"
+                          height="80"
+                        />
+                      ) : (
+                        ""
+                      )}
+                    </div>
 
-                  <div className="passage">
-                    {room === "Narrow Passage" ? (
-                      <img
-                        id="map-player5"
-                        className="map-player"
-                        alt="map-player"
-                        src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
-                        width="70"
-                        height="80"
-                      />
-                    ) : (
-                      ""
-                    )}
-                  </div>
+                    <div className="passage">
+                      {room === "Narrow Passage" ? (
+                        <img
+                          id="map-player5"
+                          className="map-player"
+                          alt="map-player"
+                          src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
+                          width="70"
+                          height="80"
+                        />
+                      ) : (
+                        ""
+                      )}
+                    </div>
 
-                  <div className="bridge">
-                    {room === "Shaky Bridge" ? (
-                      <img
-                        id="map-player6"
-                        className="map-player"
-                        alt="map-player"
-                        src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
-                        width="70"
-                        height="80"
-                      />
-                    ) : (
-                      ""
-                    )}
-                  </div>
-                  <div className="entrance">
-                    {room === "Outside Cave Entrance" ? (
-                      <img
-                        id="map-player7"
-                        className="map-player"
-                        alt="map-player"
-                        src="https://media.giphy.com/media/B2kmdIkG7tr54VD3Im/giphy.gif"
-                        width="70"
-                        height="80"
-                      />
-                    ) : (
-                      ""
-                    )}
-                  </div>
-                  <div className="blank"></div>
+                    <div className="bridge">
+                      {room === "Shaky Bridge" ? (
+                        <img
+                          id="map-player6"
+                          className="map-player"
+                          alt="map-player"
+                          src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
+                          width="70"
+                          height="80"
+                        />
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                    <div className="entrance">
+                      {room === "Outside Cave Entrance" ? (
+                        <img
+                          id="map-player7"
+                          className="map-player"
+                          alt="map-player"
+                          src="https://media.giphy.com/media/B2kmdIkG7tr54VD3Im/giphy.gif"
+                          width="70"
+                          height="80"
+                        />
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                    <div className="blank"></div>
 
-                  <div className="pusher-chat">
-                    {this.state.username}
+                    <div className="pusher-chat">
+                      {this.state.username}
 
-                    <Form
-                      className="text-form"
-                      style={styles.input}
-                      submitHandler={this.say}
-                      handleInputChange={this.handleInputChange}
-                      value={this.state.text}
-                      broadcast={this.state.broadcast}
-                    />
+                      <Form
+                        className="text-form"
+                        style={styles.input}
+                        submitHandler={this.say}
+                        handleInputChange={this.handleInputChange}
+                        value={this.state.text}
+                        broadcast={this.state.broadcast}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="tv-container">
-                <img className="tv-img" alt="tv" src={TV} />
-                <img className="room-img" alt="room" src={Nintendo}></img>
-                {/* http://giphygifs.s3.amazonaws.com/media/riw3K0D2h4klG/giphy.gif */}
-                <Delay wait={2000}>
-                  <Fade>
-                    <img
-                      className="room-img"
-                      alt="room"
-                      src={this.state.roomImage}
-                    ></img>
-                  </Fade>
-                </Delay>
+                <div className="tv-container">
+                  <img className="tv-img" alt="tv" src={TV} />
+                  <img className="room-img" alt="room" src={Nintendo}></img>
+                  {/* http://giphygifs.s3.amazonaws.com/media/riw3K0D2h4klG/giphy.gif */}
+                  <Delay wait={2000}>
+                    <Fade>
+                      <img
+                        className="room-img"
+                        alt="room"
+                        src={this.state.roomImage}
+                      ></img>
+                    </Fade>
+                  </Delay>
+                </div>
               </div>
             </div>
 
             <div className="bottom-container">
               <div className="left-container">
-                <div className="player-container">
-                  <div className="player-text">
-                    <h2>Current Player</h2>
-                    <div className="current-player">
-                      <Fade left>
-                        <img
-                          alt="mapplayer"
-                          src="https://media.giphy.com/media/2ywLocM9VYvpPa5d1Y/giphy.gif"
-                          width="40"
-                          height="40"
-                        ></img>
-                      </Fade>
+                <div className="rpgui-content">
+                  <div className="rpgui-container framed">
+                    <div className="player-text">
+                      <div className="player-info">
+                      <h2>Player</h2>
+                      <div className="current-player">
+                        <Fade left>
+                          <img
+                            alt="mapplayer"
+                            src="https://media.giphy.com/media/2ywLocM9VYvpPa5d1Y/giphy.gif"
+                            width="40"
+                            height="40"
+                          ></img>
+                        </Fade>
 
-                      <h5
-                        style={{
-                          fontFamily: "Dragon",
-                          color: "Maroon"
-                        }}
-                      >
-                        {this.state.playerName}
-                      </h5>
-                    </div>
-                    <h5 style={{ paddingTop: "10px" }}>Nearby Players</h5>
-                    <div className="nearby-players">
-                      {`
+                        <h5
+                          style={{
+                            fontFamily: "Dragon",
+                            color: "Maroon"
+                          }}
+                        >
+                          {this.state.playerName}
+                        </h5>
+                        </div>
+                      </div>
+                      <h5 style={{ paddingTop: "10px" }}>Nearby Players</h5>
+                      <div className="nearby-players">
+                        {`
                ${this.state.roomPlayers[0] ? this.state.roomPlayers[0] : ""} 
                ${this.state.roomPlayers[1] ? this.state.roomPlayers[1] : ""} 
                ${this.state.roomPlayers[2] ? this.state.roomPlayers[2] : ""}  
@@ -781,34 +786,35 @@ class Adventure extends React.Component {
                ${this.state.roomPlayers[5] ? this.state.roomPlayers[5] : ""}
             
                `}
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="room-container">
-                  <div className="player-text">
-                    <h4>{this.state.roomTitle}</h4>
-                    <p>{this.state.roomDescription}</p>
+                  <div class="rpgui-container framed-golden-2">
+                    <div className="player-text">
+                      <h4>{this.state.roomTitle}</h4>
+                      <p>{this.state.roomDescription}</p>
 
-                    {this.state.errorMsg ? (
-                      // <div className="alert">
-                      <HeadShake>
-                        <div
-                          className="alert alert-danger"
-                          role="alert"
-                          style={{
-                            // width: "50%",
-                            margin: "10px 10px 0 10px"
-                            // margin: "0 auto"
-                          }}
-                        >
-                          You cannot go this direction!
-                        </div>
-                      </HeadShake>
-                    ) : (
-                      // </div>
-                      ""
-                    )}
+                      {this.state.errorMsg ? (
+                        // <div className="alert">
+                        <HeadShake>
+                          <div
+                            className="alert alert-danger"
+                            role="alert"
+                            style={{
+                              // width: "50%",
+                              margin: "10px 10px 0 10px"
+                              // margin: "0 auto"
+                            }}
+                          >
+                            You cannot go this direction!
+                          </div>
+                        </HeadShake>
+                      ) : (
+                        // </div>
+                        ""
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>

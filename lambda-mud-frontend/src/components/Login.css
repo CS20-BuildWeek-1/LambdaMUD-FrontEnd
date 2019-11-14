@@ -39,7 +39,6 @@ main {
   height: 100vh;
   background: url("../images/dungeondem.gif") fixed no-repeat;
   background-size: cover;
-  background-position: center;
 }
 
 .outer-div {
@@ -60,6 +59,11 @@ main {
   background-size: 100% 100%;
 }
 
+.newLogo {
+  height: 100px;
+  width: 275px;
+}
+
 .form-subject {
   font-family: "Magic";
   color: #996515;
@@ -75,11 +79,6 @@ form {
   transform: translate(-50%, -50%);
 }
 
-.newLogo {
-  height: 100px;
-  width: 275px;
-}
-
 #passwordHelpBlock {
   text-align: center;
   position: absolute;
@@ -87,16 +86,16 @@ form {
   color: red;
 }
 
-.inputreg {
+.input {
   font-family: "Magic";
   background: 0;
   width: 200px;
   outline: 0;
   border: 0;
   border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-  margin: 4px 0;
+  margin: 12px 0;
   padding-bottom: 10px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   color: black;
 }
@@ -149,4 +148,64 @@ form {
 .swal2-footer span {
   font-style: normal;
   color: royalblue;
+}
+
+.a-button--size-full {
+  display: block;
+  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
+}
+.a-button {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0 16px 0;
+  margin: 0 0 1rem 0;
+  font-family: inherit;
+  padding: 0.5em 0.8em;
+  -webkit-appearance: none;
+  border: 1px solid transparent;
+  border-radius: 0;
+  -webkit-transition: background-color 0.25s ease-out, color 0.25s ease-out,
+    border 0.25s ease-out;
+  transition: background-color 0.25s ease-out, color 0.25s ease-out,
+    border 0.25s ease-out;
+  font-size: 100%;
+  line-height: 1;
+  text-align: center;
+  cursor: pointer;
+  background-color: #e1bb34;
+  color: #411102;
+  font-family: "cinzel", "Times", "Times New Roman", serif;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-shadow: 0 1px 1px rgba(236, 237, 238, 0.75);
+  text-shadow: 0 0.0625rem 0.0625rem rgba(236, 237, 238, 0.75);
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#e6b226),
+    to(#d87b19)
+  );
+  background: linear-gradient(-180deg, #e6b226 0%, #d87b19 100%);
+  border-bottom: 3px solid #9f4000;
+  border-bottom: 0.1875rem solid #9f4000;
+  border-left: 3px solid #f0d079;
+  border-left: 0.1875rem solid #f0d079;
+  border-right: 3px solid #9f4000;
+  border-right: 0.1875rem solid #9f4000;
+  border-top: 3px solid #f0d079;
+  border-top: 0.1875rem solid #f0d079;
+  -webkit-box-shadow: 0.1875rem 0.1875rem 0.1875rem 0.0625rem #071820;
+  box-shadow: 0.1875rem 0.1875rem 0.1875rem 0.0625rem #071820;
+  -webkit-transition: background-color 0.25s ease-out, color 0.25s ease-out,
+    border 0.25s ease-out, -webkit-filter 0.25s ease-out;
+  transition: background-color 0.25s ease-out, color 0.25s ease-out,
+    border 0.25s ease-out, -webkit-filter 0.25s ease-out;
+  transition: filter 0.25s ease-out, background-color 0.25s ease-out,
+    color 0.25s ease-out, border 0.25s ease-out;
+  transition: filter 0.25s ease-out, background-color 0.25s ease-out,
+    color 0.25s ease-out, border 0.25s ease-out, -webkit-filter 0.25s ease-out;
 }
