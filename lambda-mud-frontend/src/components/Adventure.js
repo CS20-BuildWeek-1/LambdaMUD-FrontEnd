@@ -36,6 +36,13 @@ import mud from "../images/mud.png";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import Form from "./Form";
+import grassImg from "../images/grass.png";
+import brick from "../images/brick.jpeg";
+import night from "../images/night.jpg";
+import rocks from "../images/rocks.jpeg";
+import stone from "../images/stone.png";
+import water from "../images/water.png";
+import lava from "../images/lava.png";
 import {
   blue300,
   indigo900,
@@ -96,7 +103,8 @@ class Adventure extends React.Component {
       username: "",
       chats: [],
       broadcast: "",
-      uuid: ""
+      uuid: "",
+      backgroundImg: ""
     };
   }
 
@@ -232,34 +240,60 @@ class Adventure extends React.Component {
         });
 
         if (res.data.title === "Grand Overlook") {
+          console.log("BackgroundImg", this.state.backgroundImg);
           const imageURL = Overlook;
           this.setState({
-            roomImage: imageURL
+            roomImage: imageURL,
+            backgroundImg: night
           });
         }
         if (res.data.title === "Foyer") {
+          console.log("BackgroundImg", this.state.backgroundImg);
           const imageURL = Foyer;
           this.setState({
-            roomImage: imageURL
+            roomImage: imageURL,
+            backgroundImg: brick
           });
         }
 
         if (res.data.title === "Outside Cave Entrance") {
+          console.log("BackgroundImg", this.state.backgroundImg);
           const imageURL = Entrance;
           this.setState({
-            roomImage: imageURL
+            roomImage: imageURL,
+            backgroundImg: grassImg
           });
         }
         if (res.data.title === "Narrow Passage") {
+          console.log("BackgroundImg", this.state.backgroundImg);
           const imageURL = Passage;
           this.setState({
-            roomImage: imageURL
+            roomImage: imageURL,
+            backgroundImg: rocks
+          });
+        }
+        if (res.data.title === "Shaky Bridge") {
+          console.log("BackgroundImg", this.state.backgroundImg);
+          const imageURL = Bridge;
+          this.setState({
+            roomImage: imageURL,
+            backgroundImg: water
+          });
+        }
+        if (res.data.title === "Lava Pit") {
+          console.log("BackgroundImg", this.state.backgroundImg);
+          const imageURL = Lava;
+          this.setState({
+            roomImage: imageURL,
+            backgroundImg: lava
           });
         }
         if (res.data.title === "Treasure Chamber") {
+          console.log("BackgroundImg", this.state.backgroundImg);
           const imageURL = Treasure;
           this.setState({
-            roomImage: imageURL
+            roomImage: imageURL,
+            backgroundImg: stone
           });
         }
       })
@@ -336,14 +370,16 @@ class Adventure extends React.Component {
         if (res.data.title === "Grand Overlook" && !res.data.error_msg) {
           const imageURL = Overlook;
           this.setState({
-            roomImage: imageURL
+            roomImage: imageURL,
+            backgroundImg: night
           });
 
           this.moveFx();
         } else if (res.data.title === "Foyer" && !res.data.error_msg) {
           const imageURL = Foyer;
           this.setState({
-            roomImage: imageURL
+            roomImage: imageURL,
+            backgroundImg: brick
           });
           this.moveFx();
         } else if (
@@ -352,13 +388,15 @@ class Adventure extends React.Component {
         ) {
           const imageURL = Entrance;
           this.setState({
-            roomImage: imageURL
+            roomImage: imageURL,
+            backgroundImg: grassImg
           });
           this.moveFx();
         } else if (res.data.title === "Narrow Passage" && !res.data.error_msg) {
           const imageURL = Passage;
           this.setState({
-            roomImage: imageURL
+            roomImage: imageURL,
+            backgroundImg: rocks
           });
           this.moveFx();
         } else if (
@@ -367,19 +405,22 @@ class Adventure extends React.Component {
         ) {
           const imageURL = Treasure;
           this.setState({
-            roomImage: imageURL
+            roomImage: imageURL,
+            backgroundImg: stone
           });
           this.moveFx();
         } else if (res.data.title === "Shaky Bridge" && !res.data.error_msg) {
           const imageURL = Bridge;
           this.setState({
-            roomImage: imageURL
+            roomImage: imageURL,
+            backgroundImg: water
           });
           this.moveFx();
         } else if (res.data.title === "Lava Pit" && !res.data.error_msg) {
           const imageURL = Lava;
           this.setState({
-            roomImage: imageURL
+            roomImage: imageURL,
+            backgroundImg: lava
           });
           this.moveFx();
         } else if (res.data.err_msg) {
@@ -719,7 +760,13 @@ class Adventure extends React.Component {
                     <div className="blank"></div>
                   </div>
                 </div>
-                <div className="tv-container">
+                <div
+                  className="tv-container"
+                  style={{
+                    background: `url(${this.state.backgroundImg})`,
+                    backgroundSize: "contain"
+                  }}
+                >
                   <img className="tv-img" alt="tv" src={TV} />
                   <img className="room-img" alt="room" src={Nintendo}></img>
                   {/* http://giphygifs.s3.amazonaws.com/media/riw3K0D2h4klG/giphy.gif */}
@@ -834,7 +881,8 @@ class Adventure extends React.Component {
                   </div>
 
                   <div
-                    className="rpgui-container framed" id="chatContainer"
+                    className="rpgui-container framed"
+                    id="chatContainer"
                     // style={{ width: "350px" }}
                   >
                     <div className="pusher-chat">
@@ -851,8 +899,11 @@ class Adventure extends React.Component {
                     </div>
                   </div>
 
-                  <div class="rpgui-container framed-golden-2" id="roomContainer">
-                    <div className="player-text">
+                  <div
+                    class="rpgui-container framed-golden-2"
+                    id="roomContainer"
+                  >
+                    <div className="room-text">
                       <h4>{this.state.roomTitle}</h4>
                       <p>{this.state.roomDescription}</p>
 
@@ -864,12 +915,12 @@ class Adventure extends React.Component {
                             role="alert"
                             style={{
                               // width: "50%",
-                              margin: "10px 10px 0 10px",
+                              margin: "5px 5px 0 5px",
                               // margin: "0 auto"
-                              fontSize: "11px"
+                              fontSize: "8px !important"
                             }}
                           >
-                            You cannot go this direction!
+                            Wrong direction!
                           </div>
                         </HeadShake>
                       ) : (
@@ -881,7 +932,10 @@ class Adventure extends React.Component {
                 </div>
               </div>
 
-              <div className="right-container">
+              <div
+                className="right-container"
+                style={{ background: `url(${this.state.backgroundImg})` }}
+              >
                 <div className="cable"></div>
                 <div className="controller">
                   <audio id="click">

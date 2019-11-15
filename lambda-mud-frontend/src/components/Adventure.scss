@@ -32,7 +32,8 @@ html {
   height: 100%;
   width: 40%;
   position: relative;
-  background: url("../images/carpet.png");
+  // background: url("../images/carpet.png");
+  background-size: contain;
 }
 
 .tv-img {
@@ -96,7 +97,6 @@ html {
   align-content: baseline;
   display: grid;
   grid-template-columns: 2fr 1fr;
-
 }
 .account-icon {
   margin-top: 15px;
@@ -145,18 +145,17 @@ html {
   padding-left: 0px;
 
   padding-right: 0px;
-
-
 }
 .text-input {
   align-self: center;
-    // width: 70%;
+  // width: 70%;
 }
 #input-with-icon-grid {
   border-color: #d27d2b;
   background-color: #854c30;
   height: 30px !important;
- 
+  text-shadow: none !important;
+
   font-family: "RS5";
   font-size: 14px;
 }
@@ -254,8 +253,12 @@ html {
   color: darkgreen;
   font-family: "Droid Serif";
 }
-.player-text {
+.room-text {
   margin: 0 auto;
+  p {
+    font-family: "Magic" !important;
+    font-size: 18px;
+  }
 }
 
 .player-info {
@@ -332,7 +335,10 @@ html {
   margin: 5px;
   /* background-color: cornsilk; */
 }
-
+.alert-danger {
+  font-size: 10px;
+  margin: 0 !important;
+}
 .alert {
   margin: 0 auto;
   /* text-align: center; */

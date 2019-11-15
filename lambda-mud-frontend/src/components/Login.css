@@ -38,21 +38,21 @@
 
 @font-face {
   font-family: "RS1";
-  src: url("../fonts/RuneScape-Barbarian-Assault.otf");
+  src: url("../fonts/RuneScape-Barbarian-Assault.ttf");
 }
 @font-face {
   font-family: "RS2";
-  src: url("../fonts/RuneScape-Bold-12.otf");
+  src: url("../fonts/RuneScape-Bold-12.ttf");
 }
 
 @font-face {
   font-family: "RS3";
-  src: url("../fonts/RuneScape-Fairy-Large.otf");
+  src: url("../fonts/RuneScape-Fairy-Large.ttf");
 }
 
 @font-face {
   font-family: "RS4";
-  src: url("../fonts/RuneScape-Fairy.otf");
+  src: url("../fonts/RuneScape-Fairy.ttf");
 }
 
 @font-face {
@@ -62,16 +62,16 @@
 
 @font-face {
   font-family: "RS6";
-  src: url("../fonts/RuneScape-Plain-12.otf");
+  src: url("../fonts/RuneScape-Plain-12.ttf");
 }
 
 @font-face {
   font-family: "RS7";
-  src: url("../fonts/RuneScape-Quill-8.otf");
+  src: url("../fonts/RuneScape-Quill-8.ttf");
 }
 @font-face {
   font-family: "RS8";
-  src: url("../fonts/RuneScape-Quill-Caps.otf");
+  src: url("../fonts/RuneScape-Quill-Caps.ttf");
 }
 @font-face {
   font-family: "RS9";
@@ -80,7 +80,7 @@
 
 @font-face {
   font-family: "RS10";
-  src: url("../fonts/RuneScape-Surok.otf");
+  src: url("../fonts/RuneScape-Surok.ttf");
 }
 
 main {
