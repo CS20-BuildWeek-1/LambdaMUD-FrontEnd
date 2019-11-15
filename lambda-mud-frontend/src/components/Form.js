@@ -26,32 +26,41 @@ export default function InputWithIcon(props) {
     <>
       {/* <Grid container spacing={1} alignItems="flex-end"> */}
       <div className="chat-broadcast" style={{ fontSize: "16px" }}>
-        <h2 style={{ fontFamily: "RS9", fontSize: "40px" }}>Room Chat</h2>
+        <h2
+          style={{
+            fontFamily: "RS9",
+            fontSize: "35px",
+            margin: "0px",
+            position: "relative",
+            bottom: "10px"
+          }}
+        >
+          Room Chat
+        </h2>
         <p style={{ fontSize: "8px !important", fontFamily: "RS5" }}>
           {props.broadcast}
         </p>
       </div>
       <div className="chat-input">
-        <div className="account-icon">
+        {/* <div className="account-icon">
           <AccountCircle />
-        </div>
+        </div> */}
         <div className="text-input">
-          <TextField
+          <input
             id="input-with-icon-grid"
             label="Say something..."
             onChange={props.handleInputChange}
             type="text"
             name="text"
             value={props.text}
+            style={{ fontFamily: "RS5", fontSize: "14px" }}
           />
         </div>
         <div className="chat-button">
-          <Button
-            size="small"
-            variant="contained"
-            color="primary"
-            label="Send"
-            className="send-button"
+          <button
+            id="chatbtn"
+            className="rpgui-button"
+            type="button"
             onClick={e => {
               console.log("submitted");
               e.preventDefault();
@@ -59,8 +68,7 @@ export default function InputWithIcon(props) {
             }}
           >
             Send
-            <SendIcon className={classes.rightIcon}></SendIcon>
-          </Button>
+          </button>
         </div>
       </div>
     </>
