@@ -324,7 +324,9 @@ html {
 }
 
 .controller {
-  padding: 40px;
+  // padding: 40px;
+  padding-top:20px;
+  padding-left:10px;
   margin: 0 auto;
   position: relative;
 }
@@ -695,11 +697,13 @@ body {
   top: 140px;
 }
 .st-select {
+  color:black;
   position: absolute;
   left: 186px;
   top: 70px;
 }
 .st-start {
+  color:black;
   position: absolute;
   left: 250px;
   top: 70px;
@@ -709,7 +713,7 @@ body {
   top: 40;
   z-index: 1;
   width: 14px;
-  height: 40px;
+  height: 20px;
   right: 30%;
   background: linear-gradient(to right, #313131 0%, #161616 50%, #313131 100%);
 }
