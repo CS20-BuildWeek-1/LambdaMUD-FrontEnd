@@ -70,71 +70,103 @@ class Login extends Component {
     return (
       <>
         <main>
-          <div id="container">
-            <div className="form-contain">
-              <Form className="p-4" onSubmit={this.submitHandler}>
-                {/* <div className="form-subject">Login</div> */}
-                <img className="newLogo" src={newLogo} alt="Lambda Mudd Logo" />
-
-                <Col>
-                  <FormGroup>
-                    <input
-                      className="input"
-                      type="text"
-                      name="username"
-                      id="exampleUsername"
-                      placeholder="&#128128; Username"
-                      value={this.state.username}
-                      onChange={this.inputChangeHandler}
-                    />
-                  </FormGroup>
-                </Col>
-                <Col>
-                  <FormGroup>
-                    <input
-                      className="input"
-                      type="password"
-                      name="password"
-                      id="examplePassword"
-                      placeholder="&#128273; Password"
-                      value={this.state.password}
-                      onChange={this.inputChangeHandler}
-                    />
-                  </FormGroup>
-                </Col>
-                <button
-                  className="a-button a-button--size-full"
-                  id="rs-login-submit"
-                  type="submit"
-                  data-test="login"
-                >
-                  Log In
-                </button>
-                <button class="rpgui-button" type="button">
-                  <p>Click me golden!</p>
-                </button>
-
-                <button className="btn-success" type="submit">
-                  {this.state.loading ? (
-                    <span
-                      className="spinner-grow spinner-grow-md"
+          <div className="rpgui-content rpgui-cursor-default">
+            <div id="container">
+              <div className="form-contain">
+                <Form className="p-4" onSubmit={this.submitHandler}>
+                  <div className="rpgui-content">
+                    <h1
                       style={{
-                        position: "absolute",
-                        right: "55px"
+                        fontFamily: "RS9",
+                        fontSize: "50px",
+                        color: "black",
+                        textShadow: "none"
+
+                        // fontWeight: 500
                       }}
-                      role="status"
-                      aria-hidden="true"
-                    ></span>
-                  ) : (
-                    ""
-                  )}
-                  Join World
-                </button>
-                <div className="alt-link">
-                  Not registered?
-                  <Link to={`/register`}> Create an account</Link>
-                </div>
-              </Form>
+                    >
+                      Lambda Mudd
+                    </h1>
+                  </div>
+
+                  <Col>
+                    <FormGroup>
+                      <input
+                        style={{
+                          background: "none",
+                          textShadow: "none",
+                          padding: "0px",
+                          minHeight: "none",
+                          fontSize: "16px",
+                          color: "black"
+                        }}
+                        className="input"
+                        type="text"
+                        name="username"
+                        id="exampleUsername"
+                        placeholder="&#128128; Username"
+                        value={this.state.username}
+                        onChange={this.inputChangeHandler}
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col>
+                    <FormGroup>
+                      <input
+                        style={{
+                          background: "none",
+                          textShadow: "none",
+                          padding: "0px",
+                          minHeight: "none",
+                          fontSize: "16px",
+                          color: "black"
+                        }}
+                        className="input"
+                        type="password"
+                        name="password"
+                        id="examplePassword"
+                        placeholder="&#128273; Password"
+                        value={this.state.password}
+                        onChange={this.inputChangeHandler}
+                      />
+                    </FormGroup>
+                  </Col>
+                  <div className="rpgui-content">
+                    <button
+                      className="rpgui-button down"
+                      type="submit"
+                      style={{
+                        margin: "0 auto",
+                        fontFamily: "RS9",
+                        fontSize: "25px",
+                        height: "45px",
+                        color: "white",
+                        textShadow:
+                          "-2px 0 black, 0 2px black, 2px 0 black, 0 -2px black"
+                      }}
+                    >
+                      {this.state.loading ? (
+                        <span
+                          className="spinner-grow spinner-grow-md"
+                          style={{
+                            position: "absolute",
+                            right: "55px"
+                          }}
+                          role="status"
+                          aria-hidden="true"
+                        ></span>
+                      ) : (
+                        ""
+                      )}
+                      Sign In
+                    </button>
+                  </div>
+                  <div className="alt-link">
+                    Not registered?
+                    <Link to={`/register`}> Create an account</Link>
+                  </div>
+                </Form>
+              </div>
             </div>
           </div>
         </main>

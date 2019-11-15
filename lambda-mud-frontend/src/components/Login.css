@@ -172,10 +172,12 @@ form {
 }
 
 .alt-link a {
-  font-size: 18px;
+  font-size: 13px;
+
   font-family: "Droid Serif";
   color: royalblue;
   text-decoration: none !important;
+  text-shadow: none !important;
 }
 
 .swal2-footer {
@@ -256,4 +258,16 @@ form {
     color 0.25s ease-out, border 0.25s ease-out;
   transition: filter 0.25s ease-out, background-color 0.25s ease-out,
     color 0.25s ease-out, border 0.25s ease-out, -webkit-filter 0.25s ease-out;
+}
+
+.p-4 {
+  padding: 0px !important;
+}
+.p-4 h1 {
+  margin: 0px auto;
+}
+
+.rpgui-button.down {
+  cursor: url("../img/cursor/point.png") 10 0, auto !important;
+  margin-top: 5px;
 }
