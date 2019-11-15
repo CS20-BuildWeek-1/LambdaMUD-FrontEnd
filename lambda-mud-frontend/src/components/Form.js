@@ -25,9 +25,11 @@ export default function InputWithIcon(props) {
   return (
     <>
       {/* <Grid container spacing={1} alignItems="flex-end"> */}
-      <div className="chat-broadcast">
-        <h5 style={{ fontFamily: "Adventure" }}>Room Chat</h5>
-        <p style={{ fontSize: "13px" }}>{props.broadcast}</p>
+      <div className="chat-broadcast" style={{ fontSize: "16px" }}>
+        <h2 style={{ fontFamily: "RS9", fontSize: "40px" }}>Room Chat</h2>
+        <p style={{ fontSize: "8px !important", fontFamily: "RS5" }}>
+          {props.broadcast}
+        </p>
       </div>
       <div className="chat-input">
         <div className="account-icon">

@@ -1,8 +1,3 @@
-@font-face {
-  font-family: "Adventure";
-  src: url("../fonts/AdventureReQuest.otf");
-}
-
 /* @media screen and (min-width: 1440px) and  (max-width: 1440px)  {
   .main-container {
     min-width: 1400px;
@@ -64,6 +59,9 @@ html {
   top: 10%;
   left: 10%;
 }
+.framed-golden-2 {
+  width: 100%;
+}
 
 .framed-golden {
   /* border: 3px dotted black; */
@@ -82,14 +80,14 @@ html {
 }
 
 .pusher-chat {
-  border: 1px solid black;
-  margin-right: 10px;
-  margin-bottom: 10px;
+  /* border: 1px solid black; */
+  /* margin-right: 10px;
+  margin-bottom: 10px; */
   text-align: center;
   /* margin: 0 auto; */
-  position: relative;
-  background-color: rgba(255, 255, 255, 0.6);
-  border-radius: 8px;
+  /* position: relative; */
+  /* background-color: rgba(255, 255, 255, 0.6); */
+  /* border-radius: 8px; */
 }
 
 .chat-input {
@@ -119,23 +117,25 @@ html {
 }
 
 .chat-broadcast {
-  height: 60%;
   width: 100%;
-  /* background: rgba(255, 255, 255, 0.5); */
-  /* border-bottom: 1px dashed black; */
+
+  color: white;
   padding: 5px;
-  /* text-align: center; */
-  /* margin: 0 auto; */
-  position: absolute;
-  /* overflow: scroll; */
-  /* margin: 10px; */
-  max-height: inherit;
+
+  p {
+    font-family: "RS1";
+    text-align: left;
+    font-size: 16px !important;
+    line-height: 10px;
+  }
 }
 
 .map {
   height: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 33%;
+  grid-auto-rows: 33%;
 }
 
 #map-player1 {
@@ -216,11 +216,32 @@ html {
   flex-direction: row;
 }
 
+.names-list {
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  color: white;
+  min-height: 40px;
+  margin-top: 0px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  border-style: solid;
+  border-width: 7px 7px 7px 7px;
+  -moz-border-image: url(../img/select-border-image.png) 10% repeat repeat;
+  -webkit-border-image: url(..//img/select-border-image.png) 10% repeat repeat;
+  -o-border-image: url(../img/select-border-image.png) 10% repeat repeat;
+  border-image: url(../img/select-border-image.png) 10% repeat repeat;
+  background: url(../img/select-background-image.png) repeat repeat;
+  background-clip: padding-box;
+  background-origin: padding-box;
+  background-position: center;
+  height: 60px;
+  font-size: 10px;
+}
+
 .current-player {
   padding: 2px;
   margin: 0 auto;
   text-align: center;
-  background: rgb(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.2);
   width: 200px;
   border-radius: 5px;
 }
@@ -656,7 +677,7 @@ body {
 .swal-top {
   height: 60px;
   background: url("../images/lambdalogo.png");
-  background-color: rgba(0, 0, 0);
+  background-color: rgb(0, 0, 0);
   background-repeat: no-repeat;
   background-size: 60% 80%;
   background-position: center;
@@ -743,6 +764,57 @@ body {
   display: flex;
   flex-direction: row;
 }
+
 .rpgui-container {
   position: relative;
+}
+
+.rpgui-slider-container.golden {
+  margin: 0 auto;
+  width: 100% !important;
+}
+
+.rpgui-slider-track.golden {
+  position: absolute;
+  height: 20px;
+}
+
+.rpgui-slider-left-edge.golden {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+}
+
+.rpgui-slider-right-edge.golden {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+}
+
+.rpgui-slider-thumb.golden {
+  position: absolute;
+  height: 25px;
+  width: 13px;
+}
+
+#bottomContainer {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-evenly; */
+  /* height: 100%; */
+}
+
+#playerContainer {
+  /* padding: 0px 5px; */
+  width: 33.33%;
+}
+#roomContainer {
+  /* padding: 0px 5px; */
+  width: 33.33%;
+}
+#chatContainer {
+  /* padding: 0px 5px; */
+  color: white;
+  background: black;
+  width: 33.33%;
 }

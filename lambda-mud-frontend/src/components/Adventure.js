@@ -53,7 +53,7 @@ import Pusher from "pusher-js";
 // import logo from "./logo.svg";
 
 // import NavBar from "./Navbar";
-import "./Adventure.css";
+import "./Adventure.scss";
 
 // import { Link } from 'react-router-dom';
 
@@ -602,6 +602,7 @@ class Adventure extends React.Component {
 
   render() {
     const room = this.state.roomTitle;
+    console.log("PLaya", this.state.roomPlayers);
 
     return (
       <Fade>
@@ -716,19 +717,6 @@ class Adventure extends React.Component {
                       )}
                     </div>
                     <div className="blank"></div>
-
-                    <div className="pusher-chat">
-                      {this.state.username}
-
-                      <Form
-                        className="text-form"
-                        style={styles.input}
-                        submitHandler={this.say}
-                        handleInputChange={this.handleInputChange}
-                        value={this.state.text}
-                        broadcast={this.state.broadcast}
-                      />
-                    </div>
                   </div>
                 </div>
                 <div className="tv-container">
@@ -750,47 +738,120 @@ class Adventure extends React.Component {
 
             <div className="bottom-container">
               <div className="left-container">
-                <div className="rpgui-content">
-                  <div className="rpgui-container framed">
+                <div className="rpgui-content" id="bottomContainer">
+                  <div className="rpgui-container framed" id="playerContainer">
                     <div className="player-text">
                       <div className="player-info">
-                      <h2>Player</h2>
-                      <div className="current-player">
-                        <Fade left>
-                          <img
-                            alt="mapplayer"
-                            src="https://media.giphy.com/media/2ywLocM9VYvpPa5d1Y/giphy.gif"
-                            width="40"
-                            height="40"
-                          ></img>
-                        </Fade>
-
-                        <h5
+                        {/* <h1>Player:</h1> */}
+                        <div
+                          className="rpgui-container framed-grey"
                           style={{
-                            fontFamily: "Dragon",
-                            color: "Maroon"
+                            width: "150px",
+                            height: "60px",
+                            padding: "0px",
+                            margin: "0 auto"
                           }}
                         >
-                          {this.state.playerName}
-                        </h5>
+                          <Fade left>
+                            <img
+                              alt="mapplayer"
+                              src="https://media.giphy.com/media/2ywLocM9VYvpPa5d1Y/giphy.gif"
+                              width="30"
+                              height="30"
+                            ></img>
+                          </Fade>
+
+                          <h6
+                            style={{
+                              fontFamily: "Dragon",
+                              color: "black"
+                            }}
+                          >
+                            {this.state.playerName}
+                          </h6>
                         </div>
                       </div>
-                      <h5 style={{ paddingTop: "10px" }}>Nearby Players</h5>
-                      <div className="nearby-players">
-                        {`
-               ${this.state.roomPlayers[0] ? this.state.roomPlayers[0] : ""} 
-               ${this.state.roomPlayers[1] ? this.state.roomPlayers[1] : ""} 
-               ${this.state.roomPlayers[2] ? this.state.roomPlayers[2] : ""}  
-               ${this.state.roomPlayers[3] ? this.state.roomPlayers[3] : ""} 
-               ${this.state.roomPlayers[4] ? this.state.roomPlayers[4] : ""}
-               ${this.state.roomPlayers[5] ? this.state.roomPlayers[5] : ""}
-            
-               `}
+
+                      <p style={{ marginTop: "5px", marginBottom: "3px" }}>
+                        Nearby Players:
+                      </p>
+                      <hr style={{ margin: "0px" }}></hr>
+
+                      <div className="names-list">
+                        {this.state.roomPlayers[0]
+                          ? this.state.roomPlayers[0]
+                          : ""}
+                        <br />
+                        {this.state.roomPlayers[1]
+                          ? this.state.roomPlayers[1]
+                          : ""}
+                        <br />
+                        {this.state.roomPlayers[2]
+                          ? this.state.roomPlayers[2]
+                          : ""}
+                        <br />
+                        {this.state.roomPlayers[3]
+                          ? this.state.roomPlayers[3]
+                          : ""}
+                        <br />
+                        {this.state.roomPlayers[4]
+                          ? this.state.roomPlayers[4]
+                          : ""}
+                        <br />
+                        {this.state.roomPlayers[5]
+                          ? this.state.roomPlayers[5]
+                          : ""}
+                        <br />
+                        {this.state.roomPlayers[6]
+                          ? this.state.roomPlayers[6]
+                          : ""}
+                        <br />
+                        {this.state.roomPlayers[7]
+                          ? this.state.roomPlayers[7]
+                          : ""}
+                        <br />
+                        {this.state.roomPlayers[8]
+                          ? this.state.roomPlayers[8]
+                          : ""}
                       </div>
+                      <p
+                        style={{
+                          padding: "0px",
+                          margin: "0px",
+                          fontSize: "6px !important"
+                        }}
+                      >
+                        Music Volume
+                      </p>
+                      <input
+                        class="rpgui-slider golden"
+                        type="range"
+                        min="0"
+                        max="10"
+                        value="8"
+                      ></input>
                     </div>
                   </div>
 
-                  <div class="rpgui-container framed-golden-2">
+                  <div
+                    className="rpgui-container framed" id="chatContainer"
+                    // style={{ width: "350px" }}
+                  >
+                    <div className="pusher-chat">
+                      {this.state.username}
+
+                      <Form
+                        className="text-form"
+                        style={styles.input}
+                        submitHandler={this.say}
+                        handleInputChange={this.handleInputChange}
+                        value={this.state.text}
+                        broadcast={this.state.broadcast}
+                      />
+                    </div>
+                  </div>
+
+                  <div class="rpgui-container framed-golden-2" id="roomContainer">
                     <div className="player-text">
                       <h4>{this.state.roomTitle}</h4>
                       <p>{this.state.roomDescription}</p>
@@ -803,8 +864,9 @@ class Adventure extends React.Component {
                             role="alert"
                             style={{
                               // width: "50%",
-                              margin: "10px 10px 0 10px"
+                              margin: "10px 10px 0 10px",
                               // margin: "0 auto"
+                              fontSize: "11px"
                             }}
                           >
                             You cannot go this direction!

@@ -4,36 +4,6 @@
   padding: 0;
   font-family: sans-serif;
 }
-@font-face {
-  font-family: "Goudy";
-  src: url("../fonts/GOUDY.TTF");
-}
-@font-face {
-  font-family: "Magic";
-  src: url("../fonts/MagicMedieval.ttf");
-}
-@font-face {
-  font-family: "Adventure";
-  src: url("../fonts/AdventureReQuest.otf");
-}
-@font-face {
-  font-family: "Pixel";
-  src: url("../fonts/PixelAzure.ttf");
-}
-
-@font-face {
-  font-family: "Fire";
-  src: url("../fonts/BreatheFireIi-2z9W.ttf");
-}
-@font-face {
-  font-family: "Dragon";
-  src: url("../fonts/eight-bit-dragon.otf");
-}
-
-@font-face {
-  font-family: "Ancient";
-  src: url("../fonts/AncientModernTales.otf");
-}
 
 main {
   height: 100vh;

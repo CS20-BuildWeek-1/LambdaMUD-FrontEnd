@@ -4,6 +4,7 @@
   padding: 0;
   font-family: sans-serif;
 }
+
 @font-face {
   font-family: "Goudy";
   src: url("../fonts/GOUDY.TTF");
@@ -33,6 +34,53 @@
 @font-face {
   font-family: "Ancient";
   src: url("../fonts/AncientModernTales.otf");
+}
+
+@font-face {
+  font-family: "RS1";
+  src: url("../fonts/RuneScape-Barbarian-Assault.otf");
+}
+@font-face {
+  font-family: "RS2";
+  src: url("../fonts/RuneScape-Bold-12.otf");
+}
+
+@font-face {
+  font-family: "RS3";
+  src: url("../fonts/RuneScape-Fairy-Large.otf");
+}
+
+@font-face {
+  font-family: "RS4";
+  src: url("../fonts/RuneScape-Fairy.otf");
+}
+
+@font-face {
+  font-family: "RS5";
+  src: url("../fonts/RuneScape-Plain-11.ttf");
+}
+
+@font-face {
+  font-family: "RS6";
+  src: url("../fonts/RuneScape-Plain-12.otf");
+}
+
+@font-face {
+  font-family: "RS7";
+  src: url("../fonts/RuneScape-Quill-8.otf");
+}
+@font-face {
+  font-family: "RS8";
+  src: url("../fonts/RuneScape-Quill-Caps.otf");
+}
+@font-face {
+  font-family: "RS9";
+  src: url("../fonts/RuneScape-Quill.ttf");
+}
+
+@font-face {
+  font-family: "RS10";
+  src: url("../fonts/RuneScape-Surok.otf");
 }
 
 main {
