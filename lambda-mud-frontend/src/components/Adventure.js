@@ -54,6 +54,8 @@ import {
 } from "material-ui/styles/colors";
 
 import Pusher from "pusher-js";
+import ChatList from "./ChatList";
+import ChatBox from "./ChatBox";
 // import ChatList from "./ChatList";
 // import ChatBox from "./ChatBox";
 // hi
@@ -111,6 +113,18 @@ class Adventure extends React.Component {
   componentDidMount() {
     this.init();
     this.startFx();
+
+    const username = window.prompt("Username: ", "Anonymous");
+    this.setState({ username });
+    const pusher = new Pusher("ff2810ec3a66168f055f", {
+      cluster: "us3",
+      encrypted: true
+    });
+    const channel = pusher.subscribe("chat");
+    channel.bind("message", data => {
+      this.setState({ chats: [...this.state.chats, data], test: "" });
+    });
+    this.handleTextChange = this.handleTextChange.bind(this);
   }
 
   say = () => {
@@ -300,26 +314,50 @@ class Adventure extends React.Component {
 
       .catch(err => {
         console.log("Axios error:", err.response);
-      })
-      .then(() => {
-        Pusher.logToConsole = true;
-
-        const pusher = new Pusher("ff2810ec3a66168f055f", {
-          cluster: "us3",
-          // forceTLS: true
-          encrypted: true
-        });
-        console.log("uuid:", this.state.uuid);
-        const channel = pusher.subscribe(`p-channel-${this.state.uuid}`);
-        channel.bind("broadcast", data => {
-          console.log("data:", data);
-          this.setState({ broadcast: data.message });
-          this.msgIncomingFx();
-        });
-
-        // channel.bind("pusher:subscription_succeeded", this.retrieveHistory);
       });
+    // .then
+    // () => {
+    //   const username = window.prompt("Username: ", "Anonymous");
+    //   this.setState({ username });
+    //   const pusher = new Pusher("ff2810ec3a66168f055f", {
+    //     cluster: "us3",
+    //     encrypted: true
+    //   });
+    //   const channel = pusher.subscribe("chat");
+    //   channel.bind("message", data => {
+    //     this.setState({ chats: [...this.state.chats, data], test: "" });
+    //   });
+    //   this.handleTextChange = this.handleTextChange.bind(this);
+    // }
+
+    // Pusher.logToConsole = true;
+
+    // const pusher = new Pusher("ff2810ec3a66168f055f", {
+    //   cluster: "us3",
+    //   // forceTLS: true
+    //   encrypted: true
+    // });
+    // console.log("uuid:", this.state.uuid);
+    // const channel = pusher.subscribe(`p-channel-${this.state.uuid}`);
+    // channel.bind("broadcast", data => {
+    //   console.log("data:", data);
+    //   this.setState({ broadcast: data.message });
+    //   this.msgIncomingFx();
+    // });
+    // ();
   };
+
+  handleTextChange(e) {
+    if (e.keyCode === 13) {
+      const payload = {
+        username: this.state.username,
+        message: this.state.text
+      };
+      axios.post("http://localhost:5000/message", payload);
+    } else {
+      this.setState({ text: e.target.value });
+    }
+  }
 
   // retrieveHistory = () => {
   //   const local = "http://127.0.0.1:8000";
@@ -861,7 +899,7 @@ class Adventure extends React.Component {
                           ? this.state.roomPlayers[8]
                           : ""}
                       </div>
-                      <p
+                      {/* <p
                         style={{
                           padding: "0px",
                           margin: "0px",
@@ -876,7 +914,7 @@ class Adventure extends React.Component {
                         min="0"
                         max="10"
                         value="8"
-                      ></input>
+                      ></input> */}
                     </div>
                   </div>
 
@@ -886,8 +924,19 @@ class Adventure extends React.Component {
                     // style={{ width: "350px" }}
                   >
                     <div className="pusher-chat">
-                      {this.state.username}
+                      <h2>Room Chat</h2>
 
+                      <div id="chat-list">
+                        <ChatList chats={this.state.chats} />
+                      </div>
+
+                      <ChatBox
+                        text={this.state.text}
+                        username={this.state.username}
+                        handleTextChange={this.handleTextChange}
+                      />
+
+                      {/* 
                       <Form
                         className="text-form"
                         style={styles.input}
@@ -895,7 +944,7 @@ class Adventure extends React.Component {
                         handleInputChange={this.handleInputChange}
                         value={this.state.text}
                         broadcast={this.state.broadcast}
-                      />
+                      /> */}
                     </div>
                   </div>
 
@@ -904,7 +953,7 @@ class Adventure extends React.Component {
                     id="roomContainer"
                   >
                     <div className="room-text">
-                      <h4>{this.state.roomTitle}</h4>
+                      <h2>{this.state.roomTitle}</h2>
                       <p>{this.state.roomDescription}</p>
 
                       {this.state.errorMsg ? (

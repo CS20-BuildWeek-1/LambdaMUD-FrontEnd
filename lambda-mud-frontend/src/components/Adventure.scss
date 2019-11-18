@@ -91,6 +91,19 @@ html {
   /* background-color: rgba(255, 255, 255, 0.6); */
   /* border-radius: 8px; */
   flex-direction: column;
+
+  h2 {
+    font-family: "RS9";
+    font-size: 30px;
+    margin: 0px;
+  }
+}
+
+#chat-list {
+  // border: 1px solid white;
+  height: 100%;
+  max-height: 100%;
+  overflow-y: scroll;
 }
 
 .chat-input {
@@ -257,14 +270,31 @@ html {
 .room-text {
   margin: 0 auto;
   p {
-    font-family: "Magic" !important;
-    font-size: 18px;
+    font-size: 22px;
+    font-family: "RS9";
+    line-height: 18px;
+  }
+
+  h2 {
+    font-family: "RS9";
+    font-size: 30px;
+    margin: 0px;
   }
 }
 
-.player-info {
-  display: flex;
-  flex-direction: row;
+.player-text {
+
+  p {
+    font-size: 10px;
+  }
+  .player-info {
+    display: flex;
+    flex-direction: row;
+
+    p {
+      font-size: 10px;
+    }
+  }
 }
 
 .names-list {
@@ -284,8 +314,10 @@ html {
   background-clip: padding-box;
   background-origin: padding-box;
   background-position: center;
-  height: 60px;
-  font-size: 10px;
+  height: 90px;
+  font-size: 18px;
+  line-height: 15px;
+  font-family: "RS5";
 }
 
 .current-player {
@@ -326,8 +358,8 @@ html {
 
 .controller {
   // padding: 40px;
-  padding-top:20px;
-  padding-left:10px;
+  padding-top: 20px;
+  padding-left: 10px;
   margin: 0 auto;
   position: relative;
 }
@@ -698,13 +730,13 @@ body {
   top: 140px;
 }
 .st-select {
-  color:black;
+  color: black;
   position: absolute;
   left: 186px;
   top: 70px;
 }
 .st-start {
-  color:black;
+  color: black;
   position: absolute;
   left: 250px;
   top: 70px;
@@ -821,6 +853,13 @@ body {
   position: relative;
   display: flex;
   flex-direction: row;
+
+  p {
+    color: white;
+    text-shadow: -1px 0 black, 0 2px black, 2px 0 black, 0 -1px black;
+    // font-size: 1.0em;
+    // line-height: 22px;
+  }
 }
 
 .rpgui-container {
