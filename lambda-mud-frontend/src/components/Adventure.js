@@ -111,11 +111,11 @@ class Adventure extends React.Component {
   }
 
   componentDidMount() {
+    // soundManager.setup({debugMode: false});
     this.init();
     this.startFx();
 
-    const username = window.prompt("Username: ", "Anonymous");
-    this.setState({ username });
+    
     const pusher = new Pusher("ff2810ec3a66168f055f", {
       cluster: "us3",
       encrypted: true
@@ -124,8 +124,15 @@ class Adventure extends React.Component {
     channel.bind("message", data => {
       this.setState({ chats: [...this.state.chats, data], test: "" });
     });
+    channel.bind("pusher:subscription_succeeded", this.retrieveHistory, this);
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  retrieveHistory() {
+    axios.get("http://localhost:5000/messages").then(response => {
+      console.log(response.data);
+    });
   }
 
   say = () => {
@@ -246,6 +253,7 @@ class Adventure extends React.Component {
       .then(res => {
         console.log("init data", res.data);
         this.setState({
+          username: res.data.name,
           playerName: res.data.name,
           roomTitle: res.data.title,
           roomDescription: res.data.description,
@@ -354,26 +362,21 @@ class Adventure extends React.Component {
         username: this.state.username,
         message: this.state.text
       };
-      axios.post("http://localhost:5000/message", payload);    
+      axios.post("http://localhost:5000/message", payload);
       this.setState({ text: "" });
-      
     } else {
       this.setState({ text: e.target.value });
     }
   }
 
   handleSubmit(e) {
-      const payload = {
-        username: this.state.username,
-        message: this.state.text
-      };
-      axios.post("http://localhost:5000/message", payload);
-      this.setState({ text: "" });
-      
+    const payload = {
+      username: this.state.username,
+      message: this.state.text
+    };
+    axios.post("http://localhost:5000/message", payload);
+    this.setState({ text: "" });
   }
-
-
-
 
   // retrieveHistory = () => {
   //   const local = "http://127.0.0.1:8000";
@@ -943,7 +946,10 @@ class Adventure extends React.Component {
                       <h2>General Chat</h2>
 
                       <div id="chat-list">
-                        <ChatList chats={this.state.chats} />
+                        <ChatList
+                          chats={this.state.chats}
+                          playerName={this.state.playerName}
+                        />
                       </div>
 
                       <ChatBox

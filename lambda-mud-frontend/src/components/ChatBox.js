@@ -1,6 +1,6 @@
 import React from "react";
 import "./ChatBox.scss";
-export default ({ text, username, handleTextChange, handleSubmit }) => (
+export default ({ text, handleTextChange, handleSubmit }) => (
   <>
     <div className="chat">
       <input

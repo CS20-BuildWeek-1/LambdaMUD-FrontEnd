@@ -6,7 +6,6 @@ export default ({ chats }) => (
     {chats.map(chat => {
       return (
         <div>
-          
           <div className="chatMessage">
             <div key={chat.id} className="box">
               <p>
