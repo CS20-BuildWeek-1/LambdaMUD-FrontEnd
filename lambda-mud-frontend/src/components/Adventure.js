@@ -718,8 +718,8 @@ class Adventure extends React.Component {
                           className="map-player"
                           alt="map-player"
                           src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
-                          width="70"
-                          height="80"
+                          width="60"
+                          height="70"
                         />
                       ) : (
                         ""
@@ -732,8 +732,8 @@ class Adventure extends React.Component {
                           className="map-player"
                           alt="map-player"
                           src="https://media.giphy.com/media/2wWuIJQISOKzM3uZ5r/giphy.gif"
-                          width="70"
-                          height="80"
+                          width="60"
+                          height="70"
                         />
                       ) : (
                         ""
@@ -746,8 +746,8 @@ class Adventure extends React.Component {
                           className="map-player"
                           alt="map-player"
                           src="https://media.giphy.com/media/8YQZdzXP1k3A4fuvvX/giphy.gif"
-                          width="70"
-                          height="80"
+                          width="60"
+                          height="70"
                         />
                       ) : (
                         ""
@@ -760,8 +760,8 @@ class Adventure extends React.Component {
                           className="map-player"
                           alt="map-player"
                           src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
-                          width="70"
-                          height="80"
+                          width="60"
+                          height="70"
                         />
                       ) : (
                         ""
@@ -775,8 +775,8 @@ class Adventure extends React.Component {
                           className="map-player"
                           alt="map-player"
                           src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
-                          width="70"
-                          height="80"
+                          width="60"
+                          height="70"
                         />
                       ) : (
                         ""
@@ -790,8 +790,8 @@ class Adventure extends React.Component {
                           className="map-player"
                           alt="map-player"
                           src="https://media.giphy.com/media/1k0ApwEji3hAimrNas/giphy.gif"
-                          width="70"
-                          height="80"
+                          width="60"
+                          height="70"
                         />
                       ) : (
                         ""
@@ -804,8 +804,8 @@ class Adventure extends React.Component {
                           className="map-player"
                           alt="map-player"
                           src="https://media.giphy.com/media/B2kmdIkG7tr54VD3Im/giphy.gif"
-                          width="70"
-                          height="80"
+                          width="60"
+                          height="70"
                         />
                       ) : (
                         ""
@@ -940,7 +940,7 @@ class Adventure extends React.Component {
                     // style={{ width: "350px" }}
                   >
                     <div className="pusher-chat">
-                      <h2>Room Chat</h2>
+                      <h2>General Chat</h2>
 
                       <div id="chat-list">
                         <ChatList chats={this.state.chats} />
