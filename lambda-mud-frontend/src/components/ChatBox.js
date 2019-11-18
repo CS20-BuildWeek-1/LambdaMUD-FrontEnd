@@ -1,6 +1,6 @@
 import React from "react";
 import "./ChatBox.scss";
-export default ({ text, username, handleTextChange }) => (
+export default ({ text, username, handleTextChange, handleSubmit }) => (
   <>
     <div className="chat">
       <input
@@ -11,6 +11,16 @@ export default ({ text, username, handleTextChange }) => (
         onChange={handleTextChange}
         onKeyDown={handleTextChange}
       />
+      <div class="chat-button">
+        <button
+          id="chatbtn"
+          class="rpgui-button"
+          type="submit"
+          onClick={handleSubmit}
+        >
+          Send
+        </button>
+      </div>
     </div>
     <div className="clearfix"></div>
   </>

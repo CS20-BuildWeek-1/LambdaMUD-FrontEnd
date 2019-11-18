@@ -125,6 +125,7 @@ class Adventure extends React.Component {
       this.setState({ chats: [...this.state.chats, data], test: "" });
     });
     this.handleTextChange = this.handleTextChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   say = () => {
@@ -353,11 +354,26 @@ class Adventure extends React.Component {
         username: this.state.username,
         message: this.state.text
       };
-      axios.post("http://localhost:5000/message", payload);
+      axios.post("http://localhost:5000/message", payload);    
+      this.setState({ text: "" });
+      
     } else {
       this.setState({ text: e.target.value });
     }
   }
+
+  handleSubmit(e) {
+      const payload = {
+        username: this.state.username,
+        message: this.state.text
+      };
+      axios.post("http://localhost:5000/message", payload);
+      this.setState({ text: "" });
+      
+  }
+
+
+
 
   // retrieveHistory = () => {
   //   const local = "http://127.0.0.1:8000";
@@ -934,6 +950,7 @@ class Adventure extends React.Component {
                         text={this.state.text}
                         username={this.state.username}
                         handleTextChange={this.handleTextChange}
+                        handleSubmit={this.handleSubmit}
                       />
 
                       {/* 
