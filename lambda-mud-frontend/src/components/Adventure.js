@@ -52,19 +52,13 @@ import {
   purple500,
   blue500
 } from "material-ui/styles/colors";
-
-import Pusher from "pusher-js";
-import ChatList from "./ChatList";
+import ChatScreen from "./ChatScreen";
 import ChatBox from "./ChatBox";
-// import ChatList from "./ChatList";
-// import ChatBox from "./ChatBox";
-// hi
-// import logo from "./logo.svg";
 
-// import NavBar from "./Navbar";
+import Chatkit from "@pusher/chatkit-client";
+import Pusher from "pusher-js";
+
 import "./Adventure.scss";
-
-// import { Link } from 'react-router-dom';
 
 const colors = [
   blue300,
@@ -103,36 +97,63 @@ class Adventure extends React.Component {
       text: "",
       value: "",
       username: "",
+      currentUsername: "",
       chats: [],
+      currentUser: {},
       broadcast: "",
       uuid: "",
       backgroundImg: ""
     };
+    // this.onUsernameSubmitted = this.onUsernameSubmitted.bind(this);
+    // this.handleTextChange = this.handleTextChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
     // soundManager.setup({debugMode: false});
-    this.init();
     this.startFx();
+    this.init();
 
-    
-    const pusher = new Pusher("ff2810ec3a66168f055f", {
-      cluster: "us3",
-      encrypted: true
-    });
-    const channel = pusher.subscribe("chat");
-    channel.bind("message", data => {
-      this.setState({ chats: [...this.state.chats, data], test: "" });
-    });
-    channel.bind("pusher:subscription_succeeded", this.retrieveHistory, this);
-    this.handleTextChange = this.handleTextChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // const pusher = new Pusher("ff2810ec3a66168f055f", {
+    //   cluster: "us3",
+    //   encrypted: true
+    // });
+    // const channel = pusher.subscribe("chat");
+    // channel.bind("message", data => {
+    //   console.log("Chat Data", data);
+    //   this.setState({ chats: [...this.state.chats, data], test: "" });
+    // });
+    // channel.bind("pusher:subscription_succeeded", this.retrieveHistory, this);
+    // this.handleTextChange = this.handleTextChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  // onUsernameSubmitted() {
+  //   username = this.state.playerName;
+  //   console.log("USERNAEM", username);
+
+  //   const payload = {
+  //     username: this.state.playerName
+  //   };
+  //   axios
+  //     .post("http://localhost:5000/users", payload)
+  //     .then(response => {
+  //       this.setState({
+  //         currentUsername: username
+  //       });
+  //     })
+  //     .catch(error => console.error("error", error));
+  // }
+
   retrieveHistory() {
-    axios.get("http://localhost:5000/messages").then(response => {
-      console.log(response.data);
-    });
+    axios
+      .get("http://localhost:5000/messages")
+      .then(response => {
+        console.log("History pusher", response.data);
+      })
+      .catch(error => {
+        console.log("Retrieve error", error);
+      });
   }
 
   say = () => {
@@ -324,20 +345,15 @@ class Adventure extends React.Component {
       .catch(err => {
         console.log("Axios error:", err.response);
       });
-    // .then
-    // () => {
-    //   const username = window.prompt("Username: ", "Anonymous");
-    //   this.setState({ username });
-    //   const pusher = new Pusher("ff2810ec3a66168f055f", {
-    //     cluster: "us3",
-    //     encrypted: true
-    //   });
-    //   const channel = pusher.subscribe("chat");
-    //   channel.bind("message", data => {
-    //     this.setState({ chats: [...this.state.chats, data], test: "" });
-    //   });
-    //   this.handleTextChange = this.handleTextChange.bind(this);
-    // }
+
+    // axios
+    //   .post("http://localhost:5000/users", this.state.playerName)
+    //   .then(response => {
+    //     this.setState({
+    //       currentUsername: this.state.playerName
+    //     });
+    //   })
+    //   .catch(error => console.error("error", error));
 
     // Pusher.logToConsole = true;
 
@@ -355,28 +371,6 @@ class Adventure extends React.Component {
     // });
     // ();
   };
-
-  handleTextChange(e) {
-    if (e.keyCode === 13) {
-      const payload = {
-        username: this.state.username,
-        message: this.state.text
-      };
-      axios.post("http://localhost:5000/message", payload);
-      this.setState({ text: "" });
-    } else {
-      this.setState({ text: e.target.value });
-    }
-  }
-
-  handleSubmit(e) {
-    const payload = {
-      username: this.state.username,
-      message: this.state.text
-    };
-    axios.post("http://localhost:5000/message", payload);
-    this.setState({ text: "" });
-  }
 
   // retrieveHistory = () => {
   //   const local = "http://127.0.0.1:8000";
@@ -945,19 +939,25 @@ class Adventure extends React.Component {
                     <div className="pusher-chat">
                       <h2>General Chat</h2>
 
-                      <div id="chat-list">
-                        <ChatList
+                
+                        <ChatScreen
+                          username={this.state.playerName}
                           chats={this.state.chats}
                           playerName={this.state.playerName}
+                          text={this.state.text}
                         />
-                      </div>
-
+                        {/* <ChatList
+                          chats={this.state.chats}
+                          playerName={this.state.playerName}
+                        /> */}
+                     
+                      {/* 
                       <ChatBox
                         text={this.state.text}
                         username={this.state.username}
                         handleTextChange={this.handleTextChange}
                         handleSubmit={this.handleSubmit}
-                      />
+                      /> */}
 
                       {/* 
                       <Form
