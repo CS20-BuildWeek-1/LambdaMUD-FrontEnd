@@ -26,32 +26,29 @@ class ChatBox extends React.Component {
 
   render() {
     return (
-      <>
-        <div className="chat">
-          <form onSubmit={this.onSubmit}>
-            <input
-              type="text"
-              value={this.state.text}
-              placeholder="chat here..."
-              className="form-control"
-              onChange={this.onChange}
+      <div className="chat">
+        <form onSubmit={this.onSubmit}>
+          <input
+            type="text"
+            value={this.state.text}
+            placeholder="chat here..."
+            className="form-control"
+            onChange={this.onChange}
 
-              // onKeyDown={handleTextChange}
-            />
-            <div class="chat-button">
-              <button
-                id="chatbtn"
-                class="rpgui-button"
-                type="submit"
-                onClick={this.onSubmit}
-              >
-                Send
-              </button>
-            </div>
-          </form>
-        </div>
-        <div className="clearfix"></div>
-      </>
+            // onKeyDown={handleTextChange}
+          />
+          <div class="chat-button">
+            <button
+              id="chatbtn"
+              class="rpgui-button"
+              type="submit"
+              onClick={this.onSubmit}
+            >
+              Send
+            </button>
+          </div>
+        </form>
+      </div>
     );
   }
 }
