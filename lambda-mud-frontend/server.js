@@ -25,6 +25,7 @@ const chatkit = new Chatkit.default({
 // });
 
 app.post("/users", (req, res) => {
+  console.log("REQUEST", req.body);
   const { username } = req.body;
   chatkit
     .createUser({

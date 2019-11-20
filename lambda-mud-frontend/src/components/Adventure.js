@@ -99,7 +99,9 @@ class Adventure extends React.Component {
       username: "",
       currentUsername: "",
       chats: [],
+      messages: [],
       currentUser: {},
+      currentRoom: {},
       broadcast: "",
       uuid: "",
       backgroundImg: ""
@@ -110,40 +112,165 @@ class Adventure extends React.Component {
   }
 
   componentDidMount() {
-    // soundManager.setup({debugMode: false});
     this.startFx();
     this.init();
-
-    // const pusher = new Pusher("ff2810ec3a66168f055f", {
-    //   cluster: "us3",
-    //   encrypted: true
-    // });
-    // const channel = pusher.subscribe("chat");
-    // channel.bind("message", data => {
-    //   console.log("Chat Data", data);
-    //   this.setState({ chats: [...this.state.chats, data], test: "" });
-    // });
-    // channel.bind("pusher:subscription_succeeded", this.retrieveHistory, this);
-    // this.handleTextChange = this.handleTextChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // onUsernameSubmitted() {
-  //   username = this.state.playerName;
-  //   console.log("USERNAEM", username);
+  init = () => {
+    // const local = "http://127.0.0.1:8000";
+    // const testurl = "https://lambda-mud-test.herokuapp.com";
+    const herokurl = "https://lambdamud007.herokuapp.com";
+    const key = localStorage.getItem("token");
 
-  //   const payload = {
-  //     username: this.state.playerName
-  //   };
-  //   axios
-  //     .post("http://localhost:5000/users", payload)
-  //     .then(response => {
-  //       this.setState({
-  //         currentUsername: username
-  //       });
-  //     })
-  //     .catch(error => console.error("error", error));
-  // }
+    axios({
+      url: `${herokurl}/api/adv/init/`,
+      method: "GET",
+      headers: {
+        Authorization: `${key}`
+      }
+    })
+      .then(res => {
+        console.log("init data", res.data);
+        this.setState({
+          username: res.data.name,
+          playerName: res.data.name,
+          roomTitle: res.data.title,
+          roomDescription: res.data.description,
+          roomPlayers: res.data.players,
+          uuid: res.data.uuid,
+          token: key
+        });
+
+        localStorage.setItem("username", this.state.username);
+
+        if (res.data.title === "Grand Overlook") {
+          console.log("BackgroundImg", this.state.backgroundImg);
+          const imageURL = Overlook;
+          this.setState({
+            roomImage: imageURL,
+            backgroundImg: night
+          });
+        }
+        if (res.data.title === "Foyer") {
+          console.log("BackgroundImg", this.state.backgroundImg);
+          const imageURL = Foyer;
+          this.setState({
+            roomImage: imageURL,
+            backgroundImg: brick
+          });
+        }
+
+        if (res.data.title === "Outside Cave Entrance") {
+          console.log("BackgroundImg", this.state.backgroundImg);
+          const imageURL = Entrance;
+          this.setState({
+            roomImage: imageURL,
+            backgroundImg: grassImg
+          });
+        }
+        if (res.data.title === "Narrow Passage") {
+          console.log("BackgroundImg", this.state.backgroundImg);
+          const imageURL = Passage;
+          this.setState({
+            roomImage: imageURL,
+            backgroundImg: rocks
+          });
+        }
+        if (res.data.title === "Shaky Bridge") {
+          console.log("BackgroundImg", this.state.backgroundImg);
+          const imageURL = Bridge;
+          this.setState({
+            roomImage: imageURL,
+            backgroundImg: water
+          });
+        }
+        if (res.data.title === "Lava Pit") {
+          console.log("BackgroundImg", this.state.backgroundImg);
+          const imageURL = Lava;
+          this.setState({
+            roomImage: imageURL,
+            backgroundImg: lava
+          });
+        }
+        if (res.data.title === "Treasure Chamber") {
+          console.log("BackgroundImg", this.state.backgroundImg);
+          const imageURL = Treasure;
+          this.setState({
+            roomImage: imageURL,
+            backgroundImg: stone
+          });
+        }
+      })
+
+      .catch(err => {
+        console.log("Axios error:", err.response);
+      });
+
+    console.log("NAME", this.state.username);
+
+    axios({
+      method: "POST",
+      url: "http://localhost:5000/users",
+      // headers: {
+      //   "Content-Type": "application/json"
+      // },
+      data: {
+        username: `${localStorage.getItem("username")}`
+      }
+    })
+      .then(response => {
+        console.log("RESPONSE", response.data)
+        // this.setState({
+        //   currentUsername: response.body.username
+        // });
+        const chatManager = new Chatkit.ChatManager({
+          instanceLocator: "v1:us1:19220286-039a-4203-bd68-ce7c1bef3446",
+          userId:`${localStorage.getItem("username")}`,
+          tokenProvider: new Chatkit.TokenProvider({
+            url: "http://localhost:5000/authenticate"
+          })
+        });
+    
+        chatManager
+          .connect()
+          .then(currentUser => {
+            this.setState({ currentUser });
+            return currentUser.subscribeToRoom({
+              roomId: "71423e2a-f125-4436-9409-098d5572d4e2",
+              messageLimit: 100,
+              hooks: {
+                onMessage: message => {
+                  this.setState({
+                    messages: [...this.state.messages, message]
+                  });
+                }
+              }
+            });
+          })
+          .then(currentRoom => {
+            this.setState({ currentRoom });
+          })
+    
+          .catch(error => console.error("error", error));
+    
+      })
+      .catch(error => console.error("error", error));
+
+    
+    // const pusher = new Pusher("ff2810ec3a66168f055f", {
+    //   cluster: "us3",
+    //   // forceTLS: true
+    //   encrypted: true
+    // });
+    // console.log("uuid:", this.state.uuid);
+    // const channel = pusher.subscribe(`p-channel-${this.state.uuid}`);
+    // channel.bind("broadcast", data => {
+    //   console.log("data:", data);
+    //   this.setState({ broadcast: data.message });
+    //   this.msgIncomingFx();
+    // });
+    // ();
+  };
 
   retrieveHistory() {
     axios
@@ -257,140 +384,6 @@ class Adventure extends React.Component {
       window.location.assign("/");
     }, 3000);
   };
-
-  init = () => {
-    // const local = "http://127.0.0.1:8000";
-    // const testurl = "https://lambda-mud-test.herokuapp.com";
-    const herokurl = "https://lambdamud007.herokuapp.com";
-    const key = localStorage.getItem("token");
-
-    axios({
-      url: `${herokurl}/api/adv/init/`,
-      method: "GET",
-      headers: {
-        Authorization: `${key}`
-      }
-    })
-      .then(res => {
-        console.log("init data", res.data);
-        this.setState({
-          username: res.data.name,
-          playerName: res.data.name,
-          roomTitle: res.data.title,
-          roomDescription: res.data.description,
-          roomPlayers: res.data.players,
-          uuid: res.data.uuid,
-          token: key
-        });
-
-        if (res.data.title === "Grand Overlook") {
-          console.log("BackgroundImg", this.state.backgroundImg);
-          const imageURL = Overlook;
-          this.setState({
-            roomImage: imageURL,
-            backgroundImg: night
-          });
-        }
-        if (res.data.title === "Foyer") {
-          console.log("BackgroundImg", this.state.backgroundImg);
-          const imageURL = Foyer;
-          this.setState({
-            roomImage: imageURL,
-            backgroundImg: brick
-          });
-        }
-
-        if (res.data.title === "Outside Cave Entrance") {
-          console.log("BackgroundImg", this.state.backgroundImg);
-          const imageURL = Entrance;
-          this.setState({
-            roomImage: imageURL,
-            backgroundImg: grassImg
-          });
-        }
-        if (res.data.title === "Narrow Passage") {
-          console.log("BackgroundImg", this.state.backgroundImg);
-          const imageURL = Passage;
-          this.setState({
-            roomImage: imageURL,
-            backgroundImg: rocks
-          });
-        }
-        if (res.data.title === "Shaky Bridge") {
-          console.log("BackgroundImg", this.state.backgroundImg);
-          const imageURL = Bridge;
-          this.setState({
-            roomImage: imageURL,
-            backgroundImg: water
-          });
-        }
-        if (res.data.title === "Lava Pit") {
-          console.log("BackgroundImg", this.state.backgroundImg);
-          const imageURL = Lava;
-          this.setState({
-            roomImage: imageURL,
-            backgroundImg: lava
-          });
-        }
-        if (res.data.title === "Treasure Chamber") {
-          console.log("BackgroundImg", this.state.backgroundImg);
-          const imageURL = Treasure;
-          this.setState({
-            roomImage: imageURL,
-            backgroundImg: stone
-          });
-        }
-      })
-
-      .catch(err => {
-        console.log("Axios error:", err.response);
-      });
-
-    // axios
-    //   .post("http://localhost:5000/users", this.state.playerName)
-    //   .then(response => {
-    //     this.setState({
-    //       currentUsername: this.state.playerName
-    //     });
-    //   })
-    //   .catch(error => console.error("error", error));
-
-    // Pusher.logToConsole = true;
-
-    // const pusher = new Pusher("ff2810ec3a66168f055f", {
-    //   cluster: "us3",
-    //   // forceTLS: true
-    //   encrypted: true
-    // });
-    // console.log("uuid:", this.state.uuid);
-    // const channel = pusher.subscribe(`p-channel-${this.state.uuid}`);
-    // channel.bind("broadcast", data => {
-    //   console.log("data:", data);
-    //   this.setState({ broadcast: data.message });
-    //   this.msgIncomingFx();
-    // });
-    // ();
-  };
-
-  // retrieveHistory = () => {
-  //   const local = "http://127.0.0.1:8000";
-  //   axios({
-  //     url: `${local}/api/adv/messages/`,
-  //     method: "GET"
-  //     // headers: {
-  //     //   Authorization: `${this.state.token}`
-  //     // },
-  //     // data: {
-  //     //   direction: direction
-  //   })
-  //     .then(res => {
-  //       console.log("retreive response:", res.data);
-  //     })
-
-  //     .catch(err => {
-  //       console.log("Axios error:", err.response);
-  //     });
-  // };
 
   handleMove = direction => {
     this.clickFx();
@@ -694,7 +687,6 @@ class Adventure extends React.Component {
 
   render() {
     const room = this.state.roomTitle;
-    console.log("PLaya", this.state.roomPlayers);
 
     return (
       <Fade>
@@ -912,22 +904,6 @@ class Adventure extends React.Component {
                           ? this.state.roomPlayers[8]
                           : ""}
                       </div>
-                      {/* <p
-                        style={{
-                          padding: "0px",
-                          margin: "0px",
-                          fontSize: "6px !important"
-                        }}
-                      >
-                        Music Volume
-                      </p>
-                      <input
-                        class="rpgui-slider golden"
-                        type="range"
-                        min="0"
-                        max="10"
-                        value="8"
-                      ></input> */}
                     </div>
                   </div>
 
@@ -939,35 +915,13 @@ class Adventure extends React.Component {
                     <div className="pusher-chat">
                       <h2>General Chat</h2>
 
-                
-                        <ChatScreen
-                          username={this.state.playerName}
-                          chats={this.state.chats}
-                          playerName={this.state.playerName}
-                          text={this.state.text}
-                        />
-                        {/* <ChatList
-                          chats={this.state.chats}
-                          playerName={this.state.playerName}
-                        /> */}
-                     
-                      {/* 
-                      <ChatBox
-                        text={this.state.text}
-                        username={this.state.username}
-                        handleTextChange={this.handleTextChange}
-                        handleSubmit={this.handleSubmit}
-                      /> */}
-
-                      {/* 
-                      <Form
-                        className="text-form"
-                        style={styles.input}
-                        submitHandler={this.say}
-                        handleInputChange={this.handleInputChange}
-                        value={this.state.text}
-                        broadcast={this.state.broadcast}
-                      /> */}
+                      <ChatScreen
+                        username={this.state.playerName}
+                        messages={this.state.messages}
+                        currentUser={this.state.currentUser}
+                        // playerName={this.state.playerName}
+                        // text={this.state.text}
+                      />
                     </div>
                   </div>
 

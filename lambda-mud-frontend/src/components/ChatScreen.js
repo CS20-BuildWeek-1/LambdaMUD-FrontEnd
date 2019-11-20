@@ -19,10 +19,44 @@ class ChatScreen extends Component {
     this.sendMessage = this.sendMessage.bind(this);
   }
 
+  componentDidMount() {
+    console.log("props", this.props);
+
+    // const chatManager = new Chatkit.ChatManager({
+    //   instanceLocator: "v1:us1:19220286-039a-4203-bd68-ce7c1bef3446",
+    //   userId: this.props.username,
+    //   tokenProvider: new Chatkit.TokenProvider({
+    //     url: "http://localhost:5000/authenticate"
+    //   })
+    // });
+
+    // chatManager
+    //   .connect()
+    //   .then(currentUser => {
+    //     this.setState({ currentUser });
+    //     return currentUser.subscribeToRoom({
+    //       roomId: "71423e2a-f125-4436-9409-098d5572d4e2",
+    //       messageLimit: 100,
+    //       hooks: {
+    //         onMessage: message => {
+    //           this.setState({
+    //             messages: [...this.state.messages, message]
+    //           });
+    //         }
+    //       }
+    //     });
+    //   })
+    //   .then(currentRoom => {
+    //     this.setState({ currentRoom });
+    //   })
+
+    //   .catch(error => console.error("error", error));
+  }
+
   sendMessage(text) {
-    this.state.currentUser.sendMessage({
+    this.props.currentUser.sendMessage({
       text,
-      roomId: this.state.currentRoom.id
+      roomId: "71423e2a-f125-4436-9409-098d5572d4e2"
     });
   }
 
@@ -50,44 +84,14 @@ class ChatScreen extends Component {
     this.setState({ text: "" });
   }
 
-  componentDidMount() {
-    const chatManager = new Chatkit.ChatManager({
-      instanceLocator: "v1:us1:19220286-039a-4203-bd68-ce7c1bef3446",
-      userId: "austinj",
-      tokenProvider: new Chatkit.TokenProvider({
-        url: "http://localhost:5000/authenticate"
-      })
-    });
-
-    chatManager
-      .connect()
-      .then(currentUser => {
-        this.setState({ currentUser });
-        return currentUser.subscribeToRoom({
-          roomId: "71423e2a-f125-4436-9409-098d5572d4e2",
-          messageLimit: 100,
-          hooks: {
-            onMessage: message => {
-              this.setState({
-                messages: [...this.state.messages, message]
-              });
-            }
-          }
-        });
-      })
-      .then(currentRoom => {
-        this.setState({ currentRoom });
-      })
-
-      .catch(error => console.error("error", error));
-  }
-
   render() {
+    console.log("render props", this.props);
+
     return (
       <>
         <div id="chat-list">
           <ul>
-            {this.state.messages.map(message => {
+            {this.props.messages.map(message => {
               console.log("message", message);
               return (
                 <div>
