@@ -6,6 +6,7 @@ import "./ChatScreen.scss";
 import axios from "axios";
 import TypingIndicator from "./TypingIndicator";
 import { animateScroll as scroll } from "react-scroll";
+import ScrollToBottom from "react-scroll-to-bottom";
 
 class ChatScreen extends Component {
   constructor(props) {
@@ -22,16 +23,17 @@ class ChatScreen extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.sendMessage = this.sendMessage.bind(this);
     this.sendTypingEvent = this.sendTypingEvent.bind(this);
-    this.scrollToBottom = this.scrollToBottom.bind(this);
+    // this.scrollToBottom = this.scrollToBottom.bind(this);
   }
-  scrollToBottom() {
-    var objDiv = document.getElementById("chat-list");
-    objDiv.scrollTop = objDiv.scrollHeight;
-  }
+  // scrollToBottom() {
+  //   var objDiv = document.getElementById("chat-list");
+  //   objDiv.scrollTop = objDiv.scrollHeight;
+  // }
 
   componentDidMount() {
-    setInterval(this.scrollToBottom, 20);
-
+    // this.scrollToBottom();
+    // var objDiv = document.getElementById("chat-list");
+    // objDiv.scrollTop = objDiv.scrollHeight;
     // console.log("props", this.props);
   }
 
@@ -98,7 +100,7 @@ class ChatScreen extends Component {
     // console.log("NamesArr", namesArr);
     return (
       <>
-        <div id="chat-list">
+        <ScrollToBottom id="chat-list">
           <ul>
             <div>
               <div className="chatMessage">
@@ -219,7 +221,7 @@ class ChatScreen extends Component {
             </div>
             <TypingIndicator usersWhoAreTyping={this.props.usersWhoAreTyping} />
           </ul>
-        </div>
+        </ScrollToBottom>
 
         <ChatBox onSubmit={this.sendMessage} onChange={this.sendTypingEvent} />
       </>

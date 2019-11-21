@@ -99,11 +99,12 @@ html {
   }
 }
 
-#chat-list {
+.css-13azwyo {
   // border: 1px solid white;
   height: 100%;
+  overflow-y: auto;
   // max-height: 100%;
-  overflow-y: scroll;
+  // overflow-y: scroll;
 }
 
 .chat-input {
