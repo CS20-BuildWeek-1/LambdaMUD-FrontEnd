@@ -55,6 +55,7 @@ import {
 import ChatScreen from "./ChatScreen";
 import ChatBox from "./ChatBox";
 
+
 import Chatkit from "@pusher/chatkit-client";
 import Pusher from "pusher-js";
 
@@ -102,6 +103,7 @@ class Adventure extends React.Component {
       messages: [],
       currentUser: {},
       currentRoom: {},
+      usersWhoAreTyping: [],
       broadcast: "",
       uuid: "",
       backgroundImg: ""
@@ -109,11 +111,18 @@ class Adventure extends React.Component {
     // this.onUsernameSubmitted = this.onUsernameSubmitted.bind(this);
     // this.handleTextChange = this.handleTextChange.bind(this);
     // this.handleSubmit = this.handleSubmit.bind(this);
+    this.sendTypingEvent = this.sendTypingEvent.bind(this);
   }
 
   componentDidMount() {
     this.startFx();
     this.init();
+  }
+
+  sendTypingEvent() {
+    this.state.currentUser
+      .isTypingIn({ roomId: "71423e2a-f125-4436-9409-098d5572d4e2" })
+      .catch(error => console.error("error", error));
   }
 
   init = () => {
@@ -206,7 +215,7 @@ class Adventure extends React.Component {
         console.log("Axios error:", err.response);
       });
 
-    console.log("NAME", this.state.username);
+    console.log("NAME", localStorage.getItem("username"));
 
     axios({
       method: "POST",
@@ -219,29 +228,44 @@ class Adventure extends React.Component {
       }
     })
       .then(response => {
-        console.log("RESPONSE", response.data)
+        console.log("RESPONSE", response.data);
         // this.setState({
         //   currentUsername: response.body.username
         // });
         const chatManager = new Chatkit.ChatManager({
           instanceLocator: "v1:us1:19220286-039a-4203-bd68-ce7c1bef3446",
-          userId:`${localStorage.getItem("username")}`,
+          userId: `${localStorage.getItem("username")}`,
           tokenProvider: new Chatkit.TokenProvider({
             url: "http://localhost:5000/authenticate"
           })
         });
-    
+
         chatManager
           .connect()
           .then(currentUser => {
             this.setState({ currentUser });
             return currentUser.subscribeToRoom({
               roomId: "71423e2a-f125-4436-9409-098d5572d4e2",
-              messageLimit: 100,
+              messageLimit: 20,
               hooks: {
                 onMessage: message => {
                   this.setState({
                     messages: [...this.state.messages, message]
+                  });
+                },
+                onUserStartedTyping: user => {
+                  this.setState({
+                    usersWhoAreTyping: [
+                      ...this.state.usersWhoAreTyping,
+                      user.name
+                    ]
+                  });
+                },
+                onUserStoppedTyping: user => {
+                  this.setState({
+                    usersWhoAreTyping: this.state.usersWhoAreTyping.filter(
+                      username => username !== user.name
+                    )
                   });
                 }
               }
@@ -250,13 +274,11 @@ class Adventure extends React.Component {
           .then(currentRoom => {
             this.setState({ currentRoom });
           })
-    
+
           .catch(error => console.error("error", error));
-    
       })
       .catch(error => console.error("error", error));
 
-    
     // const pusher = new Pusher("ff2810ec3a66168f055f", {
     //   cluster: "us3",
     //   // forceTLS: true
@@ -381,6 +403,7 @@ class Adventure extends React.Component {
     });
     setTimeout(() => {
       localStorage.removeItem("token");
+      localStorage.removeItem("username");
       window.location.assign("/");
     }, 3000);
   };
@@ -915,13 +938,18 @@ class Adventure extends React.Component {
                     <div className="pusher-chat">
                       <h2>General Chat</h2>
 
+                     
                       <ChatScreen
+                        usersWhoAreTyping={this.state.usersWhoAreTyping}
                         username={this.state.playerName}
                         messages={this.state.messages}
                         currentUser={this.state.currentUser}
+                        currentRoom={this.state.currentRoom}
                         // playerName={this.state.playerName}
                         // text={this.state.text}
                       />
+                       
+
                     </div>
                   </div>
 
