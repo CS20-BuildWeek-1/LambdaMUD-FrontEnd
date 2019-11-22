@@ -7,6 +7,7 @@ import Foyer from "../images/foyer.gif";
 import Overlook from "../images/overlook.gif";
 import Treasure from "../images/treasure.gif";
 import Lava from "../images/lava.gif";
+import Door from "../images/door1.gif";
 import Bridge from "../images/bridge.gif";
 import Passage from "../images/cave.gif";
 import Lambda from "../images/lambdalogo.png";
@@ -28,6 +29,7 @@ import PauseEnd from "../sounds/paseend.wav";
 import MoveSound from "../sounds/move.wav";
 import ErrorSound from "../sounds/error.wav";
 import EjectSound from "../sounds/eject.mp3";
+import DoorSound from "../sounds/dooropen.mp3";
 import MessageIncoming from "../sounds/msgincoming.wav";
 import MessageOutgoing from "../sounds/msgoutgoing.wav";
 import Delay from "react-delay";
@@ -54,7 +56,6 @@ import {
 } from "material-ui/styles/colors";
 import ChatScreen from "./ChatScreen";
 import ChatBox from "./ChatBox";
-
 
 import Chatkit from "@pusher/chatkit-client";
 import Pusher from "pusher-js";
@@ -219,7 +220,7 @@ class Adventure extends React.Component {
 
     axios({
       method: "POST",
-      url: "http://localhost:5000/users",
+      url: "https://cryptic-waters-51084.herokuapp.com/users",
       // headers: {
       //   "Content-Type": "application/json"
       // },
@@ -236,7 +237,7 @@ class Adventure extends React.Component {
           instanceLocator: "v1:us1:19220286-039a-4203-bd68-ce7c1bef3446",
           userId: `${localStorage.getItem("username")}`,
           tokenProvider: new Chatkit.TokenProvider({
-            url: "http://localhost:5000/authenticate"
+            url: "https://cryptic-waters-51084.herokuapp.com/authenticate"
           })
         });
 
@@ -244,14 +245,42 @@ class Adventure extends React.Component {
           .connect()
           .then(currentUser => {
             this.setState({ currentUser });
+            currentUser
+              .joinRoom({
+                roomId: "71423e2a-f125-4436-9409-098d5572d4e2"
+              })
+              .then(room => {
+                console.log(`Joined room with ID: ${room.id}`);
+              })
+              .catch(err => {
+                console.log(
+                  `Error joining room  "v1:us1:19220286-039a-4203-bd68-ce7c1bef3446": ${err}`
+                );
+              });
             return currentUser.subscribeToRoom({
               roomId: "71423e2a-f125-4436-9409-098d5572d4e2",
               messageLimit: 20,
               hooks: {
+                onPresenceChanged: (state, user) => {
+                  console.log(`${user.name} is ${state.current}`);
+                },
                 onMessage: message => {
+                  this.msgIncomingFx();
                   this.setState({
                     messages: [...this.state.messages, message]
                   });
+                },
+                onUserJoined: user => {
+                  return (
+                    this.forceUpdate(), console.log(`${user.name} joined room`)
+                  );
+                },
+
+                onUserJoinedRoom: (user, room) => {
+                  console.log(`${user.name} joined ${room}`);
+                },
+                onUserLeftRoom: user => {
+                  console.log(`${user.name} left room`);
                 },
                 onUserStartedTyping: user => {
                   this.setState({
@@ -293,17 +322,6 @@ class Adventure extends React.Component {
     // });
     // ();
   };
-
-  retrieveHistory() {
-    axios
-      .get("http://localhost:5000/messages")
-      .then(response => {
-        console.log("History pusher", response.data);
-      })
-      .catch(error => {
-        console.log("Retrieve error", error);
-      });
-  }
 
   say = () => {
     this.msgOutgoingFx();
@@ -411,6 +429,21 @@ class Adventure extends React.Component {
   handleMove = direction => {
     this.clickFx();
     this.animateCSS(".map-player", "flash");
+
+    if (this.state.roomTitle === "Outside Cave Entrance" && direction === "n") {
+      this.doorFx();
+      this.setState({
+        roomImage: Door
+      });
+    }
+
+    if (this.state.roomTitle === "Foyer" && direction === "s") {
+      this.doorFx();
+      this.setState({
+        roomImage: Door
+      });
+    }
+
     const herokurl = "https://lambdamud007.herokuapp.com";
     // const testurl = "https://lambda-mud-test.herokuapp.com";
     // const local = "http://127.0.0.1:8000";
@@ -693,15 +726,16 @@ class Adventure extends React.Component {
     pause.play();
   };
 
+  doorFx = () => {
+    const door = document.getElementById("doorOpen");
+    door.volume = 0.08;
+    door.play();
+  };
+
   msgIncomingFx = () => {
     const messageIncoming = document.getElementById("messageIncoming");
     messageIncoming.volume = 0.08;
     messageIncoming.play();
-  };
-  msgOutgoingFx = () => {
-    const messageOutgoing = document.getElementById("messageOutgoing");
-    messageOutgoing.volume = 0.05;
-    messageOutgoing.play();
   };
 
   handleInputChange = e => {
@@ -724,6 +758,7 @@ class Adventure extends React.Component {
                 <div className="rpgui-container framed-golden">
                   <div className="map">
                     <div className="overlook">
+                      {/* <div class="rpgui-icon sword"></div> */}
                       {room === "Grand Overlook" ? (
                         <img
                           id="map-player1"
@@ -938,7 +973,6 @@ class Adventure extends React.Component {
                     <div className="pusher-chat">
                       <h2>General Chat</h2>
 
-                     
                       <ChatScreen
                         usersWhoAreTyping={this.state.usersWhoAreTyping}
                         username={this.state.playerName}
@@ -948,8 +982,6 @@ class Adventure extends React.Component {
                         // playerName={this.state.playerName}
                         // text={this.state.text}
                       />
-                       
-
                     </div>
                   </div>
 
@@ -1018,6 +1050,9 @@ class Adventure extends React.Component {
                   </audio>
                   <audio id="messageOutgoing">
                     <source src={MessageOutgoing} />
+                  </audio>
+                  <audio id="doorOpen">
+                    <source src={DoorSound} />
                   </audio>
 
                   <div className="base">

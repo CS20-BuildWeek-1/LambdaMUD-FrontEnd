@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import Chatkit from "@pusher/chatkit-client";
-// import TypingIndicator from "./components/TypingIndicator";
+
 import ChatBox from "./ChatBox";
 import "./ChatScreen.scss";
 import axios from "axios";
 import TypingIndicator from "./TypingIndicator";
-import { animateScroll as scroll } from "react-scroll";
+import MessageOutgoing from "../sounds/msgoutgoing.wav";
+
 import ScrollToBottom from "react-scroll-to-bottom";
 
 class ChatScreen extends Component {
@@ -23,23 +23,14 @@ class ChatScreen extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.sendMessage = this.sendMessage.bind(this);
     this.sendTypingEvent = this.sendTypingEvent.bind(this);
-    // this.scrollToBottom = this.scrollToBottom.bind(this);
   }
-  // scrollToBottom() {
-  //   var objDiv = document.getElementById("chat-list");
-  //   objDiv.scrollTop = objDiv.scrollHeight;
-  // }
 
-  componentDidMount() {
-    // this.scrollToBottom();
-    // var objDiv = document.getElementById("chat-list");
-    // objDiv.scrollTop = objDiv.scrollHeight;
-    // console.log("props", this.props);
-  }
+  componentDidMount() {}
 
   componentDidUpdate() {}
 
   sendMessage(text) {
+    this.msgOutgoingFx();
     this.props.currentUser.sendMessage({
       text,
       roomId: "71423e2a-f125-4436-9409-098d5572d4e2"
@@ -52,21 +43,28 @@ class ChatScreen extends Component {
         username: this.props.username,
         message: this.props.text
       };
-      axios.post("http://localhost:5000/message", payload);
+      axios.post("https://cryptic-waters-51084.herokuapp.com/message", payload);
       this.setState({ text: "" });
     } else {
       this.setState({ text: e.target.value });
     }
   }
+  msgOutgoingFx = () => {
+    const messageOutgoing = document.getElementById("messageOutgoing");
+    messageOutgoing.volume = 0.05;
+    messageOutgoing.play();
+  };
 
   handleSubmit(e) {
     const payload = {
       username: this.props.username,
       message: this.props.text
     };
-    axios.post("http://localhost:5000/message", payload).then(res => {
-      console.log(res);
-    });
+    axios
+      .post("https://cryptic-waters-51084.herokuapp.com/message", payload)
+      .then(res => {
+        console.log(res);
+      });
     this.setState({ text: "" });
   }
 
@@ -100,6 +98,10 @@ class ChatScreen extends Component {
     // console.log("NamesArr", namesArr);
     return (
       <>
+        <audio id="messageOutgoing">
+          <source src={MessageOutgoing} />
+        </audio>
+
         <ScrollToBottom id="chat-list">
           <ul>
             <div>
