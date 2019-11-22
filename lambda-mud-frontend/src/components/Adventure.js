@@ -107,7 +107,8 @@ class Adventure extends React.Component {
       usersWhoAreTyping: [],
       broadcast: "",
       uuid: "",
-      backgroundImg: ""
+      backgroundImg: "",
+      userJoined: ""
     };
     // this.onUsernameSubmitted = this.onUsernameSubmitted.bind(this);
     // this.handleTextChange = this.handleTextChange.bind(this);
@@ -150,8 +151,6 @@ class Adventure extends React.Component {
           uuid: res.data.uuid,
           token: key
         });
-
-        localStorage.setItem("username", this.state.username);
 
         if (res.data.title === "Grand Overlook") {
           console.log("BackgroundImg", this.state.backgroundImg);
@@ -265,6 +264,7 @@ class Adventure extends React.Component {
                   console.log(`${user.name} is ${state.current}`);
                 },
                 onMessage: message => {
+                  console.log("MESSAGE", message)
                   this.msgIncomingFx();
                   this.setState({
                     messages: [...this.state.messages, message]
@@ -272,16 +272,17 @@ class Adventure extends React.Component {
                 },
                 onUserJoined: user => {
                   return (
+                    this.forceUpdate(), 
+                    this.setState({userJoined: user.name})
+
+                  )
+                },
+                onUserLeft: user => {
+                  return (
                     this.forceUpdate(), console.log(`${user.name} joined room`)
                   );
                 },
 
-                onUserJoinedRoom: (user, room) => {
-                  console.log(`${user.name} joined ${room}`);
-                },
-                onUserLeftRoom: user => {
-                  console.log(`${user.name} left room`);
-                },
                 onUserStartedTyping: user => {
                   this.setState({
                     usersWhoAreTyping: [
@@ -979,6 +980,7 @@ class Adventure extends React.Component {
                         messages={this.state.messages}
                         currentUser={this.state.currentUser}
                         currentRoom={this.state.currentRoom}
+                        userJoined={this.state.userJoined}
                         // playerName={this.state.playerName}
                         // text={this.state.text}
                       />

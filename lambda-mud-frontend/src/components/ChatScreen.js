@@ -86,6 +86,12 @@ class ChatScreen extends Component {
     return "rgb(" + mixedrgb.join(",") + ")";
   }
 
+  userJoined() {
+    if (this.props.userJoined.length > 0) {
+      return <p>{this.props.userJoined} joined</p>;
+    }
+  }
+
   render() {
     let namesArr = [];
 
@@ -207,20 +213,12 @@ class ChatScreen extends Component {
                           {message.text}
                         </p>
                       );
-                    } else {
-                      return (
-                        <p>
-                          <span style={{ color: "white" }}>
-                            {message.senderId}:
-                          </span>{" "}
-                          {message.text}
-                        </p>
-                      );
                     }
                   })}
                 </div>
               </div>
             </div>
+            {this.userJoined}
             <TypingIndicator usersWhoAreTyping={this.props.usersWhoAreTyping} />
           </ul>
         </ScrollToBottom>

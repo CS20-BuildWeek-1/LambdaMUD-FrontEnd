@@ -41,6 +41,7 @@ class Login extends Component {
         console.log("response", res);
         const token = res.data["key"];
         localStorage.setItem("token", `Token ${token}`);
+        localStorage.setItem("username", this.state.username);
         this.props.history.push("/adventure");
         this.setState({ loading: false });
       })
