@@ -13,7 +13,7 @@
     "@sweetalert/with-react": "^0.1.1",
     "animate.css": "^3.7.2",
     "audio-play": "^2.2.1",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
     "cors": "^2.8.5",
