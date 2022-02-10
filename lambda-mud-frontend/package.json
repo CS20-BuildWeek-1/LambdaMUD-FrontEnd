@@ -21,7 +21,7 @@
     "formik": "^1.5.8",
     "indicative": "5.0.8",
     "material-ui": "^0.20.2",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "prop-types": "^15.7.2",
     "pusher": "^3.0.0",
     "pusher-js": "^5.0.1",
